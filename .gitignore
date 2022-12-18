@@ -1,0 +1,13 @@
+.idea
+.settings
+.project
+test-output
+.classpath
+*.iml
+*~
+*.cmd
+target
+settings.*
+CVS
+Footer
+mvnw

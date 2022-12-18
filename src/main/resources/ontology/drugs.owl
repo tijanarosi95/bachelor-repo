@@ -1,0 +1,881 @@
+Prefix: dc: <http://purl.org/dc/elements/1.1/>
+Prefix: owl: <http://www.w3.org/2002/07/owl#>
+Prefix: rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+Prefix: rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+Prefix: xml: <http://www.w3.org/XML/1998/namespace>
+Prefix: xsd: <http://www.w3.org/2001/XMLSchema#>
+
+
+
+Ontology: <http://www.ftn.uns.ac.rs/drugs>
+
+
+AnnotationProperty: <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled>
+
+    
+AnnotationProperty: rdfs:comment
+
+    
+AnnotationProperty: rdfs:label
+
+    
+Datatype: rdf:PlainLiteral
+
+    
+Datatype: rdfs:Literal
+
+    
+Datatype: xsd:boolean
+
+    
+Datatype: xsd:int
+
+    
+Datatype: xsd:string
+
+    
+ObjectProperty: <http://www.ftn.uns.ac.rs/drugs#hasDiagnosis>
+
+    Domain: 
+        <http://www.ftn.uns.ac.rs/drugs#Patient>
+    
+    
+ObjectProperty: <http://www.ftn.uns.ac.rs/drugs#hasDisease>
+
+    Domain: 
+        <http://www.ftn.uns.ac.rs/drugs#Person>
+    
+    Range: 
+        <http://www.ftn.uns.ac.rs/drugs#Disease>
+    
+    
+ObjectProperty: <http://www.ftn.uns.ac.rs/drugs#hasDiseaseCourse>
+
+    Domain: 
+        <http://www.ftn.uns.ac.rs/drugs#Patient>
+    
+    
+ObjectProperty: <http://www.ftn.uns.ac.rs/drugs#hasSymptom>
+
+    Domain: 
+        <http://www.ftn.uns.ac.rs/drugs#Patient>
+    
+    
+ObjectProperty: <http://www.ftn.uns.ac.rs/drugs#isTreatedBy>
+
+    InverseOf: 
+        <http://www.ftn.uns.ac.rs/drugs#mayTreat>
+    
+    
+ObjectProperty: <http://www.ftn.uns.ac.rs/drugs#isTreatedWith>
+
+    Domain: 
+        <http://www.ftn.uns.ac.rs/drugs#Patient>
+    
+    Range: 
+        <http://www.ftn.uns.ac.rs/drugs#ApprovedDrug>
+    
+    
+ObjectProperty: <http://www.ftn.uns.ac.rs/drugs#lifeQuality>
+
+    Range: 
+        <http://www.ftn.uns.ac.rs/drugs#LifeQuality>
+    
+    
+ObjectProperty: <http://www.ftn.uns.ac.rs/drugs#mayTreat>
+
+    Domain: 
+        <http://www.ftn.uns.ac.rs/drugs#Drug>
+    
+    Range: 
+        <http://www.ftn.uns.ac.rs/drugs#Cancer>
+    
+    InverseOf: 
+        <http://www.ftn.uns.ac.rs/drugs#isTreatedBy>
+    
+    
+DataProperty: <http://www.ftn.uns.ac.rs/drugs#activeIngredient>
+
+    Domain: 
+        <http://www.ftn.uns.ac.rs/drugs#Drug>
+    
+    Range: 
+        xsd:string
+    
+    
+DataProperty: <http://www.ftn.uns.ac.rs/drugs#age>
+
+    Domain: 
+        <http://www.ftn.uns.ac.rs/drugs#Person>
+    
+    Range: 
+        xsd:int
+    
+    
+DataProperty: <http://www.ftn.uns.ac.rs/drugs#drugID>
+
+    Characteristics: 
+        Functional
+    
+    Domain: 
+        <http://www.ftn.uns.ac.rs/drugs#Drug>
+    
+    Range: 
+        xsd:string
+    
+    
+DataProperty: <http://www.ftn.uns.ac.rs/drugs#firstName>
+
+    Domain: 
+        <http://www.ftn.uns.ac.rs/drugs#Person>
+    
+    Range: 
+        xsd:string
+    
+    
+DataProperty: <http://www.ftn.uns.ac.rs/drugs#gender>
+
+    Domain: 
+        <http://www.ftn.uns.ac.rs/drugs#Person>
+    
+    Range: 
+        xsd:string
+    
+    
+DataProperty: <http://www.ftn.uns.ac.rs/drugs#hasCancerDetectable>
+
+    Range: 
+        xsd:boolean
+    
+    
+DataProperty: <http://www.ftn.uns.ac.rs/drugs#hasCancerGrown>
+
+    Range: 
+        xsd:boolean
+    
+    
+DataProperty: <http://www.ftn.uns.ac.rs/drugs#hasCancerReappear>
+
+    Range: 
+        xsd:boolean
+    
+    
+DataProperty: <http://www.ftn.uns.ac.rs/drugs#hasCancerSpread>
+
+    Range: 
+        xsd:boolean
+    
+    
+DataProperty: <http://www.ftn.uns.ac.rs/drugs#hasCancerSpreadToOrgans>
+
+    Range: 
+        xsd:boolean
+    
+    
+DataProperty: <http://www.ftn.uns.ac.rs/drugs#hasEfficacy>
+
+    Domain: 
+        <http://www.ftn.uns.ac.rs/drugs#PreclinicallyTestedDrug>
+    
+    Range: 
+        xsd:boolean
+    
+    
+DataProperty: <http://www.ftn.uns.ac.rs/drugs#hasSideEffects>
+
+    Domain: 
+        <http://www.ftn.uns.ac.rs/drugs#ClinicallyTestedDrugPhase2>
+    
+    Range: 
+        xsd:boolean
+    
+    
+DataProperty: <http://www.ftn.uns.ac.rs/drugs#hasTherapeuticEffect>
+
+    Domain: 
+        <http://www.ftn.uns.ac.rs/drugs#ClinicallyTestedDrugPhase3>
+    
+    Range: 
+        xsd:boolean
+    
+    
+DataProperty: <http://www.ftn.uns.ac.rs/drugs#hasToxicity>
+
+    Domain: 
+        <http://www.ftn.uns.ac.rs/drugs#PreclinicallyTestedDrug>
+    
+    Range: 
+        xsd:boolean
+    
+    
+DataProperty: <http://www.ftn.uns.ac.rs/drugs#isApproved>
+
+    Domain: 
+        <http://www.ftn.uns.ac.rs/drugs#ApprovedDrug>
+    
+    Range: 
+        xsd:boolean
+    
+    
+DataProperty: <http://www.ftn.uns.ac.rs/drugs#isDoseRanged>
+
+    Domain: 
+        <http://www.ftn.uns.ac.rs/drugs#ClinicallyTestedDrugPhase1>
+    
+    Range: 
+        xsd:boolean
+    
+    
+DataProperty: <http://www.ftn.uns.ac.rs/drugs#jmbg>
+
+    Characteristics: 
+        Functional
+    
+    Domain: 
+        <http://www.ftn.uns.ac.rs/drugs#Person>
+    
+    Range: 
+        xsd:string
+    
+    
+DataProperty: <http://www.ftn.uns.ac.rs/drugs#lastName>
+
+    Domain: 
+        <http://www.ftn.uns.ac.rs/drugs#Person>
+    
+    Range: 
+        xsd:string
+    
+    
+DataProperty: <http://www.ftn.uns.ac.rs/drugs#strongPain>
+
+    Range: 
+        xsd:boolean
+    
+    
+DataProperty: <http://www.ftn.uns.ac.rs/drugs#weightLoss>
+
+    Range: 
+        xsd:boolean
+    
+    
+Class: <http://www.ftn.uns.ac.rs/drugs#ApprovedDrug>
+
+    EquivalentTo: 
+        <http://www.ftn.uns.ac.rs/drugs#isApproved> value true
+    
+    SubClassOf: 
+        <http://www.ftn.uns.ac.rs/drugs#ClinicallyTestedDrugPhase3>
+    
+    
+Class: <http://www.ftn.uns.ac.rs/drugs#Cancer>
+
+    SubClassOf: 
+        <http://www.ftn.uns.ac.rs/drugs#Disease>
+    
+    
+Class: <http://www.ftn.uns.ac.rs/drugs#ClinicallyTestedDrugPhase1>
+
+    EquivalentTo: 
+        <http://www.ftn.uns.ac.rs/drugs#isDoseRanged> value true
+    
+    SubClassOf: 
+        <http://www.ftn.uns.ac.rs/drugs#PreclinicallyTestedDrug>
+    
+    
+Class: <http://www.ftn.uns.ac.rs/drugs#ClinicallyTestedDrugPhase2>
+
+    EquivalentTo: 
+        <http://www.ftn.uns.ac.rs/drugs#hasSideEffects> value false
+    
+    SubClassOf: 
+        <http://www.ftn.uns.ac.rs/drugs#ClinicallyTestedDrugPhase1>
+    
+    
+Class: <http://www.ftn.uns.ac.rs/drugs#ClinicallyTestedDrugPhase3>
+
+    EquivalentTo: 
+        <http://www.ftn.uns.ac.rs/drugs#hasTherapeuticEffect> value true
+    
+    SubClassOf: 
+        <http://www.ftn.uns.ac.rs/drugs#ClinicallyTestedDrugPhase2>
+    
+    
+Class: <http://www.ftn.uns.ac.rs/drugs#Disease>
+
+    
+Class: <http://www.ftn.uns.ac.rs/drugs#Drug>
+
+    
+Class: <http://www.ftn.uns.ac.rs/drugs#LifeQuality>
+
+    
+Class: <http://www.ftn.uns.ac.rs/drugs#Patient>
+
+    EquivalentTo: 
+        <http://www.ftn.uns.ac.rs/drugs#Person>
+         and (<http://www.ftn.uns.ac.rs/drugs#hasDisease> some <http://www.ftn.uns.ac.rs/drugs#Disease>)
+    
+    SubClassOf: 
+        <http://www.ftn.uns.ac.rs/drugs#Person>
+    
+    
+Class: <http://www.ftn.uns.ac.rs/drugs#PatientWithDiagnosis>
+
+    EquivalentTo: 
+        <http://www.ftn.uns.ac.rs/drugs#Patient>
+         and (<http://www.ftn.uns.ac.rs/drugs#hasCancerGrown> some rdfs:Literal)
+         and (<http://www.ftn.uns.ac.rs/drugs#hasCancerSpread> some rdfs:Literal)
+         and (<http://www.ftn.uns.ac.rs/drugs#hasCancerSpreadToOrgans> some rdfs:Literal)
+    
+    SubClassOf: 
+        <http://www.ftn.uns.ac.rs/drugs#Patient>
+    
+    
+Class: <http://www.ftn.uns.ac.rs/drugs#PatientWithDiagnosisCarcinoma>
+
+    EquivalentTo: 
+        <http://www.ftn.uns.ac.rs/drugs#PatientWithDiagnosis>
+         and (<http://www.ftn.uns.ac.rs/drugs#hasCancerGrown> value false)
+         and (<http://www.ftn.uns.ac.rs/drugs#hasCancerSpread> value false)
+         and (<http://www.ftn.uns.ac.rs/drugs#hasCancerSpreadToOrgans> value false)
+    
+    SubClassOf: 
+        <http://www.ftn.uns.ac.rs/drugs#PatientWithDiagnosis>
+    
+    
+Class: <http://www.ftn.uns.ac.rs/drugs#PatientWithDiagnosisMetastaticCancer>
+
+    EquivalentTo: 
+        <http://www.ftn.uns.ac.rs/drugs#PatientWithDiagnosis>
+         and (<http://www.ftn.uns.ac.rs/drugs#hasCancerGrown> value true)
+         and (<http://www.ftn.uns.ac.rs/drugs#hasCancerSpread> value true)
+         and (<http://www.ftn.uns.ac.rs/drugs#hasCancerSpreadToOrgans> value true)
+    
+    SubClassOf: 
+        <http://www.ftn.uns.ac.rs/drugs#PatientWithDiagnosis>
+    
+    
+Class: <http://www.ftn.uns.ac.rs/drugs#PatientWithDiagnosisStageICancer>
+
+    EquivalentTo: 
+        <http://www.ftn.uns.ac.rs/drugs#PatientWithDiagnosis>
+         and (<http://www.ftn.uns.ac.rs/drugs#hasCancerGrown> value true)
+         and (<http://www.ftn.uns.ac.rs/drugs#hasCancerSpread> value false)
+         and (<http://www.ftn.uns.ac.rs/drugs#hasCancerSpreadToOrgans> value false)
+    
+    SubClassOf: 
+        <http://www.ftn.uns.ac.rs/drugs#PatientWithDiagnosis>
+    
+    
+Class: <http://www.ftn.uns.ac.rs/drugs#PatientWithDiagnosisStageIICancer>
+
+    EquivalentTo: 
+        <http://www.ftn.uns.ac.rs/drugs#PatientWithDiagnosis>
+         and (<http://www.ftn.uns.ac.rs/drugs#hasCancerGrown> value true)
+         and (<http://www.ftn.uns.ac.rs/drugs#hasCancerSpread> value true)
+         and (<http://www.ftn.uns.ac.rs/drugs#hasCancerSpreadToOrgans> value false)
+    
+    SubClassOf: 
+        <http://www.ftn.uns.ac.rs/drugs#PatientWithDiagnosis>
+    
+    
+Class: <http://www.ftn.uns.ac.rs/drugs#PatientWithDiseaseCourse>
+
+    EquivalentTo: 
+        <http://www.ftn.uns.ac.rs/drugs#Patient>
+         and (<http://www.ftn.uns.ac.rs/drugs#hasCancerDetectable> some rdfs:Literal)
+         and (<http://www.ftn.uns.ac.rs/drugs#hasCancerReappear> some rdfs:Literal)
+    
+    SubClassOf: 
+        <http://www.ftn.uns.ac.rs/drugs#Patient>
+    
+    
+Class: <http://www.ftn.uns.ac.rs/drugs#PatientWithDiseaseProgression>
+
+    Annotations: 
+        rdfs:comment "Cancer mass is increased."
+    
+    EquivalentTo: 
+        <http://www.ftn.uns.ac.rs/drugs#PatientWithDiseaseCourse>
+         and (<http://www.ftn.uns.ac.rs/drugs#hasCancerDetectable> value true)
+         and (<http://www.ftn.uns.ac.rs/drugs#hasCancerReappear> value false)
+    
+    SubClassOf: 
+        <http://www.ftn.uns.ac.rs/drugs#PatientWithDiseaseCourse>
+    
+    
+Class: <http://www.ftn.uns.ac.rs/drugs#PatientWithDiseaseRecurrence>
+
+    Annotations: 
+        rdfs:comment "After remission, cancer appears again."
+    
+    EquivalentTo: 
+        <http://www.ftn.uns.ac.rs/drugs#PatientWithDiseaseCourse>
+         and (<http://www.ftn.uns.ac.rs/drugs#hasCancerDetectable> value true)
+         and (<http://www.ftn.uns.ac.rs/drugs#hasCancerReappear> value true)
+    
+    SubClassOf: 
+        <http://www.ftn.uns.ac.rs/drugs#PatientWithDiseaseCourse>
+    
+    
+Class: <http://www.ftn.uns.ac.rs/drugs#PatientWithDiseaseRemission>
+
+    Annotations: 
+        rdfs:comment "Cancer is not detectable any longer."
+    
+    EquivalentTo: 
+        <http://www.ftn.uns.ac.rs/drugs#PatientWithDiseaseCourse>
+         and (<http://www.ftn.uns.ac.rs/drugs#hasCancerDetectable> value false)
+         and (<http://www.ftn.uns.ac.rs/drugs#hasCancerReappear> value false)
+    
+    SubClassOf: 
+        <http://www.ftn.uns.ac.rs/drugs#PatientWithDiseaseCourse>
+    
+    
+Class: <http://www.ftn.uns.ac.rs/drugs#PatientWithSymptom>
+
+    EquivalentTo: 
+        <http://www.ftn.uns.ac.rs/drugs#Patient>
+         and (<http://www.ftn.uns.ac.rs/drugs#lifeQuality> some owl:Thing)
+         and (<http://www.ftn.uns.ac.rs/drugs#strongPain> some rdfs:Literal)
+         and (<http://www.ftn.uns.ac.rs/drugs#weightLoss> some rdfs:Literal)
+    
+    SubClassOf: 
+        <http://www.ftn.uns.ac.rs/drugs#Patient>
+    
+    
+Class: <http://www.ftn.uns.ac.rs/drugs#PatientWithSymptomExacerbated>
+
+    EquivalentTo: 
+        <http://www.ftn.uns.ac.rs/drugs#PatientWithSymptom>
+         and (<http://www.ftn.uns.ac.rs/drugs#lifeQuality> value <http://www.ftn.uns.ac.rs/drugs#Worse>)
+         and (<http://www.ftn.uns.ac.rs/drugs#strongPain> value true)
+         and (<http://www.ftn.uns.ac.rs/drugs#weightLoss> value true)
+    
+    SubClassOf: 
+        <http://www.ftn.uns.ac.rs/drugs#PatientWithSymptom>
+    
+    
+Class: <http://www.ftn.uns.ac.rs/drugs#PatientWithSymptomImproved>
+
+    EquivalentTo: 
+        <http://www.ftn.uns.ac.rs/drugs#PatientWithSymptom>
+         and (<http://www.ftn.uns.ac.rs/drugs#lifeQuality> value <http://www.ftn.uns.ac.rs/drugs#MuchBetter>)
+         and (<http://www.ftn.uns.ac.rs/drugs#strongPain> value false)
+         and (<http://www.ftn.uns.ac.rs/drugs#weightLoss> value true)
+    
+    SubClassOf: 
+        <http://www.ftn.uns.ac.rs/drugs#PatientWithSymptom>
+    
+    
+Class: <http://www.ftn.uns.ac.rs/drugs#PatientWithSymptomUnchanged>
+
+    EquivalentTo: 
+        <http://www.ftn.uns.ac.rs/drugs#PatientWithSymptom>
+         and (<http://www.ftn.uns.ac.rs/drugs#lifeQuality> value <http://www.ftn.uns.ac.rs/drugs#Same>)
+         and (<http://www.ftn.uns.ac.rs/drugs#strongPain> value true)
+         and (<http://www.ftn.uns.ac.rs/drugs#weightLoss> value true)
+    
+    SubClassOf: 
+        <http://www.ftn.uns.ac.rs/drugs#PatientWithSymptom>
+    
+    
+Class: <http://www.ftn.uns.ac.rs/drugs#Person>
+
+    
+Class: <http://www.ftn.uns.ac.rs/drugs#PreclinicallyTestedDrug>
+
+    EquivalentTo: 
+        (<http://www.ftn.uns.ac.rs/drugs#hasEfficacy> value true)
+         and (<http://www.ftn.uns.ac.rs/drugs#hasToxicity> value false)
+    
+    SubClassOf: 
+        <http://www.ftn.uns.ac.rs/drugs#Drug>
+    
+    
+Class: owl:Thing
+
+    
+Individual: <http://www.ftn.uns.ac.rs/drugs#Adenocarcinoma>
+
+    Types: 
+        <http://www.ftn.uns.ac.rs/drugs#Disease>
+    
+    
+Individual: <http://www.ftn.uns.ac.rs/drugs#Afinitor>
+
+    Annotations: 
+        rdfs:comment "Afinitor is used to treat certain types of kidney cancer, breast cancer, or brain tumor."@en
+    
+    Types: 
+        <http://www.ftn.uns.ac.rs/drugs#Drug>
+    
+    Facts:  
+     <http://www.ftn.uns.ac.rs/drugs#mayTreat>  <http://www.ftn.uns.ac.rs/drugs#InflammatoryBreastCancer>,
+     <http://www.ftn.uns.ac.rs/drugs#mayTreat>  <http://www.ftn.uns.ac.rs/drugs#InvasiveDuctalCarcinoma>,
+     <http://www.ftn.uns.ac.rs/drugs#mayTreat>  <http://www.ftn.uns.ac.rs/drugs#InvasiveLobularCarcinoma>,
+     <http://www.ftn.uns.ac.rs/drugs#mayTreat>  <http://www.ftn.uns.ac.rs/drugs#MetastaticBreastCancer>,
+     <http://www.ftn.uns.ac.rs/drugs#mayTreat>  <http://www.ftn.uns.ac.rs/drugs#RenalCellCarcinoma>,
+     <http://www.ftn.uns.ac.rs/drugs#mayTreat>  <http://www.ftn.uns.ac.rs/drugs#RenalSarcoma>,
+     <http://www.ftn.uns.ac.rs/drugs#mayTreat>  <http://www.ftn.uns.ac.rs/drugs#TransitionalCellCarcinoma>,
+     <http://www.ftn.uns.ac.rs/drugs#activeIngredient>  "Everolimus"^^xsd:string,
+     <http://www.ftn.uns.ac.rs/drugs#drugID>  "005"^^xsd:string,
+     <http://www.ftn.uns.ac.rs/drugs#isApproved>  true
+    
+    
+Individual: <http://www.ftn.uns.ac.rs/drugs#Alunbrig>
+
+    Annotations: 
+        rdfs:comment "Brigatinib is used to treat a certain type of cell lung cancer (NSCLC) that has spread to other parts of the body."@en
+    
+    Types: 
+        <http://www.ftn.uns.ac.rs/drugs#ApprovedDrug>
+    
+    Facts:  
+     <http://www.ftn.uns.ac.rs/drugs#mayTreat>  <http://www.ftn.uns.ac.rs/drugs#NSCLungCancer>,
+     <http://www.ftn.uns.ac.rs/drugs#mayTreat>  <http://www.ftn.uns.ac.rs/drugs#SCLungCancer>,
+     <http://www.ftn.uns.ac.rs/drugs#activeIngredient>  "Brigatinib"^^xsd:string,
+     <http://www.ftn.uns.ac.rs/drugs#drugID>  "009"^^xsd:string,
+     <http://www.ftn.uns.ac.rs/drugs#isApproved>  true
+    
+    
+Individual: <http://www.ftn.uns.ac.rs/drugs#Ellence>
+
+    Annotations: 
+        rdfs:comment "Epirubicin is used to treat breast cancer. It belongs to a class of drugs known as anthracyclines and works by slowing or stopping the growth of cancer cells."@en
+    
+    Types: 
+        <http://www.ftn.uns.ac.rs/drugs#ApprovedDrug>
+    
+    Facts:  
+     <http://www.ftn.uns.ac.rs/drugs#mayTreat>  <http://www.ftn.uns.ac.rs/drugs#InflammatoryBreastCancer>,
+     <http://www.ftn.uns.ac.rs/drugs#mayTreat>  <http://www.ftn.uns.ac.rs/drugs#InvasiveDuctalCarcinoma>,
+     <http://www.ftn.uns.ac.rs/drugs#mayTreat>  <http://www.ftn.uns.ac.rs/drugs#InvasiveLobularCarcinoma>,
+     <http://www.ftn.uns.ac.rs/drugs#mayTreat>  <http://www.ftn.uns.ac.rs/drugs#MetastaticBreastCancer>,
+     <http://www.ftn.uns.ac.rs/drugs#activeIngredient>  "Epirubicin"^^xsd:string,
+     <http://www.ftn.uns.ac.rs/drugs#drugID>  "008"^^xsd:string,
+     <http://www.ftn.uns.ac.rs/drugs#isApproved>  true
+    
+    
+Individual: <http://www.ftn.uns.ac.rs/drugs#Fotivda>
+
+    Annotations: 
+        rdfs:comment "Fotivda is a medicine for treating adults with advanced renal cell carcinoma (a kidney cancer)."@en
+    
+    Types: 
+        <http://www.ftn.uns.ac.rs/drugs#Drug>
+    
+    Facts:  
+     <http://www.ftn.uns.ac.rs/drugs#mayTreat>  <http://www.ftn.uns.ac.rs/drugs#RenalCellCarcinoma>,
+     <http://www.ftn.uns.ac.rs/drugs#activeIngredient>  "Tivozanib"^^xsd:string,
+     <http://www.ftn.uns.ac.rs/drugs#drugID>  "004"^^xsd:string,
+     <http://www.ftn.uns.ac.rs/drugs#isApproved>  true
+    
+    
+Individual: <http://www.ftn.uns.ac.rs/drugs#Gemzar>
+
+    Annotations: 
+        rdfs:comment "Gemcitabine is used to treat certain types of cancer (including breast, lung, ovarian, pancreatic)."@en
+    
+    Types: 
+        <http://www.ftn.uns.ac.rs/drugs#Drug>
+    
+    Facts:  
+     <http://www.ftn.uns.ac.rs/drugs#mayTreat>  <http://www.ftn.uns.ac.rs/drugs#Adenocarcinoma>,
+     <http://www.ftn.uns.ac.rs/drugs#mayTreat>  <http://www.ftn.uns.ac.rs/drugs#Glucagonoma>,
+     <http://www.ftn.uns.ac.rs/drugs#mayTreat>  <http://www.ftn.uns.ac.rs/drugs#InflammatoryBreastCancer>,
+     <http://www.ftn.uns.ac.rs/drugs#mayTreat>  <http://www.ftn.uns.ac.rs/drugs#Insulinoma>,
+     <http://www.ftn.uns.ac.rs/drugs#mayTreat>  <http://www.ftn.uns.ac.rs/drugs#InvasiveDuctalCarcinoma>,
+     <http://www.ftn.uns.ac.rs/drugs#mayTreat>  <http://www.ftn.uns.ac.rs/drugs#InvasiveLobularCarcinoma>,
+     <http://www.ftn.uns.ac.rs/drugs#mayTreat>  <http://www.ftn.uns.ac.rs/drugs#LungCarcinoids>,
+     <http://www.ftn.uns.ac.rs/drugs#mayTreat>  <http://www.ftn.uns.ac.rs/drugs#MetastaticBreastCancer>,
+     <http://www.ftn.uns.ac.rs/drugs#mayTreat>  <http://www.ftn.uns.ac.rs/drugs#MetastaticLungCancer>,
+     <http://www.ftn.uns.ac.rs/drugs#mayTreat>  <http://www.ftn.uns.ac.rs/drugs#SCLungCancer>,
+     <http://www.ftn.uns.ac.rs/drugs#activeIngredient>  "Gemcitabine"^^xsd:string,
+     <http://www.ftn.uns.ac.rs/drugs#drugID>  "011"^^xsd:string,
+     <http://www.ftn.uns.ac.rs/drugs#isApproved>  true
+    
+    
+Individual: <http://www.ftn.uns.ac.rs/drugs#Glucagonoma>
+
+    Types: 
+        <http://www.ftn.uns.ac.rs/drugs#Cancer>
+    
+    
+Individual: <http://www.ftn.uns.ac.rs/drugs#InflammatoryBreastCancer>
+
+    Types: 
+        <http://www.ftn.uns.ac.rs/drugs#Disease>
+    
+    
+Individual: <http://www.ftn.uns.ac.rs/drugs#Insulinoma>
+
+    Types: 
+        <http://www.ftn.uns.ac.rs/drugs#Cancer>
+    
+    
+Individual: <http://www.ftn.uns.ac.rs/drugs#InvasiveDuctalCarcinoma>
+
+    Types: 
+        <http://www.ftn.uns.ac.rs/drugs#Disease>
+    
+    
+Individual: <http://www.ftn.uns.ac.rs/drugs#InvasiveLobularCarcinoma>
+
+    Types: 
+        <http://www.ftn.uns.ac.rs/drugs#Disease>
+    
+    
+Individual: <http://www.ftn.uns.ac.rs/drugs#Iressa>
+
+    Annotations: 
+        rdfs:comment "Gefitinib is used to treat lung cancer. It works by slowing or stopping the growth of cancer cells."@en
+    
+    Types: 
+        <http://www.ftn.uns.ac.rs/drugs#Drug>
+    
+    Facts:  
+     <http://www.ftn.uns.ac.rs/drugs#mayTreat>  <http://www.ftn.uns.ac.rs/drugs#LungCarcinoids>,
+     <http://www.ftn.uns.ac.rs/drugs#mayTreat>  <http://www.ftn.uns.ac.rs/drugs#MetastaticLungCancer>,
+     <http://www.ftn.uns.ac.rs/drugs#mayTreat>  <http://www.ftn.uns.ac.rs/drugs#NSCLungCancer>,
+     <http://www.ftn.uns.ac.rs/drugs#mayTreat>  <http://www.ftn.uns.ac.rs/drugs#SCLungCancer>,
+     <http://www.ftn.uns.ac.rs/drugs#activeIngredient>  "Gefitinib"^^xsd:string,
+     <http://www.ftn.uns.ac.rs/drugs#drugID>  "010"^^xsd:string,
+     <http://www.ftn.uns.ac.rs/drugs#hasEfficacy>  true,
+     <http://www.ftn.uns.ac.rs/drugs#hasSideEffects>  false,
+     <http://www.ftn.uns.ac.rs/drugs#hasTherapeuticEffect>  true,
+     <http://www.ftn.uns.ac.rs/drugs#hasToxicity>  false,
+     <http://www.ftn.uns.ac.rs/drugs#isApproved>  true,
+     <http://www.ftn.uns.ac.rs/drugs#isDoseRanged>  true
+    
+    
+Individual: <http://www.ftn.uns.ac.rs/drugs#JP>
+
+    Annotations: 
+        rdfs:comment "Jovan Petrovic"^^xsd:string
+    
+    Types: 
+        <http://www.ftn.uns.ac.rs/drugs#Person>
+    
+    Facts:  
+     <http://www.ftn.uns.ac.rs/drugs#hasDisease>  <http://www.ftn.uns.ac.rs/drugs#RenalCellCarcinoma>,
+     <http://www.ftn.uns.ac.rs/drugs#isTreatedWith>  <http://www.ftn.uns.ac.rs/drugs#Lenvima>,
+     <http://www.ftn.uns.ac.rs/drugs#age>  "55"^^xsd:int,
+     <http://www.ftn.uns.ac.rs/drugs#firstName>  "Jovan"^^xsd:string,
+     <http://www.ftn.uns.ac.rs/drugs#gender>  "male"^^xsd:string,
+     <http://www.ftn.uns.ac.rs/drugs#jmbg>  "0101999800010"^^xsd:string,
+     <http://www.ftn.uns.ac.rs/drugs#lastName>  "Petrović"^^xsd:string
+    
+    
+Individual: <http://www.ftn.uns.ac.rs/drugs#Lenvima>
+
+    Annotations: 
+        rdfs:comment "Lenvima is a medicine used to treat the symptoms of thyroid cancer, advanced renal cell carcinoma and endometrial cancer."@en
+    
+    Types: 
+        <http://www.ftn.uns.ac.rs/drugs#ApprovedDrug>
+    
+    Facts:  
+     <http://www.ftn.uns.ac.rs/drugs#mayTreat>  <http://www.ftn.uns.ac.rs/drugs#RenalCellCarcinoma>,
+     <http://www.ftn.uns.ac.rs/drugs#mayTreat>  <http://www.ftn.uns.ac.rs/drugs#RenalSarcoma>,
+     <http://www.ftn.uns.ac.rs/drugs#mayTreat>  <http://www.ftn.uns.ac.rs/drugs#TransitionalCellCarcinoma>,
+     <http://www.ftn.uns.ac.rs/drugs#activeIngredient>  "Lenvatinib"^^xsd:string,
+     <http://www.ftn.uns.ac.rs/drugs#drugID>  "003"^^xsd:string,
+     <http://www.ftn.uns.ac.rs/drugs#isApproved>  true
+    
+    
+Individual: <http://www.ftn.uns.ac.rs/drugs#LungCarcinoids>
+
+    Types: 
+        <http://www.ftn.uns.ac.rs/drugs#Disease>
+    
+    
+Individual: <http://www.ftn.uns.ac.rs/drugs#MetastaticBreastCancer>
+
+    Types: 
+        <http://www.ftn.uns.ac.rs/drugs#Disease>
+    
+    
+Individual: <http://www.ftn.uns.ac.rs/drugs#MetastaticLungCancer>
+
+    Types: 
+        <http://www.ftn.uns.ac.rs/drugs#Disease>
+    
+    
+Individual: <http://www.ftn.uns.ac.rs/drugs#MuchBetter>
+
+    Types: 
+        <http://www.ftn.uns.ac.rs/drugs#LifeQuality>
+    
+    
+Individual: <http://www.ftn.uns.ac.rs/drugs#NP>
+
+    Annotations: 
+        rdfs:comment "Nikola Petrovic"^^xsd:string
+    
+    Types: 
+        <http://www.ftn.uns.ac.rs/drugs#Person>
+    
+    Facts:  
+     <http://www.ftn.uns.ac.rs/drugs#hasDisease>  <http://www.ftn.uns.ac.rs/drugs#Adenocarcinoma>,
+     <http://www.ftn.uns.ac.rs/drugs#isTreatedWith>  <http://www.ftn.uns.ac.rs/drugs#Gemzar>,
+     <http://www.ftn.uns.ac.rs/drugs#age>  "74"^^xsd:int,
+     <http://www.ftn.uns.ac.rs/drugs#firstName>  "Nikola"^^xsd:string,
+     <http://www.ftn.uns.ac.rs/drugs#gender>  "male"^^xsd:string,
+     <http://www.ftn.uns.ac.rs/drugs#jmbg>  "0202999800010"^^xsd:string,
+     <http://www.ftn.uns.ac.rs/drugs#lastName>  "Petrović"^^xsd:string
+    
+    
+Individual: <http://www.ftn.uns.ac.rs/drugs#NSCLungCancer>
+
+    Annotations: 
+        rdfs:comment "Non-small cell lung cancer."^^xsd:string
+    
+    Types: 
+        <http://www.ftn.uns.ac.rs/drugs#Disease>
+    
+    
+Individual: <http://www.ftn.uns.ac.rs/drugs#Nexavar>
+
+    Annotations: 
+        rdfs:comment "Sorafenib is used to treat kidney, liver and thyroid cancer. It works by slowing or stopping the growth of cancer cells."@en
+    
+    Types: 
+        <http://www.ftn.uns.ac.rs/drugs#ApprovedDrug>
+    
+    Facts:  
+     <http://www.ftn.uns.ac.rs/drugs#mayTreat>  <http://www.ftn.uns.ac.rs/drugs#RenalCellCarcinoma>,
+     <http://www.ftn.uns.ac.rs/drugs#mayTreat>  <http://www.ftn.uns.ac.rs/drugs#RenalSarcoma>,
+     <http://www.ftn.uns.ac.rs/drugs#mayTreat>  <http://www.ftn.uns.ac.rs/drugs#TransitionalCellCarcinoma>,
+     <http://www.ftn.uns.ac.rs/drugs#activeIngredient>  "Sorafenib"^^xsd:string,
+     <http://www.ftn.uns.ac.rs/drugs#drugID>  "002"^^xsd:string,
+     <http://www.ftn.uns.ac.rs/drugs#isApproved>  true
+    
+    
+Individual: <http://www.ftn.uns.ac.rs/drugs#PP>
+
+    Annotations: 
+        rdfs:comment "Petar Petrovic"^^xsd:string
+    
+    Types: 
+        <http://www.ftn.uns.ac.rs/drugs#Person>
+    
+    Facts:  
+     <http://www.ftn.uns.ac.rs/drugs#hasDisease>  <http://www.ftn.uns.ac.rs/drugs#NSCLungCancer>,
+     <http://www.ftn.uns.ac.rs/drugs#isTreatedWith>  <http://www.ftn.uns.ac.rs/drugs#Iressa>,
+     <http://www.ftn.uns.ac.rs/drugs#lifeQuality>  <http://www.ftn.uns.ac.rs/drugs#MuchBetter>,
+     <http://www.ftn.uns.ac.rs/drugs#age>  "54"^^xsd:int,
+     <http://www.ftn.uns.ac.rs/drugs#firstName>  "Petar"^^xsd:string,
+     <http://www.ftn.uns.ac.rs/drugs#gender>  "male"^^xsd:string,
+     <http://www.ftn.uns.ac.rs/drugs#hasCancerDetectable>  false,
+     <http://www.ftn.uns.ac.rs/drugs#hasCancerGrown>  false,
+     <http://www.ftn.uns.ac.rs/drugs#hasCancerReappear>  false,
+     <http://www.ftn.uns.ac.rs/drugs#hasCancerSpread>  false,
+     <http://www.ftn.uns.ac.rs/drugs#hasCancerSpreadToOrgans>  false,
+     <http://www.ftn.uns.ac.rs/drugs#jmbg>  "0303999800010"^^xsd:string,
+     <http://www.ftn.uns.ac.rs/drugs#lastName>  "Petrović"^^xsd:string,
+     <http://www.ftn.uns.ac.rs/drugs#strongPain>  false,
+     <http://www.ftn.uns.ac.rs/drugs#weightLoss>  true
+    
+    
+Individual: <http://www.ftn.uns.ac.rs/drugs#RenalCellCarcinoma>
+
+    Types: 
+        <http://www.ftn.uns.ac.rs/drugs#Disease>
+    
+    
+Individual: <http://www.ftn.uns.ac.rs/drugs#RenalSarcoma>
+
+    Types: 
+        <http://www.ftn.uns.ac.rs/drugs#Disease>
+    
+    
+Individual: <http://www.ftn.uns.ac.rs/drugs#SCLungCancer>
+
+    Annotations: 
+        rdfs:comment "Small cell lung cancer."^^xsd:string
+    
+    Types: 
+        <http://www.ftn.uns.ac.rs/drugs#Disease>
+    
+    
+Individual: <http://www.ftn.uns.ac.rs/drugs#Same>
+
+    Types: 
+        <http://www.ftn.uns.ac.rs/drugs#LifeQuality>
+    
+    
+Individual: <http://www.ftn.uns.ac.rs/drugs#Sutent>
+
+    Annotations: 
+        rdfs:comment "Sunitinib can be used in people with advanced kidney cancer, as well as in people with a high risk of the cancer returning after surgery."@en
+    
+    Types: 
+        <http://www.ftn.uns.ac.rs/drugs#ApprovedDrug>
+    
+    Facts:  
+     <http://www.ftn.uns.ac.rs/drugs#mayTreat>  <http://www.ftn.uns.ac.rs/drugs#RenalSarcoma>,
+     <http://www.ftn.uns.ac.rs/drugs#activeIngredient>  "Sunitinib"^^xsd:string,
+     <http://www.ftn.uns.ac.rs/drugs#drugID>  "001"^^xsd:string,
+     <http://www.ftn.uns.ac.rs/drugs#isApproved>  true
+    
+    
+Individual: <http://www.ftn.uns.ac.rs/drugs#Taxol>
+
+    Annotations: 
+        rdfs:comment "Taxol is one of the most commonly used and effective chemotherapy drugs for breast cancer and it is effective for all stages of the disease."@en
+    
+    Types: 
+        <http://www.ftn.uns.ac.rs/drugs#ApprovedDrug>
+    
+    Facts:  
+     <http://www.ftn.uns.ac.rs/drugs#mayTreat>  <http://www.ftn.uns.ac.rs/drugs#InflammatoryBreastCancer>,
+     <http://www.ftn.uns.ac.rs/drugs#mayTreat>  <http://www.ftn.uns.ac.rs/drugs#InvasiveDuctalCarcinoma>,
+     <http://www.ftn.uns.ac.rs/drugs#mayTreat>  <http://www.ftn.uns.ac.rs/drugs#InvasiveLobularCarcinoma>,
+     <http://www.ftn.uns.ac.rs/drugs#mayTreat>  <http://www.ftn.uns.ac.rs/drugs#MetastaticBreastCancer>,
+     <http://www.ftn.uns.ac.rs/drugs#activeIngredient>  "Paclitaxel"^^xsd:string,
+     <http://www.ftn.uns.ac.rs/drugs#drugID>  "006"^^xsd:string,
+     <http://www.ftn.uns.ac.rs/drugs#isApproved>  true
+    
+    
+Individual: <http://www.ftn.uns.ac.rs/drugs#TransitionalCellCarcinoma>
+
+    Types: 
+        <http://www.ftn.uns.ac.rs/drugs#Disease>
+    
+    
+Individual: <http://www.ftn.uns.ac.rs/drugs#Trexall>
+
+    Annotations: 
+        rdfs:comment "Trexall is used to treat leukemia and certain types of cancer of the breast, skin, head and neck, lung or uterus."@en
+    
+    Types: 
+        <http://www.ftn.uns.ac.rs/drugs#ApprovedDrug>
+    
+    Facts:  
+     <http://www.ftn.uns.ac.rs/drugs#mayTreat>  <http://www.ftn.uns.ac.rs/drugs#MetastaticBreastCancer>,
+     <http://www.ftn.uns.ac.rs/drugs#mayTreat>  <http://www.ftn.uns.ac.rs/drugs#MetastaticLungCancer>,
+     <http://www.ftn.uns.ac.rs/drugs#activeIngredient>  "Methotrexate"^^xsd:string,
+     <http://www.ftn.uns.ac.rs/drugs#drugID>  "007"^^xsd:string,
+     <http://www.ftn.uns.ac.rs/drugs#isApproved>  true
+    
+    
+Individual: <http://www.ftn.uns.ac.rs/drugs#Worse>
+
+    Types: 
+        <http://www.ftn.uns.ac.rs/drugs#LifeQuality>
+    
+    
+Rule: 
+    <http://www.ftn.uns.ac.rs/drugs#Drug>(?<d>), <http://www.ftn.uns.ac.rs/drugs#hasEfficacy>(?<d>, true), <http://www.ftn.uns.ac.rs/drugs#hasToxicity>(?<d>, true) -> <http://www.ftn.uns.ac.rs/drugs#PreclinicallyTestedDrug>(?<d>)
+
+Rule: 
+    <http://www.ftn.uns.ac.rs/drugs#Drug>(?<d>), <http://www.ftn.uns.ac.rs/drugs#hasSideEffects>(?<d>, false) -> <http://www.ftn.uns.ac.rs/drugs#ClinicallyTestedDrugPhase2>(?<d>)
+
+Rule: 
+    <http://www.ftn.uns.ac.rs/drugs#Drug>(?<d>), <http://www.ftn.uns.ac.rs/drugs#hasTherapeuticEffect>(?<d>, true) -> <http://www.ftn.uns.ac.rs/drugs#ClinicallyTestedDrugPhase3>(?<d>)
+
+Rule: 
+    <http://www.ftn.uns.ac.rs/drugs#Drug>(?<d>), <http://www.ftn.uns.ac.rs/drugs#isDoseRanged>(?<d>, true) -> <http://www.ftn.uns.ac.rs/drugs#ClinicallyTestedDrugPhase1>(?<d>)
+
