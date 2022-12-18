@@ -1,20 +1,23 @@
 package com.ftn.anticancerdrugrecord.util;
 
-import com.clarkparsia.pellet.owlapiv3.PelletReasoner;
 import com.clarkparsia.pellet.owlapiv3.PelletReasonerFactory;
 import com.ftn.anticancerdrugrecord.configuration.OntologyFactory;
-import org.semanticweb.owlapi.apibinding.OWLManager;
-import org.semanticweb.owlapi.dlsyntax.renderer.DLSyntaxObjectRenderer;
 import org.semanticweb.owlapi.io.OWLObjectRenderer;
-import org.semanticweb.owlapi.model.*;
+import org.semanticweb.owlapi.model.OWLOntologyManager;
+import org.semanticweb.owlapi.model.OWLOntologyCreationException;
+import org.semanticweb.owlapi.model.OWLOntology;
+import org.semanticweb.owlapi.model.OWLDataFactory;
+import org.semanticweb.owlapi.model.PrefixManager;
+import org.semanticweb.owlapi.model.OWLClass;
+import org.semanticweb.owlapi.model.OWLNamedIndividual;
 import org.semanticweb.owlapi.reasoner.OWLReasoner;
 import org.semanticweb.owlapi.reasoner.OWLReasonerFactory;
 import org.semanticweb.owlapi.reasoner.SimpleConfiguration;
 import org.semanticweb.owlapi.util.DefaultPrefixManager;
 import org.semanticweb.owlapi.util.Version;
-import org.semanticweb.owlapi.vocab.PrefixOWLOntologyFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import uk.ac.manchester.cs.owlapi.dlsyntax.DLSyntaxObjectRenderer;
 
 import java.io.File;
 
@@ -35,11 +38,11 @@ public class LoadOntologyUtility {
 
         final OWLReasoner reasoner = reasonerFactory.createReasoner(ontology, new SimpleConfiguration());
         final Version v = reasoner.getReasonerVersion();
-        System.out.println("reasoner " + reasoner.getReasonerName()+ " " + v.getMajor()+"."+v.getMinor()+"."+v.getPatch()+" build "+v.getBuild());
+        System.out.println("reasoner " + reasoner.getReasonerName()+ " " + v.getMajor()+ "." + v.getMinor() + "." + v.getPatch() + " build " + v.getBuild());
 
         final OWLDataFactory factory = manager.getOWLDataFactory();
 
-        final PrefixManager pm = new DefaultPrefixManager(null, null, URI);
+        final PrefixManager pm = new DefaultPrefixManager(URI);
 
         final OWLClass personClass = factory.getOWLClass(":Person", pm);
 
