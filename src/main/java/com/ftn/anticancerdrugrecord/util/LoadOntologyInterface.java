@@ -1,6 +1,9 @@
 package com.ftn.anticancerdrugrecord.util;
 
+import org.semanticweb.owlapi.model.OWLOntologyCreationException;
+
 public interface LoadOntologyInterface {
 
-    void loadPersons();
+    void loadPersons() throws OWLOntologyCreationException;
+
 }

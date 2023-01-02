@@ -21,7 +21,7 @@ public class AnticancerDrugRecordApplication {
 	public CommandLineRunner CommandLineRunnerBean() {
 		return (args) -> {
 			System.out.println("In CommandLineRunnerImpl ");
-			utility.testOntology();
+			utility.loadPersons();
 		};
 	}
 
