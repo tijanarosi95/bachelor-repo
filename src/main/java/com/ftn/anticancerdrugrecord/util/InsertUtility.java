@@ -19,7 +19,7 @@ public class InsertUtility {
     private static final String DRUGS_URI = "<http://www.ftn.uns.ac.rs/drugs#>";
     private static final String RDF_URI = "<http://www.w3.org/1999/02/22-rdf-syntax-ns#>";
 
-    private static final String TDB_BASE_URL = "http://localhost:3030/ds/update";
+    private static final String TDB_INSERT_BASE_URL = "http://localhost:3030/ds/update";
 
     public void insertPerson(final Person person) {
         try {
@@ -89,12 +89,12 @@ public class InsertUtility {
     private String getPersonInitials(final Person person) {
         final char firstNameInitial = person.getFirstName().charAt(0);
         final char lastNameInitial = person.getLastName().charAt(0);
-        return new StringBuilder().append(firstNameInitial + lastNameInitial).toString();
+        return String.valueOf(firstNameInitial + lastNameInitial);
     }
 
     private void save(final String insertQuery) {
         final UpdateRequest updateRequest = UpdateFactory.create(insertQuery);
-        final UpdateProcessor updateProcessor = UpdateExecutionFactory.createRemote(updateRequest, TDB_BASE_URL);
+        final UpdateProcessor updateProcessor = UpdateExecutionFactory.createRemote(updateRequest, TDB_INSERT_BASE_URL);
         updateProcessor.execute();
     }
 
