@@ -5,14 +5,18 @@ import com.ftn.anticancerdrugrecord.model.person.Person;
 import java.io.InputStream;
 import java.util.List;
 import java.util.Optional;
+import org.apache.jena.base.Sys;
 import org.apache.jena.ontology.OntModel;
 import org.apache.jena.ontology.OntModelSpec;
 import org.apache.jena.query.Query;
 import org.apache.jena.query.QueryExecution;
 import org.apache.jena.query.QueryExecutionFactory;
 import org.apache.jena.query.QueryFactory;
+import org.apache.jena.query.ResultSet;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.util.FileManager;
+import org.semanticweb.owlapi.model.OWLOntologyCreationException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -23,6 +27,9 @@ public class SelectUtility {
     private static final String ONTOLOGY_PATH = "src/main/resources/ontology/drugs.owl";
 
     private static final String TDB_SELECT_BASE_URL = "http://localhost:3030/ds/query";
+
+    @Autowired
+    private LoadOntologyUtility ontologyUtility;
 
     public Optional<Drug> loadDrugById(final String id) {
         final InputStream in = FileManager.get().open(ONTOLOGY_PATH);
@@ -39,9 +46,21 @@ public class SelectUtility {
 
         final Query query = QueryFactory.create(formattedQueryString);
 
-        // Execute the query and obtain the results
-        final QueryExecution qe = QueryExecutionFactory.create(query, model);
+        QueryExecution queryExecution = null;
+        try {
+            // Execute the query and obtain the results
+            queryExecution = QueryExecutionFactory.sparqlService(TDB_SELECT_BASE_URL, query);
+            //queryExecution.execConstruct(model);
 
+            final ResultSet resultSet = queryExecution.execSelect();
+            while (resultSet.hasNext()) {
+                System.out.println("Result from TDB: " + resultSet.next());
+            }
+        } catch (Exception exception) {
+            System.out.println("Exception occurred.");
+        } finally {
+            queryExecution.close();
+        }
         return Optional.empty();
     }
 
