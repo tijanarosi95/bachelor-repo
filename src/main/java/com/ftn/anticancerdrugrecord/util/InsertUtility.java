@@ -93,6 +93,7 @@ public class InsertUtility {
     }
 
     private void save(final String insertQuery) {
+        System.out.println("QUERY: " + insertQuery);
         final UpdateRequest updateRequest = UpdateFactory.create(insertQuery);
         final UpdateProcessor updateProcessor = UpdateExecutionFactory.createRemote(updateRequest, TDB_INSERT_BASE_URL);
         updateProcessor.execute();

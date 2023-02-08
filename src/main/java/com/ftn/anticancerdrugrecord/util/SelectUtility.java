@@ -5,7 +5,6 @@ import com.ftn.anticancerdrugrecord.model.person.Person;
 import java.io.InputStream;
 import java.util.List;
 import java.util.Optional;
-import org.apache.jena.base.Sys;
 import org.apache.jena.ontology.OntModel;
 import org.apache.jena.ontology.OntModelSpec;
 import org.apache.jena.query.Query;
@@ -15,7 +14,6 @@ import org.apache.jena.query.QueryFactory;
 import org.apache.jena.query.ResultSet;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.util.FileManager;
-import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
