@@ -131,6 +131,12 @@
 			<groupId>com.github.relaxng</groupId>
 			<artifactId>relaxngDatatype</artifactId>
 			<version>2011.1</version>
+			<exclusions>
+				<exclusion>
+					<groupId>msv</groupId>
+					<artifactId>xsdlib</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.jgrapht/jgrapht-jdk1.5 -->

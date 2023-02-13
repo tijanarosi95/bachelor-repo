@@ -16,8 +16,9 @@ import java.util.stream.Collectors;
 @Component
 public class InsertUtility {
 
-    private static final String DRUGS_URI = "<http://www.ftn.uns.ac.rs/drugs#>";
+    private static final String DRUGS_URI = "<http://www.ftn.uns.ac.rs/drugs#";
     private static final String RDF_URI = "<http://www.w3.org/1999/02/22-rdf-syntax-ns#>";
+    private static final String XSD_URI = "<http://w3.org/2001/XMLSchema#>";
 
     private static final String TDB_INSERT_BASE_URL = "http://localhost:3030/ds/update";
 
@@ -52,18 +53,20 @@ public class InsertUtility {
         return "PREFIX drg:" + DRUGS_URI + " " +
                 "PREFIX rdf:" + RDF_URI + " " +
                 "INSERT DATA { "
-                            + " drg:" + getPersonInitials(person) + " drg:firstName '" + person.getFirstName() + "';"
-                            + " drg:lastName '" + person.getLastName() + "';"
-                            + " drg:jmbg '" +  person.getJmbg() + "';"
-                            + " drg:age '" + person.getAge() + "';"
-                            + " drg:gender " + person.getGender().toString() + "';";
+                            + " <http://www.ftn.uns.ac.rs/drugs#" + getPersonInitials(person) + "> drg:firstName '" + person.getFirstName() + "'; "
+                            + " drg:lastName '" + person.getLastName() + "'; "
+                            + " drg:jmbg " +  person.getJmbg() + "; "
+                            + " drg:age " + person.getAge() + "; "
+                            + " drg:gender '" + person.getGender().toString() + "'; "
+                            + " rdf:type " + "drg:Person " +
+                            " }";
     }
 
     private String createInsertQuery(final Disease disease) {
         return "PREFIX drg:" + DRUGS_URI + " " +
                 "PREFIX rdf:" + RDF_URI + " " +
                 "INSERT DATA { "
-                + " drg:" + disease.getId() + " drg:name '" + disease.getName() + "';";
+                + " drg:" + disease.getId() + " drg:name '" + disease.getName() + "' }";
     }
 
     private String createInsertQuery(final Drug drug) {
@@ -76,7 +79,7 @@ public class InsertUtility {
                 + " drg:hasToxicity '" + drug.isHasToxicity() + "';"
                 + " drg:hasSideEffects '" + drug.isHasSideEffects() + "';"
                 + " drg:hasTherapeuticEffect '" + drug.isHasTherapeuticEffect() + "';"
-                + " drg:hasApproved '" + drug.isApproved() + "';"
+                + " drg:hasApproved '" + drug.isApproved() + "'; }"
                 + createMayTreatStatements(drug.getMayTreat());
     }
 
@@ -87,9 +90,9 @@ public class InsertUtility {
     }
 
     private String getPersonInitials(final Person person) {
-        final char firstNameInitial = person.getFirstName().charAt(0);
-        final char lastNameInitial = person.getLastName().charAt(0);
-        return String.valueOf(firstNameInitial + lastNameInitial);
+        final String firstNameInitial = String.valueOf(person.getFirstName().charAt(0));
+        final String lastNameInitial = String.valueOf(person.getLastName().charAt(0));
+        return firstNameInitial + lastNameInitial;
     }
 
     private void save(final String insertQuery) {
