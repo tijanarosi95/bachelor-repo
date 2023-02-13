@@ -16,6 +16,8 @@ public class Drug {
 
     private String drugId;
 
+    private String name;
+
     private String activeIngredient;
 
     private boolean isDoseRanged;

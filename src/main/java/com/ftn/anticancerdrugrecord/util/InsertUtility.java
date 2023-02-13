@@ -2,6 +2,7 @@ package com.ftn.anticancerdrugrecord.util;
 
 import com.ftn.anticancerdrugrecord.model.disease.Disease;
 import com.ftn.anticancerdrugrecord.model.drug.Drug;
+import com.ftn.anticancerdrugrecord.model.person.LifeQuality;
 import com.ftn.anticancerdrugrecord.model.person.Person;
 import org.apache.jena.shared.JenaException;
 import org.apache.jena.update.UpdateExecutionFactory;
@@ -16,9 +17,8 @@ import java.util.stream.Collectors;
 @Component
 public class InsertUtility {
 
-    private static final String DRUGS_URI = "<http://www.ftn.uns.ac.rs/drugs#";
+    private static final String DRUGS_URI = "<http://www.ftn.uns.ac.rs/drugs#>";
     private static final String RDF_URI = "<http://www.w3.org/1999/02/22-rdf-syntax-ns#>";
-    private static final String XSD_URI = "<http://w3.org/2001/XMLSchema#>";
 
     private static final String TDB_INSERT_BASE_URL = "http://localhost:3030/ds/update";
 
@@ -49,6 +49,15 @@ public class InsertUtility {
         }
     }
 
+    public void insertLifeQuality(final LifeQuality lifeQuality) {
+        try {
+            final String insertQuery = createInsertQuery(lifeQuality);
+            save(insertQuery);
+        } catch (JenaException ex) {
+            ex.printStackTrace();
+        }
+    }
+
     private String createInsertQuery(final Person person) {
         return "PREFIX drg:" + DRUGS_URI + " " +
                 "PREFIX rdf:" + RDF_URI + " " +
@@ -66,21 +75,35 @@ public class InsertUtility {
         return "PREFIX drg:" + DRUGS_URI + " " +
                 "PREFIX rdf:" + RDF_URI + " " +
                 "INSERT DATA { "
-                + " drg:" + disease.getId() + " drg:name '" + disease.getName() + "' }";
+                + " <http://www.ftn.uns.ac.rs/drugs#" + disease.getName() + "> drg:name '" + disease.getName() + "'; "
+                + " drg:id " + disease.getId() + " ; "
+                + " rdf:type " + "drg:Disease "
+                + " }";
     }
 
     private String createInsertQuery(final Drug drug) {
         return "PREFIX drg:" + DRUGS_URI + " " +
                 "PREFIX rdf:" + RDF_URI + " " +
                 "INSERT DATA { "
-                + " drg:" + drug.getDrugId() + " drg:activeIngredient '" + drug.getActiveIngredient() + "';"
-                + " drg:isDoseRanged '" + drug.isDoseRanged() + "';"
-                + " drg:hasEfficacy '" + drug.isHasEfficacy() + "';"
-                + " drg:hasToxicity '" + drug.isHasToxicity() + "';"
-                + " drg:hasSideEffects '" + drug.isHasSideEffects() + "';"
-                + " drg:hasTherapeuticEffect '" + drug.isHasTherapeuticEffect() + "';"
-                + " drg:hasApproved '" + drug.isApproved() + "'; }"
-                + createMayTreatStatements(drug.getMayTreat());
+                + " <http://www.ftn.uns.ac.rs/drugs#" + drug.getName() + "> drg:activeIngredient '" + drug.getActiveIngredient() + "';"
+                + " drg:drugID " + drug.getDrugId() + ";"
+                + " drg:isDoseRanged " + drug.isDoseRanged() + ";"
+                + " drg:hasEfficacy " + drug.isHasEfficacy() + ";"
+                + " drg:hasToxicity " + drug.isHasToxicity() + ";"
+                + " drg:hasSideEffects " + drug.isHasSideEffects() + ";"
+                + " drg:hasTherapeuticEffect " + drug.isHasTherapeuticEffect() + ";"
+                + " drg:hasApproved " + drug.isApproved() + " ; "
+                + createMayTreatStatements(drug.getMayTreat())
+                + " rdf:type " + "drg:Drug "
+                + " }";
+    }
+
+    private String createInsertQuery(final LifeQuality lifeQuality) {
+        return "PREFIX drg:" + DRUGS_URI + " " +
+               "PREFIX rdf:" + RDF_URI + " " +
+                "INSERT DATA { "
+                + " <http://www.ftn.uns.ac.rs/drugs#" + lifeQuality + "> rdf:type " + "drg:LifeQuality . "
+                + " } ";
     }
 
     private String createMayTreatStatements(final Set<Disease> diseases) {

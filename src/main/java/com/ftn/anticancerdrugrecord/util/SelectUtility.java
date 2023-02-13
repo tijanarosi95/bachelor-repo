@@ -29,17 +29,18 @@ public class SelectUtility {
     @Autowired
     private LoadOntologyUtility ontologyUtility;
 
-    public Optional<Drug> loadDrugById(final String id) {
-        final InputStream in = FileManager.get().open(ONTOLOGY_PATH);
-        final OntModel model = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM_MICRO_RULE_INF, null);
-        model.read(in, null);
-
+    public Optional<Drug> loadDrugById(final int id) {
         final String queryString =
                 "PREFIX drg:" + DRUGS_URI + " " +
                 "PREFIX rdf:" + RDF_URI + " " +
-                "SELECT ?s ?o " +
+                "SELECT ?drugID ?name ?activeIngredient ?isDoseRanged ?hasEfficacy ?hasToxicity " +
+                " ?hasToxicity ?hasSideEffects ?hasTherapeuticEffect ?isApproved" +
                     "WHERE { " +
-                        "?s drg:drugId ?o FILTER ( str(?o) = %s ) . }";
+                        "?x drg:drugID ?drugID FILTER ( ?drugID = %s ) . " +
+                        "?y drg:name ?name . " +
+                        "?z drg:activeIngredient ?activeIngredient . " +
+                        "?e drg:isDoseRanged ?isDoseRanged . " +
+                " } ";
         final String formattedQueryString = String.format(queryString, id);
 
         final Query query = QueryFactory.create(formattedQueryString);
@@ -48,7 +49,6 @@ public class SelectUtility {
         try {
             // Execute the query and obtain the results
             queryExecution = QueryExecutionFactory.sparqlService(TDB_SELECT_BASE_URL, query);
-            //queryExecution.execConstruct(model);
 
             final ResultSet resultSet = queryExecution.execSelect();
             while (resultSet.hasNext()) {
