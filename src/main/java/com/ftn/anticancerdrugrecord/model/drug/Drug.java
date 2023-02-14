@@ -2,6 +2,7 @@ package com.ftn.anticancerdrugrecord.model.drug;
 
 import com.ftn.anticancerdrugrecord.model.disease.Disease;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,6 +13,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Getter
 @Setter
+@Builder
 public class Drug {
 
     private String drugId;

@@ -19,6 +19,7 @@ public class InsertUtility {
 
     private static final String DRUGS_URI = "<http://www.ftn.uns.ac.rs/drugs#>";
     private static final String RDF_URI = "<http://www.w3.org/1999/02/22-rdf-syntax-ns#>";
+    private static final String XSD_URI = "<http://w3.org/2001/XMLSchema#>";
 
     private static final String TDB_INSERT_BASE_URL = "http://localhost:3030/ds/update";
 
@@ -64,9 +65,17 @@ public class InsertUtility {
                 "INSERT DATA { "
                             + " <http://www.ftn.uns.ac.rs/drugs#" + getPersonInitials(person) + "> drg:firstName '" + person.getFirstName() + "'; "
                             + " drg:lastName '" + person.getLastName() + "'; "
-                            + " drg:jmbg " +  person.getJmbg() + "; "
+                            + " drg:jmbg '" +  person.getJmbg() + "'; "
                             + " drg:age " + person.getAge() + "; "
                             + " drg:gender '" + person.getGender().toString() + "'; "
+                            + " drg:isCancerSpread " + person.isCancerSpread() + "; "
+                            + " drg:isCancerGrown " + person.isCancerGrown() + "; "
+                            + " drg:isCancerSpreadToOrgans " + person.isCancerSpreadToOrgans() + "; "
+                            + " drg:isCancerSpread " + person.isCancerSpread() + "; "
+                            + " drg:strongPain " + person.isStrongPain() + "; "
+                            + " drg:isCancerReappear " + person.isCancerReappear() + "; "
+                            + " drg:isCancerDetectable " + person.isCancerDetectable() + "; "
+                            + " drg:lifeQuality " + person.getLifeQuality() + "; "
                             + " rdf:type " + "drg:Person " +
                             " }";
     }

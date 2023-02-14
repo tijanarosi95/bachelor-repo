@@ -3,6 +3,10 @@ package com.ftn.anticancerdrugrecord.controller;
 import com.ftn.anticancerdrugrecord.model.person.Person;
 import com.ftn.anticancerdrugrecord.service.person.PersonServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,5 +22,11 @@ public class PersonController {
     @PostMapping
     public void addPerson(@RequestBody Person person) {
         personServiceInterface.createPerson(person);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity loadPersonById(@PathVariable("id") String id) {
+        final Person person = personServiceInterface.getPersonById(id).orElse(null);
+        return new ResponseEntity(person, HttpStatus.OK);
     }
 }
