@@ -4,6 +4,7 @@ import com.ftn.anticancerdrugrecord.model.disease.Disease;
 import com.ftn.anticancerdrugrecord.model.drug.Drug;
 import com.ftn.anticancerdrugrecord.model.person.LifeQuality;
 import com.ftn.anticancerdrugrecord.model.person.Person;
+import java.util.HashSet;
 import org.apache.jena.shared.JenaException;
 import org.apache.jena.update.UpdateExecutionFactory;
 import org.apache.jena.update.UpdateFactory;
@@ -12,7 +13,6 @@ import org.apache.jena.update.UpdateRequest;
 import org.springframework.stereotype.Component;
 
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @Component
 public class InsertUtility {
@@ -75,7 +75,7 @@ public class InsertUtility {
                             + " drg:strongPain " + person.isStrongPain() + "; "
                             + " drg:isCancerReappear " + person.isCancerReappear() + "; "
                             + " drg:isCancerDetectable " + person.isCancerDetectable() + "; "
-                            + " drg:lifeQuality " + person.getLifeQuality() + "; "
+                            + " drg:lifeQuality '" + person.getLifeQuality() + "'; "
                             + " rdf:type " + "drg:Person " +
                             " }";
     }
@@ -116,9 +116,12 @@ public class InsertUtility {
     }
 
     private String createMayTreatStatements(final Set<Disease> diseases) {
-        return diseases.stream()
+        var enteredDiseases = new HashSet<>(diseases);
+        return enteredDiseases.stream()
                 .map(Disease::getName)
-                .collect(Collectors.joining("", " drg:mayTreat '", "';"));
+                .map(item -> " drg:mayTreat '" + item + "'; ")
+                .reduce(String::concat)
+                .get();
     }
 
     private String getPersonInitials(final Person person) {

@@ -2,6 +2,7 @@ package com.ftn.anticancerdrugrecord.controller;
 
 import com.ftn.anticancerdrugrecord.model.drug.Drug;
 import com.ftn.anticancerdrugrecord.service.drug.DrugServiceInterface;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,8 +26,14 @@ public class DrugController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity loadDrugById(@PathVariable("id") Integer id) {
+    public ResponseEntity<Drug> loadDrugById(@PathVariable("id") Integer id) {
         final Drug drug = drugServiceInterface.getDrugById(id).orElse(null);
         return new ResponseEntity(drug, HttpStatus.OK);
+    }
+
+    @GetMapping("/diseases/{diseaseType}")
+    public ResponseEntity<List<Drug>> loadDrugsByDiseaseType(@PathVariable("diseaseType") String diseaseType) {
+        final List<Drug> drugs = drugServiceInterface.getDrugsByDiseaseType(diseaseType);
+        return new ResponseEntity(drugs, HttpStatus.OK);
     }
 }
