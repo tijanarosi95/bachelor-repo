@@ -2,6 +2,7 @@ package com.ftn.anticancerdrugrecord.util;
 
 import com.ftn.anticancerdrugrecord.configuration.OntologyFactory;
 import com.ftn.anticancerdrugrecord.configuration.ReasonerFactory;
+import com.ftn.anticancerdrugrecord.dto.patient.PatientDiseaseDTO;
 import com.ftn.anticancerdrugrecord.model.person.CustomPerson;
 import java.util.ArrayList;
 import java.util.List;
@@ -50,6 +51,35 @@ public class LoadOntologyUtility implements LoadOntologyInterface {
         System.out.println("Loaded Person individuals : " + loadedPersons);
     }
 
+    public void addPersonsAxiomsTest(final PatientDiseaseDTO patient) throws OWLOntologyCreationException {
+        final OWLOntology ontology = loadOntologyFromFile();
+        final OWLReasoner reasoner = loadReasoner(ontology);
+        final OWLDataFactory factory = loadOntologyDataFactory();
+
+        final OWLOntologyManager manager = ontologyFactory.getOntologyManager();
+
+        final DefaultPrefixManager pm = new DefaultPrefixManager();
+        pm.setDefaultPrefix(URI);
+
+        OWLClass personClass = factory.getOWLClass(":Person", pm);
+        manager.addAxiom(ontology, factory.getOWLDeclarationAxiom(personClass));
+
+        final String formattedPersonIndividual = String.format(":%s", patient.getFirstName() + patient.getLastName());
+        final String formattedDiseaseIndividual = String.format(":%s", patient.getDisease().getName());
+
+        final OWLNamedIndividual person = createIndividual(ontology, pm, manager, formattedPersonIndividual);
+        final OWLNamedIndividual disease = createIndividual(ontology, pm, manager, formattedDiseaseIndividual);
+
+        final OWLObjectProperty hasDiseaseProperty = createObjectProperty(ontology, pm, manager, ":hasDisease");
+
+        //axiom - Added individual is a Person
+        manager.addAxiom(ontology, factory.getOWLClassAssertionAxiom(personClass, person));
+        //axiom - Added individual hasDisease Disease.name
+        manager.addAxiom(ontology, factory.getOWLObjectPropertyAssertionAxiom(hasDiseaseProperty, person, disease));
+
+        //somehow need to save the axioms
+    }
+
     protected OWLOntology loadOntologyFromFile() throws OWLOntologyCreationException {
         final OWLOntologyManager manager = ontologyFactory.getOntologyManager();
         return manager.loadOntologyFromOntologyDocument(new File(ONTOLOGY_PATH));
@@ -67,5 +97,19 @@ public class LoadOntologyUtility implements LoadOntologyInterface {
     private OWLClass loadIndividualByType(final String type, final OWLDataFactory factory) {
         final PrefixManager pm = new DefaultPrefixManager(URI);
         return factory.getOWLClass(type, pm);
+    }
+
+    private OWLNamedIndividual createIndividual(OWLOntology ontology, DefaultPrefixManager pm, OWLOntologyManager manager, String name) {
+        OWLDataFactory factory = manager.getOWLDataFactory();
+        OWLNamedIndividual individual = factory.getOWLNamedIndividual(name, pm);
+        manager.addAxiom(ontology, factory.getOWLDeclarationAxiom(individual));
+        return individual;
+    }
+
+    private OWLObjectProperty createObjectProperty(OWLOntology ontology, DefaultPrefixManager pm, OWLOntologyManager manager, String name) {
+        OWLDataFactory factory = manager.getOWLDataFactory();
+        OWLObjectProperty objectProperty = factory.getOWLObjectProperty(name, pm);
+        manager.addAxiom(ontology, factory.getOWLDeclarationAxiom(objectProperty));
+        return objectProperty;
     }
 }

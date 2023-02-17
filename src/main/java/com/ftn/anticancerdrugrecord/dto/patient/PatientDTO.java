@@ -1,7 +1,6 @@
-package com.ftn.anticancerdrugrecord.model.disease;
+package com.ftn.anticancerdrugrecord.dto.patient;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,10 +9,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-@Builder
-public class Disease {
+public class PatientDTO {
 
-    private int id;
+    private String jmbg;
 
-    private String name;
 }

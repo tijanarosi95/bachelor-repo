@@ -1,7 +1,7 @@
 package com.ftn.anticancerdrugrecord;
 
 import com.ftn.anticancerdrugrecord.util.LoadOntologyUtility;
-import com.ftn.anticancerdrugrecord.util.SelectUtility;
+import com.ftn.anticancerdrugrecord.util.SelectPatientUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -15,7 +15,7 @@ public class AnticancerDrugRecordApplication {
 	private LoadOntologyUtility utility;
 
 	@Autowired
-	private SelectUtility selectUtility;
+	private SelectPatientUtility selectUtility;
 
 	public static void main(String[] args) {
 		SpringApplication.run(AnticancerDrugRecordApplication.class, args);

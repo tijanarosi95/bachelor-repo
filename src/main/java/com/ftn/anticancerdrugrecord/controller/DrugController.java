@@ -1,5 +1,7 @@
 package com.ftn.anticancerdrugrecord.controller;
 
+import com.ftn.anticancerdrugrecord.dto.drug.DrugEffectsDTO;
+import com.ftn.anticancerdrugrecord.dto.patient.PatientDrugDTO;
 import com.ftn.anticancerdrugrecord.model.drug.Drug;
 import com.ftn.anticancerdrugrecord.service.drug.DrugServiceInterface;
 import java.util.List;
@@ -23,6 +25,16 @@ public class DrugController {
     @PostMapping
     public void addDrug(@RequestBody Drug drug) {
         drugServiceInterface.createDrug(drug);
+    }
+
+    @PostMapping("/person-drug")
+    public void addPatientDrug(@RequestBody PatientDrugDTO dto) {
+        drugServiceInterface.insertPersonDrug(dto);
+    }
+
+    @PostMapping("/effects")
+    public void addDrugEffects(@RequestBody DrugEffectsDTO dto) {
+        drugServiceInterface.insertDrugEffects(dto);
     }
 
     @GetMapping("/{id}")
