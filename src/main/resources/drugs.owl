@@ -1,0 +1,1416 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.ftn.uns.ac.rs/drugs#"
+     xml:base="http://www.ftn.uns.ac.rs/drugs"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+     xmlns:drugs="http://www.ftn.uns.ac.rs/drugs#"
+     xmlns:swrla="http://swrl.stanford.edu/ontologies/3.3/swrla.owl#"
+     xmlns:swrlb="http://www.w3.org/2003/11/swrlb#">
+    <owl:Ontology rdf:about="http://www.ftn.uns.ac.rs/drugs"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled -->
+
+    <owl:AnnotationProperty rdf:about="http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled"/>
+    
+
+
+    <!-- http://www.w3.org/2000/01/rdf-schema#comment -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2000/01/rdf-schema#comment"/>
+    
+
+
+    <!-- http://www.w3.org/2000/01/rdf-schema#label -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2000/01/rdf-schema#label"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Datatypes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral -->
+
+    <rdfs:Datatype rdf:about="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral"/>
+    
+
+
+    <!-- http://www.w3.org/2000/01/rdf-schema#Literal -->
+
+    <rdfs:Datatype rdf:about="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+    
+
+
+    <!-- http://www.w3.org/2001/XMLSchema#boolean -->
+
+    <rdfs:Datatype rdf:about="http://www.w3.org/2001/XMLSchema#boolean"/>
+    
+
+
+    <!-- http://www.w3.org/2001/XMLSchema#int -->
+
+    <rdfs:Datatype rdf:about="http://www.w3.org/2001/XMLSchema#int"/>
+    
+
+
+    <!-- http://www.w3.org/2001/XMLSchema#string -->
+
+    <rdfs:Datatype rdf:about="http://www.w3.org/2001/XMLSchema#string"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#hasDiagnosis -->
+
+    <owl:ObjectProperty rdf:about="http://www.ftn.uns.ac.rs/drugs#hasDiagnosis">
+        <rdfs:domain rdf:resource="http://www.ftn.uns.ac.rs/drugs#Patient"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#hasDisease -->
+
+    <owl:ObjectProperty rdf:about="http://www.ftn.uns.ac.rs/drugs#hasDisease">
+        <rdfs:domain rdf:resource="http://www.ftn.uns.ac.rs/drugs#Person"/>
+        <rdfs:range rdf:resource="http://www.ftn.uns.ac.rs/drugs#Disease"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#hasDiseaseCourse -->
+
+    <owl:ObjectProperty rdf:about="http://www.ftn.uns.ac.rs/drugs#hasDiseaseCourse">
+        <rdfs:domain rdf:resource="http://www.ftn.uns.ac.rs/drugs#Patient"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#hasSymptom -->
+
+    <owl:ObjectProperty rdf:about="http://www.ftn.uns.ac.rs/drugs#hasSymptom">
+        <rdfs:domain rdf:resource="http://www.ftn.uns.ac.rs/drugs#Patient"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#isTreatedBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.ftn.uns.ac.rs/drugs#isTreatedBy">
+        <owl:inverseOf rdf:resource="http://www.ftn.uns.ac.rs/drugs#mayTreat"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#isTreatedWith -->
+
+    <owl:ObjectProperty rdf:about="http://www.ftn.uns.ac.rs/drugs#isTreatedWith">
+        <rdfs:domain rdf:resource="http://www.ftn.uns.ac.rs/drugs#Patient"/>
+        <rdfs:range rdf:resource="http://www.ftn.uns.ac.rs/drugs#ApprovedDrug"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#lifeQuality -->
+
+    <owl:ObjectProperty rdf:about="http://www.ftn.uns.ac.rs/drugs#lifeQuality">
+        <rdfs:range rdf:resource="http://www.ftn.uns.ac.rs/drugs#LifeQuality"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#mayTreat -->
+
+    <owl:ObjectProperty rdf:about="http://www.ftn.uns.ac.rs/drugs#mayTreat">
+        <rdfs:domain rdf:resource="http://www.ftn.uns.ac.rs/drugs#Drug"/>
+        <rdfs:range rdf:resource="http://www.ftn.uns.ac.rs/drugs#Cancer"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#activeIngredient -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ftn.uns.ac.rs/drugs#activeIngredient">
+        <rdfs:domain rdf:resource="http://www.ftn.uns.ac.rs/drugs#Drug"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#age -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ftn.uns.ac.rs/drugs#age">
+        <rdfs:domain rdf:resource="http://www.ftn.uns.ac.rs/drugs#Person"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#drugID -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ftn.uns.ac.rs/drugs#drugID">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.ftn.uns.ac.rs/drugs#Drug"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#firstName -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ftn.uns.ac.rs/drugs#firstName">
+        <rdfs:domain rdf:resource="http://www.ftn.uns.ac.rs/drugs#Person"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#gender -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ftn.uns.ac.rs/drugs#gender">
+        <rdfs:domain rdf:resource="http://www.ftn.uns.ac.rs/drugs#Person"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#hasCancerDetectable -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ftn.uns.ac.rs/drugs#hasCancerDetectable">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#hasCancerGrown -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ftn.uns.ac.rs/drugs#hasCancerGrown">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#hasCancerReappear -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ftn.uns.ac.rs/drugs#hasCancerReappear">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#hasCancerSpread -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ftn.uns.ac.rs/drugs#hasCancerSpread">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#hasCancerSpreadToOrgans -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ftn.uns.ac.rs/drugs#hasCancerSpreadToOrgans">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#hasEfficacy -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ftn.uns.ac.rs/drugs#hasEfficacy">
+        <rdfs:domain rdf:resource="http://www.ftn.uns.ac.rs/drugs#PreclinicallyTestedDrug"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#hasSideEffects -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ftn.uns.ac.rs/drugs#hasSideEffects">
+        <rdfs:domain rdf:resource="http://www.ftn.uns.ac.rs/drugs#ClinicallyTestedDrugPhase2"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#hasTherapeuticEffect -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ftn.uns.ac.rs/drugs#hasTherapeuticEffect">
+        <rdfs:domain rdf:resource="http://www.ftn.uns.ac.rs/drugs#ClinicallyTestedDrugPhase3"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#hasToxicity -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ftn.uns.ac.rs/drugs#hasToxicity">
+        <rdfs:domain rdf:resource="http://www.ftn.uns.ac.rs/drugs#PreclinicallyTestedDrug"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#isApproved -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ftn.uns.ac.rs/drugs#isApproved">
+        <rdfs:domain rdf:resource="http://www.ftn.uns.ac.rs/drugs#ApprovedDrug"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#isDoseRanged -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ftn.uns.ac.rs/drugs#isDoseRanged">
+        <rdfs:domain rdf:resource="http://www.ftn.uns.ac.rs/drugs#ClinicallyTestedDrugPhase1"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#jmbg -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ftn.uns.ac.rs/drugs#jmbg">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.ftn.uns.ac.rs/drugs#Person"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#lastName -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ftn.uns.ac.rs/drugs#lastName">
+        <rdfs:domain rdf:resource="http://www.ftn.uns.ac.rs/drugs#Person"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#strongPain -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ftn.uns.ac.rs/drugs#strongPain">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#weightLoss -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ftn.uns.ac.rs/drugs#weightLoss">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#ApprovedDrug -->
+
+    <owl:Class rdf:about="http://www.ftn.uns.ac.rs/drugs#ApprovedDrug">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ftn.uns.ac.rs/drugs#isApproved"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.ftn.uns.ac.rs/drugs#ClinicallyTestedDrugPhase3"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#Cancer -->
+
+    <owl:Class rdf:about="http://www.ftn.uns.ac.rs/drugs#Cancer">
+        <rdfs:subClassOf rdf:resource="http://www.ftn.uns.ac.rs/drugs#Disease"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#ClinicallyTestedDrugPhase1 -->
+
+    <owl:Class rdf:about="http://www.ftn.uns.ac.rs/drugs#ClinicallyTestedDrugPhase1">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ftn.uns.ac.rs/drugs#isDoseRanged"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.ftn.uns.ac.rs/drugs#PreclinicallyTestedDrug"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#ClinicallyTestedDrugPhase2 -->
+
+    <owl:Class rdf:about="http://www.ftn.uns.ac.rs/drugs#ClinicallyTestedDrugPhase2">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ftn.uns.ac.rs/drugs#hasSideEffects"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</owl:hasValue>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.ftn.uns.ac.rs/drugs#ClinicallyTestedDrugPhase1"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#ClinicallyTestedDrugPhase3 -->
+
+    <owl:Class rdf:about="http://www.ftn.uns.ac.rs/drugs#ClinicallyTestedDrugPhase3">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ftn.uns.ac.rs/drugs#hasTherapeuticEffect"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.ftn.uns.ac.rs/drugs#ClinicallyTestedDrugPhase2"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#Disease -->
+
+    <owl:Class rdf:about="http://www.ftn.uns.ac.rs/drugs#Disease"/>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#Drug -->
+
+    <owl:Class rdf:about="http://www.ftn.uns.ac.rs/drugs#Drug"/>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#LifeQuality -->
+
+    <owl:Class rdf:about="http://www.ftn.uns.ac.rs/drugs#LifeQuality"/>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#Patient -->
+
+    <owl:Class rdf:about="http://www.ftn.uns.ac.rs/drugs#Patient">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/drugs#Person"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ftn.uns.ac.rs/drugs#hasDisease"/>
+                        <owl:someValuesFrom rdf:resource="http://www.ftn.uns.ac.rs/drugs#Disease"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.ftn.uns.ac.rs/drugs#Person"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#PatientWithDiagnosis -->
+
+    <owl:Class rdf:about="http://www.ftn.uns.ac.rs/drugs#PatientWithDiagnosis">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/drugs#Patient"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ftn.uns.ac.rs/drugs#hasCancerGrown"/>
+                        <owl:someValuesFrom rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ftn.uns.ac.rs/drugs#hasCancerSpread"/>
+                        <owl:someValuesFrom rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ftn.uns.ac.rs/drugs#hasCancerSpreadToOrgans"/>
+                        <owl:someValuesFrom rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.ftn.uns.ac.rs/drugs#Patient"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#PatientWithDiagnosisCarcinoma -->
+
+    <owl:Class rdf:about="http://www.ftn.uns.ac.rs/drugs#PatientWithDiagnosisCarcinoma">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/drugs#PatientWithDiagnosis"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ftn.uns.ac.rs/drugs#hasCancerGrown"/>
+                        <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</owl:hasValue>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ftn.uns.ac.rs/drugs#hasCancerSpread"/>
+                        <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</owl:hasValue>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ftn.uns.ac.rs/drugs#hasCancerSpreadToOrgans"/>
+                        <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</owl:hasValue>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.ftn.uns.ac.rs/drugs#PatientWithDiagnosis"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#PatientWithDiagnosisMetastaticCancer -->
+
+    <owl:Class rdf:about="http://www.ftn.uns.ac.rs/drugs#PatientWithDiagnosisMetastaticCancer">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/drugs#PatientWithDiagnosis"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ftn.uns.ac.rs/drugs#hasCancerGrown"/>
+                        <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ftn.uns.ac.rs/drugs#hasCancerSpread"/>
+                        <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ftn.uns.ac.rs/drugs#hasCancerSpreadToOrgans"/>
+                        <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.ftn.uns.ac.rs/drugs#PatientWithDiagnosis"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#PatientWithDiagnosisStageICancer -->
+
+    <owl:Class rdf:about="http://www.ftn.uns.ac.rs/drugs#PatientWithDiagnosisStageICancer">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/drugs#PatientWithDiagnosis"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ftn.uns.ac.rs/drugs#hasCancerGrown"/>
+                        <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ftn.uns.ac.rs/drugs#hasCancerSpread"/>
+                        <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</owl:hasValue>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ftn.uns.ac.rs/drugs#hasCancerSpreadToOrgans"/>
+                        <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</owl:hasValue>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.ftn.uns.ac.rs/drugs#PatientWithDiagnosis"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#PatientWithDiagnosisStageIICancer -->
+
+    <owl:Class rdf:about="http://www.ftn.uns.ac.rs/drugs#PatientWithDiagnosisStageIICancer">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/drugs#PatientWithDiagnosis"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ftn.uns.ac.rs/drugs#hasCancerGrown"/>
+                        <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ftn.uns.ac.rs/drugs#hasCancerSpread"/>
+                        <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ftn.uns.ac.rs/drugs#hasCancerSpreadToOrgans"/>
+                        <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</owl:hasValue>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.ftn.uns.ac.rs/drugs#PatientWithDiagnosis"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#PatientWithDiseaseCourse -->
+
+    <owl:Class rdf:about="http://www.ftn.uns.ac.rs/drugs#PatientWithDiseaseCourse">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/drugs#Patient"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ftn.uns.ac.rs/drugs#hasCancerDetectable"/>
+                        <owl:someValuesFrom rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ftn.uns.ac.rs/drugs#hasCancerReappear"/>
+                        <owl:someValuesFrom rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.ftn.uns.ac.rs/drugs#Patient"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#PatientWithDiseaseProgression -->
+
+    <owl:Class rdf:about="http://www.ftn.uns.ac.rs/drugs#PatientWithDiseaseProgression">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/drugs#PatientWithDiseaseCourse"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ftn.uns.ac.rs/drugs#hasCancerDetectable"/>
+                        <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ftn.uns.ac.rs/drugs#hasCancerReappear"/>
+                        <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</owl:hasValue>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.ftn.uns.ac.rs/drugs#PatientWithDiseaseCourse"/>
+        <rdfs:comment>Cancer mass is increased.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#PatientWithDiseaseRecurrence -->
+
+    <owl:Class rdf:about="http://www.ftn.uns.ac.rs/drugs#PatientWithDiseaseRecurrence">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/drugs#PatientWithDiseaseCourse"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ftn.uns.ac.rs/drugs#hasCancerDetectable"/>
+                        <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ftn.uns.ac.rs/drugs#hasCancerReappear"/>
+                        <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.ftn.uns.ac.rs/drugs#PatientWithDiseaseCourse"/>
+        <rdfs:comment>After remission, cancer appears again.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#PatientWithDiseaseRemission -->
+
+    <owl:Class rdf:about="http://www.ftn.uns.ac.rs/drugs#PatientWithDiseaseRemission">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/drugs#PatientWithDiseaseCourse"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ftn.uns.ac.rs/drugs#hasCancerDetectable"/>
+                        <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</owl:hasValue>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ftn.uns.ac.rs/drugs#hasCancerReappear"/>
+                        <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</owl:hasValue>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.ftn.uns.ac.rs/drugs#PatientWithDiseaseCourse"/>
+        <rdfs:comment>Cancer is not detectable any longer.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#PatientWithSymptom -->
+
+    <owl:Class rdf:about="http://www.ftn.uns.ac.rs/drugs#PatientWithSymptom">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/drugs#Patient"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ftn.uns.ac.rs/drugs#lifeQuality"/>
+                        <owl:someValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ftn.uns.ac.rs/drugs#strongPain"/>
+                        <owl:someValuesFrom rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ftn.uns.ac.rs/drugs#weightLoss"/>
+                        <owl:someValuesFrom rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.ftn.uns.ac.rs/drugs#Patient"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#PatientWithSymptomExacerbated -->
+
+    <owl:Class rdf:about="http://www.ftn.uns.ac.rs/drugs#PatientWithSymptomExacerbated">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/drugs#PatientWithSymptom"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ftn.uns.ac.rs/drugs#lifeQuality"/>
+                        <owl:hasValue rdf:resource="http://www.ftn.uns.ac.rs/drugs#Worse"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ftn.uns.ac.rs/drugs#strongPain"/>
+                        <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ftn.uns.ac.rs/drugs#weightLoss"/>
+                        <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.ftn.uns.ac.rs/drugs#PatientWithSymptom"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#PatientWithSymptomImproved -->
+
+    <owl:Class rdf:about="http://www.ftn.uns.ac.rs/drugs#PatientWithSymptomImproved">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/drugs#PatientWithSymptom"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ftn.uns.ac.rs/drugs#lifeQuality"/>
+                        <owl:hasValue rdf:resource="http://www.ftn.uns.ac.rs/drugs#MuchBetter"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ftn.uns.ac.rs/drugs#strongPain"/>
+                        <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</owl:hasValue>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ftn.uns.ac.rs/drugs#weightLoss"/>
+                        <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.ftn.uns.ac.rs/drugs#PatientWithSymptom"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#PatientWithSymptomUnchanged -->
+
+    <owl:Class rdf:about="http://www.ftn.uns.ac.rs/drugs#PatientWithSymptomUnchanged">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/drugs#PatientWithSymptom"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ftn.uns.ac.rs/drugs#lifeQuality"/>
+                        <owl:hasValue rdf:resource="http://www.ftn.uns.ac.rs/drugs#Same"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ftn.uns.ac.rs/drugs#strongPain"/>
+                        <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ftn.uns.ac.rs/drugs#weightLoss"/>
+                        <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.ftn.uns.ac.rs/drugs#PatientWithSymptom"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#Person -->
+
+    <owl:Class rdf:about="http://www.ftn.uns.ac.rs/drugs#Person"/>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#PreclinicallyTestedDrug -->
+
+    <owl:Class rdf:about="http://www.ftn.uns.ac.rs/drugs#PreclinicallyTestedDrug">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ftn.uns.ac.rs/drugs#hasEfficacy"/>
+                        <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ftn.uns.ac.rs/drugs#hasToxicity"/>
+                        <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</owl:hasValue>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.ftn.uns.ac.rs/drugs#Drug"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#Thing -->
+
+    <owl:Class rdf:about="http://www.w3.org/2002/07/owl#Thing"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#Adenocarcinoma -->
+
+    <owl:NamedIndividual rdf:about="http://www.ftn.uns.ac.rs/drugs#Adenocarcinoma">
+        <rdf:type rdf:resource="http://www.ftn.uns.ac.rs/drugs#Disease"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#Afinitor -->
+
+    <owl:NamedIndividual rdf:about="http://www.ftn.uns.ac.rs/drugs#Afinitor">
+        <rdf:type rdf:resource="http://www.ftn.uns.ac.rs/drugs#Drug"/>
+        <mayTreat rdf:resource="http://www.ftn.uns.ac.rs/drugs#InflammatoryBreastCancer"/>
+        <mayTreat rdf:resource="http://www.ftn.uns.ac.rs/drugs#InvasiveDuctalCarcinoma"/>
+        <mayTreat rdf:resource="http://www.ftn.uns.ac.rs/drugs#InvasiveLobularCarcinoma"/>
+        <mayTreat rdf:resource="http://www.ftn.uns.ac.rs/drugs#MetastaticBreastCancer"/>
+        <mayTreat rdf:resource="http://www.ftn.uns.ac.rs/drugs#RenalCellCarcinoma"/>
+        <mayTreat rdf:resource="http://www.ftn.uns.ac.rs/drugs#RenalSarcoma"/>
+        <mayTreat rdf:resource="http://www.ftn.uns.ac.rs/drugs#TransitionalCellCarcinoma"/>
+        <activeIngredient rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Everolimus</activeIngredient>
+        <drugID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">005</drugID>
+        <isApproved rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</isApproved>
+        <rdfs:comment xml:lang="en">Afinitor is used to treat certain types of kidney cancer, breast cancer, or brain tumor.</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#Alunbrig -->
+
+    <owl:NamedIndividual rdf:about="http://www.ftn.uns.ac.rs/drugs#Alunbrig">
+        <rdf:type rdf:resource="http://www.ftn.uns.ac.rs/drugs#ApprovedDrug"/>
+        <mayTreat rdf:resource="http://www.ftn.uns.ac.rs/drugs#NSCLungCancer"/>
+        <mayTreat rdf:resource="http://www.ftn.uns.ac.rs/drugs#SCLungCancer"/>
+        <activeIngredient rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Brigatinib</activeIngredient>
+        <drugID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">009</drugID>
+        <isApproved rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</isApproved>
+        <rdfs:comment xml:lang="en">Brigatinib is used to treat a certain type of cell lung cancer (NSCLC) that has spread to other parts of the body.</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#Ellence -->
+
+    <owl:NamedIndividual rdf:about="http://www.ftn.uns.ac.rs/drugs#Ellence">
+        <rdf:type rdf:resource="http://www.ftn.uns.ac.rs/drugs#ApprovedDrug"/>
+        <mayTreat rdf:resource="http://www.ftn.uns.ac.rs/drugs#InflammatoryBreastCancer"/>
+        <mayTreat rdf:resource="http://www.ftn.uns.ac.rs/drugs#InvasiveDuctalCarcinoma"/>
+        <mayTreat rdf:resource="http://www.ftn.uns.ac.rs/drugs#InvasiveLobularCarcinoma"/>
+        <mayTreat rdf:resource="http://www.ftn.uns.ac.rs/drugs#MetastaticBreastCancer"/>
+        <activeIngredient rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Epirubicin</activeIngredient>
+        <drugID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">008</drugID>
+        <isApproved rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</isApproved>
+        <rdfs:comment xml:lang="en">Epirubicin is used to treat breast cancer. It belongs to a class of drugs known as anthracyclines and works by slowing or stopping the growth of cancer cells.</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#Fotivda -->
+
+    <owl:NamedIndividual rdf:about="http://www.ftn.uns.ac.rs/drugs#Fotivda">
+        <rdf:type rdf:resource="http://www.ftn.uns.ac.rs/drugs#Drug"/>
+        <mayTreat rdf:resource="http://www.ftn.uns.ac.rs/drugs#RenalCellCarcinoma"/>
+        <activeIngredient rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tivozanib</activeIngredient>
+        <drugID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">004</drugID>
+        <isApproved rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</isApproved>
+        <rdfs:comment xml:lang="en">Fotivda is a medicine for treating adults with advanced renal cell carcinoma (a kidney cancer).</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#Gemzar -->
+
+    <owl:NamedIndividual rdf:about="http://www.ftn.uns.ac.rs/drugs#Gemzar">
+        <rdf:type rdf:resource="http://www.ftn.uns.ac.rs/drugs#Drug"/>
+        <mayTreat rdf:resource="http://www.ftn.uns.ac.rs/drugs#Adenocarcinoma"/>
+        <mayTreat rdf:resource="http://www.ftn.uns.ac.rs/drugs#Glucagonoma"/>
+        <mayTreat rdf:resource="http://www.ftn.uns.ac.rs/drugs#InflammatoryBreastCancer"/>
+        <mayTreat rdf:resource="http://www.ftn.uns.ac.rs/drugs#Insulinoma"/>
+        <mayTreat rdf:resource="http://www.ftn.uns.ac.rs/drugs#InvasiveDuctalCarcinoma"/>
+        <mayTreat rdf:resource="http://www.ftn.uns.ac.rs/drugs#InvasiveLobularCarcinoma"/>
+        <mayTreat rdf:resource="http://www.ftn.uns.ac.rs/drugs#LungCarcinoids"/>
+        <mayTreat rdf:resource="http://www.ftn.uns.ac.rs/drugs#MetastaticBreastCancer"/>
+        <mayTreat rdf:resource="http://www.ftn.uns.ac.rs/drugs#MetastaticLungCancer"/>
+        <mayTreat rdf:resource="http://www.ftn.uns.ac.rs/drugs#SCLungCancer"/>
+        <activeIngredient rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gemcitabine</activeIngredient>
+        <drugID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">011</drugID>
+        <isApproved rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</isApproved>
+        <rdfs:comment xml:lang="en">Gemcitabine is used to treat certain types of cancer (including breast, lung, ovarian, pancreatic).</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#Glucagonoma -->
+
+    <owl:NamedIndividual rdf:about="http://www.ftn.uns.ac.rs/drugs#Glucagonoma">
+        <rdf:type rdf:resource="http://www.ftn.uns.ac.rs/drugs#Cancer"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#InflammatoryBreastCancer -->
+
+    <owl:NamedIndividual rdf:about="http://www.ftn.uns.ac.rs/drugs#InflammatoryBreastCancer">
+        <rdf:type rdf:resource="http://www.ftn.uns.ac.rs/drugs#Disease"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#Insulinoma -->
+
+    <owl:NamedIndividual rdf:about="http://www.ftn.uns.ac.rs/drugs#Insulinoma">
+        <rdf:type rdf:resource="http://www.ftn.uns.ac.rs/drugs#Cancer"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#InvasiveDuctalCarcinoma -->
+
+    <owl:NamedIndividual rdf:about="http://www.ftn.uns.ac.rs/drugs#InvasiveDuctalCarcinoma">
+        <rdf:type rdf:resource="http://www.ftn.uns.ac.rs/drugs#Disease"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#InvasiveLobularCarcinoma -->
+
+    <owl:NamedIndividual rdf:about="http://www.ftn.uns.ac.rs/drugs#InvasiveLobularCarcinoma">
+        <rdf:type rdf:resource="http://www.ftn.uns.ac.rs/drugs#Disease"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#Iressa -->
+
+    <owl:NamedIndividual rdf:about="http://www.ftn.uns.ac.rs/drugs#Iressa">
+        <rdf:type rdf:resource="http://www.ftn.uns.ac.rs/drugs#Drug"/>
+        <mayTreat rdf:resource="http://www.ftn.uns.ac.rs/drugs#LungCarcinoids"/>
+        <mayTreat rdf:resource="http://www.ftn.uns.ac.rs/drugs#MetastaticLungCancer"/>
+        <mayTreat rdf:resource="http://www.ftn.uns.ac.rs/drugs#NSCLungCancer"/>
+        <mayTreat rdf:resource="http://www.ftn.uns.ac.rs/drugs#SCLungCancer"/>
+        <activeIngredient rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gefitinib</activeIngredient>
+        <drugID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">010</drugID>
+        <hasEfficacy rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</hasEfficacy>
+        <hasSideEffects rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</hasSideEffects>
+        <hasTherapeuticEffect rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</hasTherapeuticEffect>
+        <hasToxicity rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</hasToxicity>
+        <isApproved rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</isApproved>
+        <isDoseRanged rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</isDoseRanged>
+        <rdfs:comment xml:lang="en">Gefitinib is used to treat lung cancer. It works by slowing or stopping the growth of cancer cells.</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#JP -->
+
+    <owl:NamedIndividual rdf:about="http://www.ftn.uns.ac.rs/drugs#JP">
+        <rdf:type rdf:resource="http://www.ftn.uns.ac.rs/drugs#Person"/>
+        <hasDisease rdf:resource="http://www.ftn.uns.ac.rs/drugs#RenalCellCarcinoma"/>
+        <isTreatedWith rdf:resource="http://www.ftn.uns.ac.rs/drugs#Lenvima"/>
+        <age rdf:datatype="http://www.w3.org/2001/XMLSchema#int">55</age>
+        <firstName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Jovan</firstName>
+        <gender rdf:datatype="http://www.w3.org/2001/XMLSchema#string">male</gender>
+        <jmbg rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0101999800010</jmbg>
+        <lastName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Petrović</lastName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Jovan Petrovic</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#Lenvima -->
+
+    <owl:NamedIndividual rdf:about="http://www.ftn.uns.ac.rs/drugs#Lenvima">
+        <rdf:type rdf:resource="http://www.ftn.uns.ac.rs/drugs#ApprovedDrug"/>
+        <mayTreat rdf:resource="http://www.ftn.uns.ac.rs/drugs#RenalCellCarcinoma"/>
+        <mayTreat rdf:resource="http://www.ftn.uns.ac.rs/drugs#RenalSarcoma"/>
+        <mayTreat rdf:resource="http://www.ftn.uns.ac.rs/drugs#TransitionalCellCarcinoma"/>
+        <activeIngredient rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lenvatinib</activeIngredient>
+        <drugID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">003</drugID>
+        <isApproved rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</isApproved>
+        <rdfs:comment xml:lang="en">Lenvima is a medicine used to treat the symptoms of thyroid cancer, advanced renal cell carcinoma and endometrial cancer.</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#LungCarcinoids -->
+
+    <owl:NamedIndividual rdf:about="http://www.ftn.uns.ac.rs/drugs#LungCarcinoids">
+        <rdf:type rdf:resource="http://www.ftn.uns.ac.rs/drugs#Disease"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#MetastaticBreastCancer -->
+
+    <owl:NamedIndividual rdf:about="http://www.ftn.uns.ac.rs/drugs#MetastaticBreastCancer">
+        <rdf:type rdf:resource="http://www.ftn.uns.ac.rs/drugs#Disease"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#MetastaticLungCancer -->
+
+    <owl:NamedIndividual rdf:about="http://www.ftn.uns.ac.rs/drugs#MetastaticLungCancer">
+        <rdf:type rdf:resource="http://www.ftn.uns.ac.rs/drugs#Disease"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#MuchBetter -->
+
+    <owl:NamedIndividual rdf:about="http://www.ftn.uns.ac.rs/drugs#MuchBetter">
+        <rdf:type rdf:resource="http://www.ftn.uns.ac.rs/drugs#LifeQuality"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#NP -->
+
+    <owl:NamedIndividual rdf:about="http://www.ftn.uns.ac.rs/drugs#NP">
+        <rdf:type rdf:resource="http://www.ftn.uns.ac.rs/drugs#Person"/>
+        <hasDisease rdf:resource="http://www.ftn.uns.ac.rs/drugs#Adenocarcinoma"/>
+        <isTreatedWith rdf:resource="http://www.ftn.uns.ac.rs/drugs#Gemzar"/>
+        <age rdf:datatype="http://www.w3.org/2001/XMLSchema#int">74</age>
+        <firstName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nikola</firstName>
+        <gender rdf:datatype="http://www.w3.org/2001/XMLSchema#string">male</gender>
+        <jmbg rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0202999800010</jmbg>
+        <lastName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Petrović</lastName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nikola Petrovic</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#NSCLungCancer -->
+
+    <owl:NamedIndividual rdf:about="http://www.ftn.uns.ac.rs/drugs#NSCLungCancer">
+        <rdf:type rdf:resource="http://www.ftn.uns.ac.rs/drugs#Disease"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Non-small cell lung cancer.</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#Nexavar -->
+
+    <owl:NamedIndividual rdf:about="http://www.ftn.uns.ac.rs/drugs#Nexavar">
+        <rdf:type rdf:resource="http://www.ftn.uns.ac.rs/drugs#ApprovedDrug"/>
+        <mayTreat rdf:resource="http://www.ftn.uns.ac.rs/drugs#RenalCellCarcinoma"/>
+        <mayTreat rdf:resource="http://www.ftn.uns.ac.rs/drugs#RenalSarcoma"/>
+        <mayTreat rdf:resource="http://www.ftn.uns.ac.rs/drugs#TransitionalCellCarcinoma"/>
+        <activeIngredient rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sorafenib</activeIngredient>
+        <drugID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">002</drugID>
+        <isApproved rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</isApproved>
+        <rdfs:comment xml:lang="en">Sorafenib is used to treat kidney, liver and thyroid cancer. It works by slowing or stopping the growth of cancer cells.</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#PP -->
+
+    <owl:NamedIndividual rdf:about="http://www.ftn.uns.ac.rs/drugs#PP">
+        <rdf:type rdf:resource="http://www.ftn.uns.ac.rs/drugs#Person"/>
+        <hasDisease rdf:resource="http://www.ftn.uns.ac.rs/drugs#NSCLungCancer"/>
+        <isTreatedWith rdf:resource="http://www.ftn.uns.ac.rs/drugs#Iressa"/>
+        <lifeQuality rdf:resource="http://www.ftn.uns.ac.rs/drugs#MuchBetter"/>
+        <age rdf:datatype="http://www.w3.org/2001/XMLSchema#int">54</age>
+        <firstName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Petar</firstName>
+        <gender rdf:datatype="http://www.w3.org/2001/XMLSchema#string">male</gender>
+        <hasCancerDetectable rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</hasCancerDetectable>
+        <hasCancerGrown rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</hasCancerGrown>
+        <hasCancerReappear rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</hasCancerReappear>
+        <hasCancerSpread rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</hasCancerSpread>
+        <hasCancerSpreadToOrgans rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</hasCancerSpreadToOrgans>
+        <jmbg rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0303999800010</jmbg>
+        <lastName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Petrović</lastName>
+        <strongPain rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</strongPain>
+        <weightLoss rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</weightLoss>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Petar Petrovic</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#RenalCellCarcinoma -->
+
+    <owl:NamedIndividual rdf:about="http://www.ftn.uns.ac.rs/drugs#RenalCellCarcinoma">
+        <rdf:type rdf:resource="http://www.ftn.uns.ac.rs/drugs#Disease"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#RenalSarcoma -->
+
+    <owl:NamedIndividual rdf:about="http://www.ftn.uns.ac.rs/drugs#RenalSarcoma">
+        <rdf:type rdf:resource="http://www.ftn.uns.ac.rs/drugs#Disease"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#SCLungCancer -->
+
+    <owl:NamedIndividual rdf:about="http://www.ftn.uns.ac.rs/drugs#SCLungCancer">
+        <rdf:type rdf:resource="http://www.ftn.uns.ac.rs/drugs#Disease"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Small cell lung cancer.</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#Same -->
+
+    <owl:NamedIndividual rdf:about="http://www.ftn.uns.ac.rs/drugs#Same">
+        <rdf:type rdf:resource="http://www.ftn.uns.ac.rs/drugs#LifeQuality"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#Sutent -->
+
+    <owl:NamedIndividual rdf:about="http://www.ftn.uns.ac.rs/drugs#Sutent">
+        <rdf:type rdf:resource="http://www.ftn.uns.ac.rs/drugs#ApprovedDrug"/>
+        <mayTreat rdf:resource="http://www.ftn.uns.ac.rs/drugs#RenalSarcoma"/>
+        <activeIngredient rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sunitinib</activeIngredient>
+        <drugID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">001</drugID>
+        <isApproved rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</isApproved>
+        <rdfs:comment xml:lang="en">Sunitinib can be used in people with advanced kidney cancer, as well as in people with a high risk of the cancer returning after surgery.</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#Taxol -->
+
+    <owl:NamedIndividual rdf:about="http://www.ftn.uns.ac.rs/drugs#Taxol">
+        <rdf:type rdf:resource="http://www.ftn.uns.ac.rs/drugs#ApprovedDrug"/>
+        <mayTreat rdf:resource="http://www.ftn.uns.ac.rs/drugs#InflammatoryBreastCancer"/>
+        <mayTreat rdf:resource="http://www.ftn.uns.ac.rs/drugs#InvasiveDuctalCarcinoma"/>
+        <mayTreat rdf:resource="http://www.ftn.uns.ac.rs/drugs#InvasiveLobularCarcinoma"/>
+        <mayTreat rdf:resource="http://www.ftn.uns.ac.rs/drugs#MetastaticBreastCancer"/>
+        <activeIngredient rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Paclitaxel</activeIngredient>
+        <drugID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">006</drugID>
+        <isApproved rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</isApproved>
+        <rdfs:comment xml:lang="en">Taxol is one of the most commonly used and effective chemotherapy drugs for breast cancer and it is effective for all stages of the disease.</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#TransitionalCellCarcinoma -->
+
+    <owl:NamedIndividual rdf:about="http://www.ftn.uns.ac.rs/drugs#TransitionalCellCarcinoma">
+        <rdf:type rdf:resource="http://www.ftn.uns.ac.rs/drugs#Disease"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#Trexall -->
+
+    <owl:NamedIndividual rdf:about="http://www.ftn.uns.ac.rs/drugs#Trexall">
+        <rdf:type rdf:resource="http://www.ftn.uns.ac.rs/drugs#ApprovedDrug"/>
+        <mayTreat rdf:resource="http://www.ftn.uns.ac.rs/drugs#MetastaticBreastCancer"/>
+        <mayTreat rdf:resource="http://www.ftn.uns.ac.rs/drugs#MetastaticLungCancer"/>
+        <activeIngredient rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Methotrexate</activeIngredient>
+        <drugID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">007</drugID>
+        <isApproved rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</isApproved>
+        <rdfs:comment xml:lang="en">Trexall is used to treat leukemia and certain types of cancer of the breast, skin, head and neck, lung or uterus.</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ftn.uns.ac.rs/drugs#Worse -->
+
+    <owl:NamedIndividual rdf:about="http://www.ftn.uns.ac.rs/drugs#Worse">
+        <rdf:type rdf:resource="http://www.ftn.uns.ac.rs/drugs#LifeQuality"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Rules
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description rdf:about="d">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://www.ftn.uns.ac.rs/drugs#Drug"/>
+                        <swrl:argument1 rdf:resource="d"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="http://www.ftn.uns.ac.rs/drugs#hasEfficacy"/>
+                                <swrl:argument1 rdf:resource="d"/>
+                                <swrl:argument2 rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrl:argument2>
+                            </rdf:Description>
+                        </rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
+                                        <swrl:propertyPredicate rdf:resource="http://www.ftn.uns.ac.rs/drugs#hasToxicity"/>
+                                        <swrl:argument1 rdf:resource="d"/>
+                                        <swrl:argument2 rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrl:argument2>
+                                    </rdf:Description>
+                                </rdf:first>
+                                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://www.ftn.uns.ac.rs/drugs#PreclinicallyTestedDrug"/>
+                        <swrl:argument1 rdf:resource="d"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://www.ftn.uns.ac.rs/drugs#Drug"/>
+                        <swrl:argument1 rdf:resource="d"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="http://www.ftn.uns.ac.rs/drugs#hasSideEffects"/>
+                                <swrl:argument1 rdf:resource="d"/>
+                                <swrl:argument2 rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</swrl:argument2>
+                            </rdf:Description>
+                        </rdf:first>
+                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://www.ftn.uns.ac.rs/drugs#ClinicallyTestedDrugPhase2"/>
+                        <swrl:argument1 rdf:resource="d"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://www.ftn.uns.ac.rs/drugs#Drug"/>
+                        <swrl:argument1 rdf:resource="d"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="http://www.ftn.uns.ac.rs/drugs#hasTherapeuticEffect"/>
+                                <swrl:argument1 rdf:resource="d"/>
+                                <swrl:argument2 rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrl:argument2>
+                            </rdf:Description>
+                        </rdf:first>
+                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://www.ftn.uns.ac.rs/drugs#ClinicallyTestedDrugPhase3"/>
+                        <swrl:argument1 rdf:resource="d"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://www.ftn.uns.ac.rs/drugs#Drug"/>
+                        <swrl:argument1 rdf:resource="d"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="http://www.ftn.uns.ac.rs/drugs#isDoseRanged"/>
+                                <swrl:argument1 rdf:resource="d"/>
+                                <swrl:argument2 rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrl:argument2>
+                            </rdf:Description>
+                        </rdf:first>
+                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://www.ftn.uns.ac.rs/drugs#ClinicallyTestedDrugPhase1"/>
+                        <swrl:argument1 rdf:resource="d"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+

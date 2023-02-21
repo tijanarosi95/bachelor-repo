@@ -1,6 +1,6 @@
 package com.ftn.anticancerdrugrecord;
 
-import com.ftn.anticancerdrugrecord.util.LoadOntologyUtility;
+import com.ftn.anticancerdrugrecord.util.InferOntologyFacts;
 import com.ftn.anticancerdrugrecord.util.SelectPatientUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Bean;
 public class AnticancerDrugRecordApplication {
 
 	@Autowired
-	private LoadOntologyUtility utility;
+	private InferOntologyFacts utility;
 
 	@Autowired
 	private SelectPatientUtility selectUtility;
@@ -25,7 +25,7 @@ public class AnticancerDrugRecordApplication {
 	public CommandLineRunner CommandLineRunnerBean() {
 		return (args) -> {
 			System.out.println("In CommandLineRunnerImpl ");
-			utility.loadPersons();
+			utility.inferPersonFactsByReasoner(null);
 		};
 	}
 
