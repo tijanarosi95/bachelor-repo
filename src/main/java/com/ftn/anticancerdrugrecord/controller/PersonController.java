@@ -1,7 +1,9 @@
 package com.ftn.anticancerdrugrecord.controller;
 
+import com.ftn.anticancerdrugrecord.dto.patient.PatientDTO;
 import com.ftn.anticancerdrugrecord.model.person.Person;
 import com.ftn.anticancerdrugrecord.service.person.PersonServiceInterface;
+import com.ftn.anticancerdrugrecord.util.OntologyUtilityInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +21,9 @@ public class PersonController {
     @Autowired
     private PersonServiceInterface personServiceInterface;
 
+    @Autowired
+    private OntologyUtilityInterface ontologyUtilityInterface;
+
     @PostMapping
     public void addPerson(@RequestBody Person person) {
         personServiceInterface.createPerson(person);
@@ -29,4 +34,10 @@ public class PersonController {
         final Person person = personServiceInterface.getPersonById(id).orElse(null);
         return new ResponseEntity(person, HttpStatus.OK);
     }
+
+    @PostMapping("/infer-facts")
+    public void testForPersonInferredFacts(@RequestBody Person p) {
+        final PatientDTO person = ontologyUtilityInterface.inferPersonFacts(p);
+    }
+
 }

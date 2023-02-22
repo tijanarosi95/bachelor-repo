@@ -33,6 +33,8 @@ public class Person {
 
     private boolean strongPain;
 
+    private boolean weightLoss;
+
     private boolean isCancerReappear;
 
     private boolean isCancerDetectable;
