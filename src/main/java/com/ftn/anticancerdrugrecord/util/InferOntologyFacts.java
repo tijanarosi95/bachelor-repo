@@ -3,9 +3,16 @@ package com.ftn.anticancerdrugrecord.util;
 import com.ftn.anticancerdrugrecord.configuration.OntologyFactory;
 import com.ftn.anticancerdrugrecord.configuration.ReasonerFactory;
 import com.ftn.anticancerdrugrecord.dto.patient.PatientDTO;
+import com.ftn.anticancerdrugrecord.dto.patient.PatientWithDiseaseProgression;
+import com.ftn.anticancerdrugrecord.dto.patient.PatientWithDiseaseRecurrence;
+import com.ftn.anticancerdrugrecord.dto.patient.PatientWithDiseaseRemission;
+import com.ftn.anticancerdrugrecord.dto.patient.PatientWithSymptom;
+import com.ftn.anticancerdrugrecord.dto.patient.PatientWithSymptomExacerbated;
+import com.ftn.anticancerdrugrecord.dto.patient.PatientWithSymptomImproved;
+import com.ftn.anticancerdrugrecord.dto.patient.PatientWithSymptomUnchanged;
+import com.ftn.anticancerdrugrecord.model.person.PatientWithDiseaseType;
+import com.ftn.anticancerdrugrecord.model.person.PatientWithSymptomType;
 import com.ftn.anticancerdrugrecord.model.person.Person;
-import com.hp.hpl.jena.datatypes.RDFDatatype;
-import com.hp.hpl.jena.datatypes.xsd.XSDDatatype;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.rdf.model.Literal;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
@@ -13,6 +20,7 @@ import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.ResourceFactory;
+import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
 import com.hp.hpl.jena.vocabulary.RDF;
 import org.apache.commons.lang3.StringUtils;
@@ -22,6 +30,9 @@ import org.semanticweb.owlapi.io.OWLObjectRenderer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import uk.ac.manchester.cs.owlapi.dlsyntax.DLSyntaxObjectRenderer;
+
+
+import static com.ftn.anticancerdrugrecord.model.person.PatientWithDiseaseType.PATIENT_WITH_DISEASE_RECURRENCE;
 
 @Component
 public class InferOntologyFacts implements OntologyUtilityInterface {
@@ -36,6 +47,7 @@ public class InferOntologyFacts implements OntologyUtilityInterface {
     private static final String CANCER_SPREAD = "#hasCancerSpread";
     private static final String CANCER_REAPPEARED = "#hasCancerReappear";
     private static final String CANCER_DETECTABLE = "#hasCancerDetectable";
+    private static final String LIFE_QUALITY = "#lifeQuality";
 
     private static OWLObjectRenderer renderer = new DLSyntaxObjectRenderer();
 
@@ -67,8 +79,9 @@ public class InferOntologyFacts implements OntologyUtilityInterface {
         personResource.addProperty(model.getProperty(NS + CANCER_SPREAD), ResourceFactory.createTypedLiteral(person.isCancerSpread()));
         personResource.addProperty(model.getProperty(NS + CANCER_REAPPEARED), ResourceFactory.createTypedLiteral(person.isCancerReappear()));
         personResource.addProperty(model.getProperty(NS + CANCER_DETECTABLE), ResourceFactory.createTypedLiteral(person.isCancerDetectable()));
-
+        personResource.addProperty(model.getProperty(NS + LIFE_QUALITY), model.getResource(NS + "#" + person.getLifeQuality()));
         StmtIterator iter = model.listStatements(personResource, (Property) null, (RDFNode) null);
+        var patient = new PatientDTO();
 
         while (iter.hasNext()) {
             var triple = iter.next();
@@ -76,10 +89,11 @@ public class InferOntologyFacts implements OntologyUtilityInterface {
             var object = triple.getObject();
             var predicate = triple.getPredicate();
 
+            createPatientDtoFromInferredFacts(patient, triple);
+
             System.out.println(" Subject- " + PrintUtil.print(subject));
             System.out.println(" Predicate- " + PrintUtil.print(predicate));
             System.out.println(" Object- " + PrintUtil.print(object));
-            System.out.println(" --------------------------------- " + StringUtils.substringAfterLast(predicate.getURI(), "#"));
         }
         return null;
     }
@@ -102,7 +116,6 @@ public class InferOntologyFacts implements OntologyUtilityInterface {
             System.out.println(" Subject- " + PrintUtil.print(subject));
             System.out.println(" Predicate- " + PrintUtil.print(predicate));
             System.out.println(" Object- " + PrintUtil.print(object));
-            System.out.println(" --------------------------------- " + StringUtils.substringAfterLast(predicate.getURI(), "#"));
         }
     }
 
@@ -110,6 +123,35 @@ public class InferOntologyFacts implements OntologyUtilityInterface {
         final String firstNameInitial = String.valueOf(fistName.charAt(0));
         final String lastNameInitial = String.valueOf(lastName.charAt(0));
         return firstNameInitial + lastNameInitial;
+    }
+
+    private void createPatientDtoFromInferredFacts(final PatientDTO patient, final Statement stmt) {
+        var object = stmt.getObject();
+        if (!object.isURIResource()) return;
+        var objectValue = StringUtils.substringAfterLast(object.asResource().getURI(), "#");
+
+        switch (PatientWithDiseaseType.valueOf(objectValue)) {
+            case PATIENT_WITH_DISEASE_RECURRENCE:
+                var patientWithRecurrence = new PatientWithDiseaseRecurrence();
+                patient.setDiseaseCourse(patientWithRecurrence);
+            case PATIENT_WITH_DISEASE_PROGRESSION:
+                var patientWithProgression = new PatientWithDiseaseProgression();
+                patient.setDiseaseCourse(patientWithProgression);
+            case PATIENT_WITH_DISEASE_REMISSION:
+                var patientWithRemission = new PatientWithDiseaseRemission();
+                patient.setDiseaseCourse(patientWithRemission);
+        }
+        switch (PatientWithSymptomType.valueOf(objectValue)) {
+            case PATIENT_WITH_SYMPTOM_UNCHANGED:
+                var patientWithChangedSymptom = new PatientWithSymptomUnchanged();
+                patient.setSymptoms(patientWithChangedSymptom);
+            case PATIENT_WITH_SYMPTOM_EXACERBATED:
+                var patientWithExacerbatedSymptom = new PatientWithSymptomExacerbated();
+                patient.setSymptoms(patientWithExacerbatedSymptom);
+            case PATIENT_WITH_SYMPTOM_IMPROVED:
+                var patientWithImprovedSymptom = new PatientWithSymptomImproved();
+                patient.setSymptoms(patientWithImprovedSymptom);
+        }
     }
 
     private Literal getResourceLiteral(final boolean value, final OntModel model) {
