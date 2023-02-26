@@ -3,6 +3,7 @@ package com.ftn.anticancerdrugrecord.util;
 import com.ftn.anticancerdrugrecord.model.person.Gender;
 import com.ftn.anticancerdrugrecord.model.person.LifeQuality;
 import com.ftn.anticancerdrugrecord.model.person.Person;
+import java.util.List;
 import java.util.Optional;
 import org.apache.jena.query.Query;
 import org.apache.jena.query.QueryExecution;
@@ -80,6 +81,11 @@ public class SelectPatientUtility {
             exception.printStackTrace();
         }
         return Optional.empty();
+    }
+
+    public List<Person> loadPatientsByTreatedDrug(final String drugName) {
+        //TODO
+        return null;
     }
 
 }

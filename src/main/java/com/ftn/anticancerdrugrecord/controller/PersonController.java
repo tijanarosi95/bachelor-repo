@@ -36,8 +36,9 @@ public class PersonController {
     }
 
     @PostMapping("/infer-facts")
-    public void testForPersonInferredFacts(@RequestBody Person p) {
+    public ResponseEntity<PatientDTO> testForPersonInferredFacts(@RequestBody Person p) {
         final PatientDTO person = ontologyUtilityInterface.inferPersonFacts(p);
+        return new ResponseEntity<>(person, HttpStatus.OK);
     }
 
 }

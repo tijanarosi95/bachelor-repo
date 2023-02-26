@@ -15,7 +15,7 @@ public class PatientWithSymptomUnchanged extends PatientWithSymptom {
     private LifeQuality lifeQuality;
 
     public PatientWithSymptomUnchanged() {
-        super();
+        super("UNCHANGED");
         this.lifeQuality = LifeQuality.Same;
         this.strongPain = true;
         this.weightLoss = true;

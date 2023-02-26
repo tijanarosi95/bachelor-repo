@@ -14,7 +14,7 @@ public class PatientWithDiagnosisStageICancer extends PatientWithDiagnosis {
     private boolean isCancerSpreadToOrgans;
 
     public PatientWithDiagnosisStageICancer() {
-        super();
+        super("STAGE_I_CANCER");
         this.isCancerGrown = true;
         this.isCancerSpread = false;
         this.isCancerSpreadToOrgans = false;

@@ -12,7 +12,7 @@ public class PatientWithDiseaseProgression extends PatientWithDiseaseCourse {
     private boolean isCancerDetectable;
 
     public PatientWithDiseaseProgression() {
-        super();
+        super("PROGRESSION");
         this.isCancerReappear = false;
         this.isCancerDetectable = true;
     }

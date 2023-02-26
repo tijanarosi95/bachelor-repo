@@ -15,7 +15,7 @@ public class PatientWithSymptomExacerbated extends PatientWithSymptom {
     private LifeQuality lifeQuality;
 
     public PatientWithSymptomExacerbated() {
-        super();
+        super("EXACERBATED");
         this.lifeQuality = LifeQuality.Worse;
         this.strongPain = true;
         this.weightLoss = true;

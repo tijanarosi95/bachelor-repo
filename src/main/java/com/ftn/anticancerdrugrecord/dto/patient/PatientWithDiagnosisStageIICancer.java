@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class PatientWithDiagnosisStageIICancer extends PatientDTO {
+public class PatientWithDiagnosisStageIICancer extends PatientWithDiagnosis {
 
     private boolean isCancerSpread;
 
@@ -14,7 +14,7 @@ public class PatientWithDiagnosisStageIICancer extends PatientDTO {
     private boolean isCancerSpreadToOrgans;
 
     public PatientWithDiagnosisStageIICancer() {
-        super();
+        super("STAGE_II_CANCER");
         this.isCancerSpread = true;
         this.isCancerSpread = true;
         this.isCancerSpreadToOrgans = false;

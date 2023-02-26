@@ -15,7 +15,7 @@ public class PatientWithDiagnosisCarcinoma extends PatientWithDiagnosis {
 
 
     public PatientWithDiagnosisCarcinoma() {
-        super();
+        super("CARCINOMA");
         this.isCancerGrown = false;
         this.isCancerSpread = false;
         this.isCancerSpreadToOrgans = false;

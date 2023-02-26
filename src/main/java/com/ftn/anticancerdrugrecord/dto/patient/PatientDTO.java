@@ -30,4 +30,13 @@ public class PatientDTO {
     private PatientWithSymptom symptoms;
 
     private DiseaseDTO hasDisease;
+
+    public PatientDTO(String jmbg, String firstName, String lastName, Gender gender, int age, DiseaseDTO disease) {
+        this.jmbg = jmbg;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.gender = gender;
+        this.age = age;
+        this.hasDisease = disease;
+    }
 }

@@ -1,9 +1,11 @@
 package com.ftn.anticancerdrugrecord.controller;
 
+import com.ftn.anticancerdrugrecord.dto.drug.DrugDTO;
 import com.ftn.anticancerdrugrecord.dto.drug.DrugEffectsDTO;
 import com.ftn.anticancerdrugrecord.dto.patient.PatientDrugDTO;
 import com.ftn.anticancerdrugrecord.model.drug.Drug;
 import com.ftn.anticancerdrugrecord.service.drug.DrugServiceInterface;
+import com.ftn.anticancerdrugrecord.util.OntologyUtilityInterface;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,6 +23,9 @@ public class DrugController {
 
     @Autowired
     private DrugServiceInterface drugServiceInterface;
+
+    @Autowired
+    private OntologyUtilityInterface ontologyUtilityInterface;
 
     @PostMapping
     public void addDrug(@RequestBody Drug drug) {
@@ -47,5 +52,11 @@ public class DrugController {
     public ResponseEntity<List<Drug>> loadDrugsByDiseaseType(@PathVariable("diseaseType") String diseaseType) {
         final List<Drug> drugs = drugServiceInterface.getDrugsByDiseaseType(diseaseType);
         return new ResponseEntity(drugs, HttpStatus.OK);
+    }
+
+    @PostMapping("infer-facts")
+    public ResponseEntity<DrugDTO> inferDrugFacts(@RequestBody DrugEffectsDTO drugEffectsDTO) {
+        final DrugDTO drugDTO = ontologyUtilityInterface.inferDrugFacts(drugEffectsDTO);
+        return new ResponseEntity<>(drugDTO, HttpStatus.OK);
     }
 }

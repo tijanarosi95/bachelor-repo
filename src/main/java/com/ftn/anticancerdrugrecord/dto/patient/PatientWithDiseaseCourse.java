@@ -9,4 +9,9 @@ import lombok.Setter;
 @NoArgsConstructor
 public class PatientWithDiseaseCourse {
 
+    private String type;
+
+    public PatientWithDiseaseCourse(String type) {
+        this.type = type;
+    }
 }
