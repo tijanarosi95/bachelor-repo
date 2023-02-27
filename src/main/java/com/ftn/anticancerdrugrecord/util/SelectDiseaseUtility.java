@@ -23,11 +23,10 @@ public class SelectDiseaseUtility {
         final String queryString =
         "PREFIX drg:" + DRUGS_URI + " " +
         "PREFIX rdf:" + RDF_URI + " " +
-        "SELECT ?id ?name " +
+        "SELECT ?s ?id ?name " +
         " WHERE { " +
         "?x drg:id ?id FILTER ( ?id = %s ) . " +
-        "?y drg:name ?name . " +
-        " } ";
+        "?y drg:name ?name . }";
         final String formattedQueryString = String.format(queryString, id);
 
         final Query query = QueryFactory.create(formattedQueryString);

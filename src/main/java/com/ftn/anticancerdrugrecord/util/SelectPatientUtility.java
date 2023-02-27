@@ -1,8 +1,10 @@
 package com.ftn.anticancerdrugrecord.util;
 
+import com.ftn.anticancerdrugrecord.model.disease.Disease;
 import com.ftn.anticancerdrugrecord.model.person.Gender;
 import com.ftn.anticancerdrugrecord.model.person.LifeQuality;
 import com.ftn.anticancerdrugrecord.model.person.Person;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.apache.jena.query.Query;
@@ -26,22 +28,21 @@ public class SelectPatientUtility {
         final String queryString =
                 "PREFIX drg:" + DRUGS_URI + " " +
                 "PREFIX rdf:" + RDF_URI + " " +
-                    " SELECT ?jmbg ?firstName ?lastName ?gender ?age " +
+                    " SELECT ?s ?jmbg ?firstName ?lastName ?gender ?age " +
                     " ?isCancerSpread ?isCancerGrown ?isCancerSpreadToOrgans ?strongPain " +
                     " ?isCancerReappear ?isCancerDetectable ?lifeQuality" +
                     " WHERE { " +
-                        "?x drg:jmbg ?jmbg FILTER ( str(?jmbg) = '%s' ) . " +
-                        "?y drg:firstName ?firstName . " +
-                        "?z drg:lastName ?lastName . " +
-                        "?e drg:gender ?gender . " +
-                        "?f drg:age ?age . " +
-                        "?d drg:isCancerSpread ?isCancerSpread . " +
-                        "?g drg:isCancerGrown ?isCancerGrown . " +
-                        "?h drg:isCancerSpreadToOrgans ?isCancerSpreadToOrgans . " +
-                        "?i drg:isCancerReappear ?isCancerReappear . " +
-                        "?j drg:isCancerDetectable ?isCancerDetectable . " +
-                        "?c drg:lifeQuality ?lifeQuality . " +
-                    " } ";
+                        "?s drg:jmbg ?jmbg FILTER ( str(?jmbg) = '%s' ) . " +
+                        "?s drg:firstName ?firstName . " +
+                        "?s drg:lastName ?lastName . " +
+                        "?s drg:gender ?gender . " +
+                        "?s drg:age ?age . " +
+                        "?s drg:isCancerSpread ?isCancerSpread . " +
+                        "?s drg:isCancerGrown ?isCancerGrown . " +
+                        "?s drg:isCancerSpreadToOrgans ?isCancerSpreadToOrgans . " +
+                        "?s drg:isCancerReappear ?isCancerReappear . " +
+                        "?s drg:isCancerDetectable ?isCancerDetectable . " +
+                        "?s drg:lifeQuality ?lifeQuality . }";
         final String formattedQueryString = String.format(queryString, jmbg);
         System.out.println("Person query str: " + formattedQueryString);
         final Query query = QueryFactory.create(formattedQueryString);
@@ -84,8 +85,71 @@ public class SelectPatientUtility {
     }
 
     public List<Person> loadPatientsByTreatedDrug(final String drugName) {
-        //TODO
-        return null;
+        final String queryString =
+        "PREFIX drg:" + DRUGS_URI + " " +
+        "PREFIX rdf:" + RDF_URI + " " +
+             " SELECT DISTINCT ?s ?isTreatedWith ?jmbg ?firstName ?lastName ?gender ?age " +
+             " ?isCancerSpread ?isCancerGrown ?isCancerSpreadToOrgans ?strongPain " +
+             " ?isCancerReappear ?isCancerDetectable ?lifeQuality ?hasDisease" +
+             " WHERE { " +
+             "?s drg:isTreatedWith ?isTreatedWith FILTER ( str(?isTreatedWith) = '%s') . " +
+             "?s drg:jmbg ?jmbg . " +
+             "?s drg:firstName ?firstName . " +
+             "?s drg:lastName ?lastName . " +
+             "?s drg:gender ?gender . " +
+             "?s drg:age ?age . " +
+             "?s drg:isCancerSpread ?isCancerSpread . " +
+             "?s drg:isCancerGrown ?isCancerGrown . " +
+             "?s drg:isCancerSpreadToOrgans ?isCancerSpreadToOrgans . " +
+             "?s drg:isCancerReappear ?isCancerReappear . " +
+             "?s drg:isCancerDetectable ?isCancerDetectable . " +
+             "?s drg:lifeQuality ?lifeQuality . " +
+             "?s drg:hasDisease ?hasDisease . }";
+        final String formattedQueryString = String.format(queryString, drugName);
+        System.out.println("Person query str: " + formattedQueryString);
+        final Query query = QueryFactory.create(formattedQueryString);
+
+        List<Person> personList = new ArrayList<>();
+
+        // Execute the query and obtain the results
+        try (QueryExecution queryExecution = QueryExecutionFactory.sparqlService(TDB_SELECT_BASE_URL, query)) {
+            final ResultSet resultSet = queryExecution.execSelect();
+            while (resultSet.hasNext()) {
+                final QuerySolution solution = resultSet.next();
+                final Literal jmbg = solution.getLiteral("jmbg");
+                final Literal firstName = solution.getLiteral("firstName");
+                final Literal lastName = solution.getLiteral("lastName");
+                final Literal gender = solution.getLiteral("gender");
+                final Literal age = solution.getLiteral("age");
+                final Literal isCancerSpread = solution.getLiteral("isCancerSpread");
+                final Literal isCancerGrown = solution.getLiteral("isCancerGrown");
+                final Literal isCancerSpreadToOrgans = solution.getLiteral("isCancerSpreadToOrgans");
+                final Literal isCancerReappear = solution.getLiteral("isCancerReappear");
+                final Literal isCancerDetectable = solution.getLiteral("isCancerDetectable");
+                final Literal lifeQuality = solution.getLiteral("lifeQuality");
+                final Literal disease = solution.getLiteral("hasDisease");
+                var patient = new Person();
+
+                patient.setJmbg(jmbg.getString());
+                patient.setFirstName(firstName.getString());
+                patient.setLastName(lastName.getString());
+                patient.setAge(age.getInt());
+                patient.setGender(Gender.valueOf(gender.getString()));
+                patient.setCancerSpread(isCancerSpread.getBoolean());
+                patient.setCancerGrown(isCancerDetectable.getBoolean());
+                patient.setCancerReappear(isCancerReappear.getBoolean());
+                patient.setCancerGrown(isCancerGrown.getBoolean());
+                patient.setCancerSpreadToOrgans(isCancerSpreadToOrgans.getBoolean());
+                patient.setLifeQuality(LifeQuality.valueOf(lifeQuality.getString()));
+                patient.setHasDisease(new Disease(disease.getString()));
+
+                personList.add(patient);
+            }
+        } catch (Exception exception) {
+            System.out.println("Exception occurred.");
+            exception.printStackTrace();
+        }
+        return personList;
     }
 
 }

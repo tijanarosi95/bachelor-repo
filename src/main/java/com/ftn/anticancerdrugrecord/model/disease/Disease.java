@@ -16,4 +16,8 @@ public class Disease {
     private int id;
 
     private String name;
+
+    public Disease(String name) {
+        this.name = name;
+    }
 }

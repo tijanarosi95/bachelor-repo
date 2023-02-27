@@ -25,21 +25,19 @@ public class SelectDrugUtility {
         final String queryString =
         "PREFIX drg:" + DRUGS_URI + " " +
         "PREFIX rdf:" + RDF_URI + " " +
-        "SELECT ?drugID ?name ?activeIngredient ?isDoseRanged ?hasEfficacy " +
-        " ?hasToxicity ?hasSideEffects ?hasTherapeuticEffect ?hasApproved " +
-        " WHERE { " +
-        "?x drg:drugID ?drugID FILTER ( ?drugID = %s ) . " +
-        "?y drg:name ?name . " +
-        "?z drg:activeIngredient ?activeIngredient . " +
-        "?e drg:isDoseRanged ?isDoseRanged . " +
-        "?f drg:hasEfficacy ?hasEfficacy . " +
-        "?d drg:hasToxicity ?hasToxicity . " +
-        "?g drg:hasSideEffects ?hasSideEffects . " +
-        "?h drg:hasTherapeuticEffect ?hasTherapeuticEffect . " +
-        "?i drg:hasApproved ?hasApproved . " +
-        " } ";
+             "SELECT ?s ?drugID ?activeIngredient ?isDoseRanged ?hasEfficacy " +
+             " ?hasToxicity ?hasSideEffects ?hasTherapeuticEffect ?hasApproved " +
+             " WHERE { " +
+             "?s drg:drugID ?drugID FILTER ( ?drugID = %s ) . " +
+             "?s drg:activeIngredient ?activeIngredient . " +
+             "?s drg:isDoseRanged ?isDoseRanged . " +
+             "?s drg:hasEfficacy ?hasEfficacy . " +
+             "?s drg:hasToxicity ?hasToxicity . " +
+             "?s drg:hasSideEffects ?hasSideEffects . " +
+             "?s drg:hasTherapeuticEffect ?hasTherapeuticEffect . " +
+             "?s drg:hasApproved ?hasApproved . }";
         final String formattedQueryString = String.format(queryString, id);
-
+        System.out.println("QUERY: " + formattedQueryString);
         final Query query = QueryFactory.create(formattedQueryString);
 
         // Execute the query and obtain the results
@@ -47,7 +45,6 @@ public class SelectDrugUtility {
             final ResultSet resultSet = queryExecution.execSelect();
             if (resultSet.hasNext()) {
                 final QuerySolution solution = resultSet.next();
-                final Literal name = solution.getLiteral("name");
                 final Literal activeIngredient = solution.getLiteral("activeIngredient");
                 final Literal isDoseRanged = solution.getLiteral("isDoseRanged");
                 final Literal hasEfficacy = solution.getLiteral("hasEfficacy");
@@ -58,7 +55,6 @@ public class SelectDrugUtility {
                 var drug = Drug.builder()
                 .drugId(Integer.toString(id))
                 .activeIngredient(activeIngredient.getString())
-                .name(name.getString())
                 .isDoseRanged(isDoseRanged.getBoolean())
                 .hasEfficacy(hasEfficacy.getBoolean())
                 .hasSideEffects(hasSideEffects.getBoolean())
@@ -80,26 +76,24 @@ public class SelectDrugUtility {
         final String queryString =
         "PREFIX drg:" + DRUGS_URI + " " +
         "PREFIX rdf:" + RDF_URI + " " +
-        " SELECT DISTINCT ?drugID ?activeIngredient ?isDoseRanged ?hasEfficacy " +
-        " ?hasToxicity ?hasSideEffects ?hasTherapeuticEffect ?hasApproved ?mayTreat " +
-        " WHERE { " +
-        "?x drg:mayTreat ?mayTreat FILTER ( str(?mayTreat) = '%s' ) . " +
-        "?p drg:drugID ?drugID . " +
-        "?z drg:activeIngredient ?activeIngredient . " +
-        "?e drg:isDoseRanged ?isDoseRanged . " +
-        "?f drg:hasEfficacy ?hasEfficacy . " +
-        "?d drg:hasToxicity ?hasToxicity . " +
-        "?g drg:hasSideEffects ?hasSideEffects . " +
-        "?h drg:hasTherapeuticEffect ?hasTherapeuticEffect . " +
-        "?i drg:hasApproved ?hasApproved . " +
-        " } ";
+             " SELECT DISTINCT ?s ?mayTreat ?drugID ?activeIngredient ?isDoseRanged ?hasEfficacy " +
+             " ?hasToxicity ?hasSideEffects ?hasTherapeuticEffect ?hasApproved " +
+             " WHERE { " +
+             "?s drg:mayTreat ?mayTreat FILTER ( str(?mayTreat) = '%s' ) . " +
+             "?s drg:drugID ?drugID . " +
+             "?s drg:activeIngredient ?activeIngredient . " +
+             "?s drg:isDoseRanged ?isDoseRanged . " +
+             "?s drg:hasEfficacy ?hasEfficacy . " +
+             "?s drg:hasToxicity ?hasToxicity . " +
+             "?s drg:hasSideEffects ?hasSideEffects . " +
+             "?s drg:hasTherapeuticEffect ?hasTherapeuticEffect . " +
+             "?s drg:hasApproved ?hasApproved . }";
         final String formattedQueryString = String.format(queryString, type);
 
         final Query query = QueryFactory.create(formattedQueryString);
 
         // Execute the query and obtain the results
-        QueryExecution queryExecution = QueryExecutionFactory.sparqlService(TDB_SELECT_BASE_URL, query);
-        try {
+        try (QueryExecution queryExecution = QueryExecutionFactory.sparqlService(TDB_SELECT_BASE_URL, query)) {
             ResultSet resultSet = queryExecution.execSelect();
             while (resultSet.hasNext()) {
                 QuerySolution solution = resultSet.nextSolution();
@@ -127,8 +121,6 @@ public class SelectDrugUtility {
         } catch (Exception exception) {
             System.out.println("Exception occurred.");
             exception.printStackTrace();
-        } finally {
-            queryExecution.close();
         }
         return loadedDrugs;
     }

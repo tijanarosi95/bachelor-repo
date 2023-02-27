@@ -10,6 +10,6 @@ public interface PersonServiceInterface {
 
     Optional<Person> getPersonById(String id);
 
-    List<Person> getPersonsTreatedByDrug(String drugId);
+    List<Person> getPersonsTreatedByDrug(String drugName);
 
 }

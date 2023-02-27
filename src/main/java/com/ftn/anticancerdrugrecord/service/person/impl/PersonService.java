@@ -39,7 +39,7 @@ public class PersonService implements PersonServiceInterface {
     }
 
     @Override
-    public List<Person> getPersonsTreatedByDrug(final String drugId) {
-        return null;
+    public List<Person> getPersonsTreatedByDrug(final String drugName) {
+        return selectUtility.loadPatientsByTreatedDrug(drugName);
     }
 }

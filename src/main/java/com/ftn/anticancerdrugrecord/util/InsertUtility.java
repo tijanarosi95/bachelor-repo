@@ -180,10 +180,7 @@ public class InsertUtility {
                 "PREFIX rdf:" + RDF_URI + " " +
                 "INSERT DATA { "
                 + " <http://www.ftn.uns.ac.rs/drugs#" + getPersonInitials(firstName, lastName) + "> drg:hasDisease '" + diseaseName + "'; "
-                + " }"
-                + " WHERE { "
-                + " ?x drg:id " + diseaseId
-                +  " } ";
+                + " }";
     }
 
     private String createInsertQueryDiseaseNotExist(final String firstName, final String lastName, final String diseaseName, final Integer diseaseId) {
@@ -201,14 +198,11 @@ public class InsertUtility {
     private String createInsertQuery(PatientDrugDTO patientDrug) {
         var firstName = patientDrug.getFirstName();
         var lastName = patientDrug.getLastName();
-        var diseaseName = patientDrug.getDrugName();
+        var drugName = patientDrug.getDrugName();
         return "PREFIX drg:" + DRUGS_URI + " " +
             "PREFIX rdf:" + RDF_URI +
             " INSERT DATA { "
-            + " <http://www.ftn.uns.ac.rs/drugs#" + getPersonInitials(firstName, lastName) + "> drg:isTreatedWith '" + diseaseName + "'; "
-            + " } "
-            + " WHERE { "
-            + " ?x drg:drugID " + patientDrug.getDrugId()
+            + " <http://www.ftn.uns.ac.rs/drugs#" + getPersonInitials(firstName, lastName) + "> drg:isTreatedWith '" + drugName + "'; "
             + " } ";
     }
 

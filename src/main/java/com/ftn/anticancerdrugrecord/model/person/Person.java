@@ -51,4 +51,32 @@ public class Person {
     private Disease hasDisease;
 
     private LifeQuality lifeQuality;
+
+    public void setJmbg(String jmbg) {
+        this.jmbg = jmbg;
+    }
+
+    public void setCancerSpread(boolean cancerSpread) {
+        isCancerSpread = cancerSpread;
+    }
+
+    public void setCancerGrown(boolean cancerGrown) {
+        isCancerGrown = cancerGrown;
+    }
+
+    public void setCancerSpreadToOrgans(boolean cancerSpreadToOrgans) {
+        isCancerSpreadToOrgans = cancerSpreadToOrgans;
+    }
+
+    public void setCancerReappear(boolean cancerReappear) {
+        isCancerReappear = cancerReappear;
+    }
+
+    public void setCancerDetectable(boolean cancerDetectable) {
+        isCancerDetectable = cancerDetectable;
+    }
+
+    public void setIsTreatedWith(Drug isTreatedWith) {
+        this.isTreatedWith = isTreatedWith;
+    }
 }
