@@ -17,4 +17,6 @@ public interface DrugServiceInterface {
     Optional<Drug> getDrugById(int id);
 
     List<Drug> getDrugsByDiseaseType(String type);
+
+    List<Drug> getAllDrugs();
 }

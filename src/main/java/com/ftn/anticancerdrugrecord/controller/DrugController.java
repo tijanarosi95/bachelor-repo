@@ -48,6 +48,12 @@ public class DrugController {
         return new ResponseEntity(drug, HttpStatus.OK);
     }
 
+    @GetMapping()
+    public ResponseEntity<List<Drug>> loadAllDrugs() {
+        final List<Drug> drugs = drugServiceInterface.getAllDrugs();
+        return new ResponseEntity(drugs, HttpStatus.OK);
+    }
+
     @GetMapping("/diseases/{diseaseType}")
     public ResponseEntity<List<Drug>> loadDrugsByDiseaseType(@PathVariable("diseaseType") String diseaseType) {
         final List<Drug> drugs = drugServiceInterface.getDrugsByDiseaseType(diseaseType);

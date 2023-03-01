@@ -50,7 +50,7 @@ public class InsertUtility {
 
     public void insertDrug(final Drug drug) {
         try {
-            if(!drug.getMayTreat().isEmpty()) {
+            if(drug.getMayTreat() != null && !drug.getMayTreat().isEmpty()) {
                 drug.getMayTreat().forEach(disease -> {
                     final String insertQuery = createInsertQuery(disease);
                     save(insertQuery);

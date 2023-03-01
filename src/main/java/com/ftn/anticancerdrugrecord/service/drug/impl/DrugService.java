@@ -44,4 +44,9 @@ public class DrugService implements DrugServiceInterface {
     public List<Drug> getDrugsByDiseaseType(String type) {
         return selectUtility.loadDrugsByDiseaseType(type);
     }
+
+    @Override
+    public List<Drug> getAllDrugs() {
+        return selectUtility.loadAllDrugs();
+    }
 }
