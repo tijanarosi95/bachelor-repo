@@ -212,7 +212,7 @@ public class InsertUtility {
                 .map(Disease::getName)
                 .map(item -> " drg:mayTreat '" + item + "'; ")
                 .reduce(String::concat)
-                .get();
+                .orElse("");
     }
 
     private String getPersonInitials(final String fistName, final String lastName) {

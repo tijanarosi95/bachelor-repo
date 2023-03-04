@@ -1,6 +1,7 @@
 package com.ftn.anticancerdrugrecord.controller;
 
 import com.ftn.anticancerdrugrecord.dto.patient.PatientDTO;
+import com.ftn.anticancerdrugrecord.dto.patient.PatientUpdateDTO;
 import com.ftn.anticancerdrugrecord.model.person.Person;
 import com.ftn.anticancerdrugrecord.service.person.PersonServiceInterface;
 import com.ftn.anticancerdrugrecord.util.OntologyUtilityInterface;
@@ -11,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,6 +30,11 @@ public class PersonController {
     @PostMapping
     public void addPerson(@RequestBody Person person) {
         personServiceInterface.createPerson(person);
+    }
+
+    @PutMapping
+    public boolean updatePerson(@RequestBody PatientUpdateDTO patient) {
+        return personServiceInterface.updatePerson(patient);
     }
 
     @GetMapping("/{id}")
