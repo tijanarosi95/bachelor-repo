@@ -15,4 +15,5 @@ public interface PersonServiceInterface {
 
     boolean updatePerson(PatientUpdateDTO patient);
 
+    boolean deletePerson(String jmbg);
 }

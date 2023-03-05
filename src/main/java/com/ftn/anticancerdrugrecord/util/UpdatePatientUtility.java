@@ -26,6 +26,17 @@ public class UpdatePatientUtility {
         }
     }
 
+    public boolean removePatient(final String jmbg) {
+        try {
+            final String deleteQuery = createDeleteQuery(jmbg);
+            save(deleteQuery);
+            return true;
+        } catch (JenaException ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
     private String createUpdateQuery(final PatientUpdateDTO patient) {
         return "PREFIX drg:" + DRUGS_URI +
                " DELETE { ?person drg:age " + patient.getExistingData().getAge()  + " ;" +
@@ -36,7 +47,7 @@ public class UpdatePatientUtility {
                " drg:strongPain " + patient.getExistingData().isStrongPain() + " ;" +
                " drg:isCancerReappear " + patient.getExistingData().isCancerReappear() + " ;" +
                " drg:isCancerDetectable " + patient.getExistingData().isCancerDetectable() + " ;" +
-               " drg:lifeQuality '" + patient.getExistingData().getLifeQuality() + "'" +
+               " drg:lifeQuality '" + patient.getExistingData().getLifeQuality() + "';" +
                " drg:isTreatedWith '" + patient.getExistingData().getIsTreatedWith().getDrugName() + "';}" +
                " INSERT { ?person drg:age " + patient.getNewData().getAge()  + " ;" +
                " drg:isCancerSpread " + patient.getNewData().isCancerSpread() + " ;" +
@@ -50,6 +61,12 @@ public class UpdatePatientUtility {
                " drg:isTreatedWith '" + patient.getNewData().getIsTreatedWith().getDrugName() + "';}" +
                " WHERE" +
                " { ?person drg:jmbg '" + patient.getExistingData().getJmbg() + "';}";
+    }
+
+    private String createDeleteQuery(final String jmbg) {
+        return "PREFIX drg:" + DRUGS_URI +
+        " DELETE { ?s ?p ?o } " +
+        " WHERE { ?s ?p ?o ; drg:jmbg '" + jmbg + "' ;}";
     }
 
     private void save(final String updateQuery) {

@@ -9,6 +9,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,8 +34,9 @@ public class PersonController {
     }
 
     @PutMapping
-    public boolean updatePerson(@RequestBody PatientUpdateDTO patient) {
-        return personServiceInterface.updatePerson(patient);
+    public ResponseEntity<Boolean> updatePerson(@RequestBody PatientUpdateDTO patient) {
+        var updated = personServiceInterface.updatePerson(patient);
+        return new ResponseEntity<>(updated, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
@@ -53,5 +55,11 @@ public class PersonController {
     public ResponseEntity<List<Person>> loadPersonByDrugName(@PathVariable("drugName") String drugName) {
         final List<Person> persons = personServiceInterface.getPersonsTreatedByDrug(drugName);
         return new ResponseEntity(persons, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{jmbg}")
+    public ResponseEntity<Boolean> deletePerson(@PathVariable("jmbg") String jmbg) {
+        var deleted = personServiceInterface.deletePerson(jmbg);
+        return new ResponseEntity<>(deleted, HttpStatus.OK);
     }
 }

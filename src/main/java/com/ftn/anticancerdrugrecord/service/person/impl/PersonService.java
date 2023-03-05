@@ -52,4 +52,9 @@ public class PersonService implements PersonServiceInterface {
     public boolean updatePerson(PatientUpdateDTO patient) {
         return updateUtility.updatePatient(patient);
     }
+
+    @Override
+    public boolean deletePerson(String jmbg) {
+        return updateUtility.removePatient(jmbg);
+    }
 }

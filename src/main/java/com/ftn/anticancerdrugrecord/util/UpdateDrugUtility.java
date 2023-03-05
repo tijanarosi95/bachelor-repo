@@ -1,7 +1,6 @@
 package com.ftn.anticancerdrugrecord.util;
 
 import com.ftn.anticancerdrugrecord.dto.drug.DrugUpdateDTO;
-import com.ftn.anticancerdrugrecord.dto.patient.PatientUpdateDTO;
 import org.apache.jena.shared.JenaException;
 import org.apache.jena.update.UpdateExecutionFactory;
 import org.apache.jena.update.UpdateFactory;
@@ -27,8 +26,38 @@ public class UpdateDrugUtility {
         }
     }
 
+    public boolean removeDrug(final String drugId) {
+        try {
+            final String deleteQuery = createDeleteQuery(drugId);
+            save(deleteQuery);
+            return true;
+        } catch (JenaException ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
     private String createUpdateQuery(final DrugUpdateDTO drug) {
-        return  "";
+        return  " PREFIX drg:" + DRUGS_URI +
+                " DELETE { ?drug drg:isDoseRanged " + drug.getExistingData().isDoseRanged() + " ;" +
+                " drg:hasEfficacy " + drug.getExistingData().isHasEfficacy() + " ;" +
+                " drg:hasToxicity " + drug.getExistingData().isHasToxicity() + " ;" +
+                " drg:hasSideEffects " + drug.getExistingData().isHasSideEffects() + " ;" +
+                " drg:hasTherapeuticEffect " + drug.getExistingData().isHasTherapeuticEffect() + " ;" +
+                " drg:hasApproved " + drug.getExistingData().isApproved() + " ;}" +
+                " INSERT { ?drug drg:isDoseRanged " + drug.getNewData().isDoseRanged() + " ;" +
+                " drg:hasEfficacy " + drug.getNewData().isHasEfficacy() + " ;" +
+                " drg:hasToxicity " + drug.getNewData().isHasToxicity() + " ;" +
+                " drg:hasSideEffects " + drug.getNewData().isHasSideEffects() + " ;" +
+                " drg:hasTherapeuticEffect " + drug.getNewData().isHasTherapeuticEffect() + " ;" +
+                " drg:hasApproved " + drug.getNewData().isApproved() + " ;}" +
+                " WHERE { ?drug drg:drugID " + drug.getExistingData().getDrugId() + " ;} ";
+    }
+
+    private String createDeleteQuery(final String id) {
+        return " PREFIX drg:" + DRUGS_URI +
+               " DELETE { ?s ?p ?o } " +
+               " WHERE { ?s ?p ?o ; drg:drugID " + id  + " ;} ";
     }
 
     private void save(final String updateQuery) {
