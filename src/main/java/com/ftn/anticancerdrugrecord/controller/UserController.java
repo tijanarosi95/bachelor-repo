@@ -12,12 +12,15 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@Controller
 @CrossOrigin
 public class UserController {
 
@@ -31,11 +34,12 @@ public class UserController {
     private UserDetailService userDetailService;
 
     @PostMapping(value = "/login")
-    public ResponseEntity<?> logIn(@RequestBody JWTRequest request) throws Exception {
+    public String logIn(@ModelAttribute("loginData") JWTRequest request) throws Exception {
         authenticate(request.getUsername(), request.getPassword());
         final UserDetails userDetails = userDetailService.loadUserByUsername(request.getUsername());
         final String token = jwtTokenUtil.generateToken(userDetails);
-        return ResponseEntity.ok(new JWTResponse(token));
+        //ResponseEntity.ok(new JWTResponse(token))
+        return (userDetails != null) ? "profile_view" : "";
     }
 
     @PostMapping(value = "/register")
