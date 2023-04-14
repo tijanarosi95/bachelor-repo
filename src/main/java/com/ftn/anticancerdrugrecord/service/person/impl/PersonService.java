@@ -25,6 +25,11 @@ public class PersonService implements PersonServiceInterface {
     private UpdatePatientUtility updateUtility;
 
     @Override
+    public List<Person> getAll() {
+        return selectUtility.loadAllPersons();
+    }
+
+    @Override
     public void createPerson(final Person person) {
         try {
             if (person != null) {

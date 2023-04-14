@@ -7,6 +7,8 @@ import java.util.Optional;
 
 public interface PersonServiceInterface {
 
+    List<Person> getAll();
+
     void createPerson(Person person);
 
     Optional<Person> getPersonById(String id);

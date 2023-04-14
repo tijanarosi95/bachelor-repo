@@ -1,6 +1,8 @@
 package com.ftn.anticancerdrugrecord;
 
+import com.ftn.anticancerdrugrecord.model.person.LifeQuality;
 import com.ftn.anticancerdrugrecord.util.InferOntologyFacts;
+import com.ftn.anticancerdrugrecord.util.InsertUtility;
 import com.ftn.anticancerdrugrecord.util.SelectPatientUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -15,6 +17,9 @@ public class AnticancerDrugRecordApplication {
 	private InferOntologyFacts utility;
 
 	@Autowired
+	private InsertUtility insertUtility;
+
+	@Autowired
 	private SelectPatientUtility selectUtility;
 
 	public static void main(String[] args) {
@@ -27,6 +32,12 @@ public class AnticancerDrugRecordApplication {
 			System.out.println("In CommandLineRunnerImpl ");
 			utility.inferPersonFactsByReasoner(null);
 		};
+	}
+
+	private void insertLifeQuality() {
+		insertUtility.insertLifeQuality(LifeQuality.Same);
+		insertUtility.insertLifeQuality(LifeQuality.Worse);
+		insertUtility.insertLifeQuality(LifeQuality.MuchBetter);
 	}
 
 }

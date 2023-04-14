@@ -152,4 +152,67 @@ public class SelectPatientUtility {
         return personList;
     }
 
+    public List<Person> loadAllPersons() {
+        final String queryString =
+        "PREFIX drg:" + DRUGS_URI + " " +
+        "PREFIX rdf:" + RDF_URI + " " +
+        " SELECT * WHERE { " +
+        "?s rdf:type drg:Person ;" +
+        " drg:jmbg ?jmbg ;" +
+        " drg:firstName ?firstName ;" +
+        " drg:lastName ?lastName ;" +
+        " drg:gender ?gender ;" +
+        " drg:age ?age ;" +
+        " drg:isCancerSpread ?isCancerSpread ;" +
+        " drg:isCancerGrown ?isCancerGrown ;" +
+        " drg:isCancerSpreadToOrgans ?isCancerSpreadToOrgans ;" +
+        " drg:isCancerReappear ?isCancerReappear ;" +
+        " drg:isCancerDetectable ?isCancerDetectable ;" +
+        " drg:lifeQuality ?lifeQuality ;}";
+
+        System.out.println("Person query str: " + queryString);
+        final Query query = QueryFactory.create(queryString);
+
+        List<Person> personList = new ArrayList<>();
+
+        // Execute the query and obtain the results
+        try (QueryExecution queryExecution = QueryExecutionFactory.sparqlService(TDB_SELECT_BASE_URL, query)) {
+            final ResultSet resultSet = queryExecution.execSelect();
+            while (resultSet.hasNext()) {
+                final QuerySolution solution = resultSet.next();
+                final Literal jmbg = solution.getLiteral("jmbg");
+                final Literal firstName = solution.getLiteral("firstName");
+                final Literal lastName = solution.getLiteral("lastName");
+                final Literal gender = solution.getLiteral("gender");
+                final Literal age = solution.getLiteral("age");
+                final Literal isCancerSpread = solution.getLiteral("isCancerSpread");
+                final Literal isCancerGrown = solution.getLiteral("isCancerGrown");
+                final Literal isCancerSpreadToOrgans = solution.getLiteral("isCancerSpreadToOrgans");
+                final Literal isCancerReappear = solution.getLiteral("isCancerReappear");
+                final Literal isCancerDetectable = solution.getLiteral("isCancerDetectable");
+                final Literal lifeQuality = solution.getLiteral("lifeQuality");
+                var patient = new Person();
+
+                patient.setJmbg(jmbg.getString());
+                patient.setFirstName(firstName.getString());
+                patient.setLastName(lastName.getString());
+                patient.setAge(age.getInt());
+                patient.setGender(Gender.valueOf(gender.getString()));
+                patient.setCancerSpread(isCancerSpread.getBoolean());
+                patient.setCancerGrown(isCancerDetectable.getBoolean());
+                patient.setCancerReappear(isCancerReappear.getBoolean());
+                patient.setCancerGrown(isCancerGrown.getBoolean());
+                patient.setCancerSpreadToOrgans(isCancerSpreadToOrgans.getBoolean());
+                patient.setLifeQuality(LifeQuality.valueOf(lifeQuality.getString()));
+
+                personList.add(patient);
+            }
+        } catch (Exception exception) {
+            System.out.println("Exception occurred.");
+            exception.printStackTrace();
+        }
+        return personList;
+
+    }
+
 }
