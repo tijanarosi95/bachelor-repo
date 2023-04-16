@@ -38,6 +38,7 @@ public class Person {
     @JsonProperty(value = "strongPain")
     private boolean strongPain;
 
+    @JsonProperty(value = "weightLoss")
     private boolean weightLoss;
 
     @JsonProperty(value = "isCancerReappear")

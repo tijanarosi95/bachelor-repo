@@ -52,7 +52,7 @@ public class PersonController {
     }
 
     @GetMapping("/drug/{drugName}")
-    public ResponseEntity<List<Person>> loadPersonByDrugName(@PathVariable("drugName") String drugName) {
+    public ResponseEntity<List<Person>> loadPersonsTreatedByDrug(@PathVariable("drugName") String drugName) {
         final List<Person> persons = personServiceInterface.getPersonsTreatedByDrug(drugName);
         return new ResponseEntity(persons, HttpStatus.OK);
     }

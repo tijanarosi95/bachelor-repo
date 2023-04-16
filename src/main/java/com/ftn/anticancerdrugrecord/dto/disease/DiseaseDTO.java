@@ -20,4 +20,8 @@ public class DiseaseDTO {
         this.id = disease.getId();
         this.name = disease.getName();
     }
+
+    public DiseaseDTO(final String name) {
+        this.name = name;
+    }
 }

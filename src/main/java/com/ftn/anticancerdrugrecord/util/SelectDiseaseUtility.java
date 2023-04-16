@@ -1,6 +1,10 @@
 package com.ftn.anticancerdrugrecord.util;
 
+import com.ftn.anticancerdrugrecord.dto.disease.DiseaseDTO;
+import com.ftn.anticancerdrugrecord.dto.patient.PatientDiseaseDTO;
 import com.ftn.anticancerdrugrecord.model.disease.Disease;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import org.apache.jena.query.Query;
 import org.apache.jena.query.QueryExecution;
@@ -25,8 +29,8 @@ public class SelectDiseaseUtility {
         "PREFIX rdf:" + RDF_URI + " " +
         "SELECT ?s ?id ?name " +
         " WHERE { " +
-        "?x drg:id ?id FILTER ( ?id = %s ) . " +
-        "?y drg:name ?name . }";
+        "?s drg:id ?id FILTER ( ?id = %s ) . " +
+        "?s drg:name ?name . }";
         final String formattedQueryString = String.format(queryString, id);
 
         final Query query = QueryFactory.create(formattedQueryString);
@@ -51,4 +55,69 @@ public class SelectDiseaseUtility {
         }
         return Optional.empty();
     }
+
+    public Optional<PatientDiseaseDTO> loadPatientDisease(final String jmbg) {
+        final String queryString =
+        "PREFIX drg:" + DRUGS_URI + " " +
+        "PREFIX rdf:" + RDF_URI + " " +
+        " SELECT ?s ?jmbg ?hasDisease" +
+        " WHERE { " +
+        "?s drg:jmbg ?jmbg FILTER ( str(?jmbg) = '%s') . " +
+        "?s drg:hasDisease ?hasDisease . }";
+        final String formattedQueryString = String.format(queryString, jmbg);
+        System.out.println("Person disease query str: " + formattedQueryString);
+        final Query query = QueryFactory.create(formattedQueryString);
+
+        // Execute the query and obtain the results
+        try (QueryExecution queryExecution = QueryExecutionFactory.sparqlService(TDB_SELECT_BASE_URL, query)) {
+            final ResultSet resultSet = queryExecution.execSelect();
+            if (resultSet.hasNext()) {
+                final QuerySolution solution = resultSet.next();
+                final Literal disease = solution.getLiteral("hasDisease");
+                var patientDisease = new PatientDiseaseDTO();
+
+                patientDisease.setPatientId(jmbg);
+                patientDisease.setDisease(new DiseaseDTO(disease.getString()));
+
+                return Optional.of(patientDisease);
+            }
+        } catch (Exception exception) {
+            System.out.println("Exception occurred.");
+            exception.printStackTrace();
+        }
+        return Optional.empty();
+    }
+
+    public List<Disease> loadAllDiseases() {
+        final String queryString =
+        "PREFIX drg:" + DRUGS_URI + " " +
+        "PREFIX rdf:" + RDF_URI + " " +
+        "SELECT * WHERE { " +
+        "?s rdf:type drg:Disease ;" +
+        " drg:id ?id ; " +
+        " drg:name ?name ; }";
+        final Query query = QueryFactory.create(queryString);
+        System.out.println("Select all diseases: " + queryString);
+
+        final List<Disease> diseases = new ArrayList<>();
+
+        // Execute the query and obtain the results
+        try (QueryExecution queryExecution = QueryExecutionFactory.sparqlService(TDB_SELECT_BASE_URL, query)) {
+            final ResultSet resultSet = queryExecution.execSelect();
+            while (resultSet.hasNext()) {
+                final QuerySolution solution = resultSet.next();
+                final Literal diseaseId = solution.getLiteral("id");
+                final Literal name = solution.getLiteral("name");
+
+                var disease = new Disease(diseaseId.getInt(), name.getString());
+
+                diseases.add(disease);
+            }
+            return diseases;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return diseases;
+    }
+
 }

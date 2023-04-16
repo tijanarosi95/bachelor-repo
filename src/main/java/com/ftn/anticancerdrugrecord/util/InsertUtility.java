@@ -124,7 +124,7 @@ public class InsertUtility {
         return "PREFIX drg:" + DRUGS_URI + " " +
                 "PREFIX rdf:" + RDF_URI + " " +
                 "INSERT DATA { "
-                + " <http://www.ftn.uns.ac.rs/drugs#" + disease.getName() + "> drg:name '" + disease.getName() + "'; "
+                + " <http://www.ftn.uns.ac.rs/drugs#" + disease.getName().replaceAll("\\s+", "") + "> drg:name '" + disease.getName() + "'; "
                 + " drg:id " + disease.getId() + " ; "
                 + " rdf:type " + "drg:Disease "
                 + " }";
@@ -134,7 +134,7 @@ public class InsertUtility {
         return "PREFIX drg:" + DRUGS_URI + " " +
                 "PREFIX rdf:" + RDF_URI + " " +
                 "INSERT DATA { "
-                + " <http://www.ftn.uns.ac.rs/drugs#" + drug.getName() + "> drg:activeIngredient '" + drug.getActiveIngredient() + "';"
+                + " <http://www.ftn.uns.ac.rs/drugs#" + drug.getName().replaceAll("\\s+", "") + "> drg:activeIngredient '" + drug.getActiveIngredient() + "'; "
                 + " drg:drugID " + drug.getDrugId() + ";"
                 + createMayTreatStatements(drug.getMayTreat())
                 + " rdf:type " + "drg:Drug "
@@ -188,13 +188,13 @@ public class InsertUtility {
                "PREFIX rdf:" + RDF_URI + " " +
                "INSERT DATA { "
                + " <http://www.ftn.uns.ac.rs/drugs#" + getPersonInitials(firstName, lastName) + "> drg:hasDisease '" + diseaseName + "'. "
-               + " <http://www.ftn.uns.ac.rs/drugs#" + diseaseName + "> drg:name '" + diseaseName + "'; "
+               + " <http://www.ftn.uns.ac.rs/drugs#" + diseaseName.replaceAll("\\s+", "") + "> drg:name '" + diseaseName + "'; "
                + " drg:id " + diseaseId + " ; "
                + " rdf:type " + "drg:Disease "
                + " }";
     }
 
-    /** Doctor will add Drug with whom patient is treated **/
+    /** Doctor will add Drug by whom patient is treated **/
     private String createInsertQuery(PatientDrugDTO patientDrug) {
         var firstName = patientDrug.getFirstName();
         var lastName = patientDrug.getLastName();

@@ -3,6 +3,7 @@ package com.ftn.anticancerdrugrecord.controller;
 import com.ftn.anticancerdrugrecord.dto.patient.PatientDiseaseDTO;
 import com.ftn.anticancerdrugrecord.model.disease.Disease;
 import com.ftn.anticancerdrugrecord.service.disease.DiseaseServiceInterface;
+import java.util.List;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -38,4 +39,17 @@ public class DiseaseController {
         var disease = diseaseServiceInterface.getDiseaseById(id).orElse(null);
         return new ResponseEntity(disease, HttpStatus.OK);
     }
+
+    @GetMapping("/person-disease/{jmbg}")
+    public ResponseEntity<PatientDiseaseDTO> getPatientDiseaseById(@PathVariable ("jmbg") String jmbg) {
+        var patientDisease = diseaseServiceInterface.getPatientDiseaseByJmbg(jmbg).orElse(null);
+        return new ResponseEntity(patientDisease, HttpStatus.OK);
+    }
+
+    @GetMapping()
+    public ResponseEntity<List<Disease>> getAllDiseases() {
+        var diseases = diseaseServiceInterface.getAllDiseases();
+        return new ResponseEntity<>(diseases, HttpStatus.OK);
+    }
+
 }
