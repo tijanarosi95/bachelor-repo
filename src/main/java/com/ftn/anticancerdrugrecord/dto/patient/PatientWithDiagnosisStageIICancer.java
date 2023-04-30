@@ -16,7 +16,7 @@ public class PatientWithDiagnosisStageIICancer extends PatientWithDiagnosis {
     public PatientWithDiagnosisStageIICancer() {
         super("STAGE_II_CANCER");
         this.isCancerSpread = true;
-        this.isCancerSpread = true;
+        this.isCancerGrown = true;
         this.isCancerSpreadToOrgans = false;
     }
 }

@@ -21,7 +21,9 @@ import com.ftn.anticancerdrugrecord.dto.patient.PatientWithDiseaseRemission;
 import com.ftn.anticancerdrugrecord.dto.patient.PatientWithSymptomExacerbated;
 import com.ftn.anticancerdrugrecord.dto.patient.PatientWithSymptomImproved;
 import com.ftn.anticancerdrugrecord.dto.patient.PatientWithSymptomUnchanged;
+import com.ftn.anticancerdrugrecord.model.drug.Drug;
 import com.ftn.anticancerdrugrecord.model.person.Person;
+import com.ftn.anticancerdrugrecord.service.drug.DrugServiceInterface;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.RDFNode;
@@ -31,6 +33,8 @@ import com.hp.hpl.jena.rdf.model.ResourceFactory;
 import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
 import com.hp.hpl.jena.vocabulary.RDF;
+import java.util.ArrayList;
+import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.jena.util.PrintUtil;
 import org.mindswap.pellet.jena.PelletReasonerFactory;
@@ -90,6 +94,9 @@ public class InferOntologyFacts implements OntologyUtilityInterface {
     @Autowired
     private ReasonerFactory reasonerFactory;
 
+    @Autowired
+    private DrugServiceInterface drugServiceInterface;
+
     @Override
     public PatientDTO inferPersonFacts(final Person person){
         OntModel model = ModelFactory.createOntologyModel(PelletReasonerFactory.THE_SPEC);
@@ -145,6 +152,19 @@ public class InferOntologyFacts implements OntologyUtilityInterface {
             createDrugDtoFromInferredFacts(drug, triple);
         }
         return drug;
+    }
+
+    @Override
+    public List<DrugDTO> inferDrugsFacts() {
+        final List<DrugDTO> inferredDrugs = new ArrayList<>();
+        final List<Drug> drugs = drugServiceInterface.getAllDrugs();
+        if (drugs != null && !drugs.isEmpty()) {
+            drugs.forEach(drug -> {
+                final DrugDTO inferredDrugFacts = inferDrugFacts(new DrugEffectsDTO(drug));
+                inferredDrugs.add(inferredDrugFacts);
+            });
+        }
+        return inferredDrugs;
     }
 
     public void inferPersonFactsByReasoner(final Person person) {

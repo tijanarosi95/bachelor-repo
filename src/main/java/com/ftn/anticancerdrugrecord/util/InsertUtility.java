@@ -116,6 +116,7 @@ public class InsertUtility {
                 + " drg:isCancerReappear " + person.isCancerReappear() + "; "
                 + " drg:isCancerDetectable " + person.isCancerDetectable() + "; "
                 + " drg:lifeQuality '" + person.getLifeQuality() + "'; "
+                + " drg:weightLoss " + person.isWeightLoss() + "; "
                 + " rdf:type " + "drg:Person " +
                 " }";
     }

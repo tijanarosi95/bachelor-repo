@@ -77,6 +77,12 @@ public class DrugController {
         return new ResponseEntity<>(drugDTO, HttpStatus.OK);
     }
 
+    @GetMapping("/infer-facts-test")
+    public ResponseEntity<List<DrugDTO>> inferDrugFactsTest() {
+        final List<DrugDTO> inferredDrugsFacts = ontologyUtilityInterface.inferDrugsFacts();
+        return new ResponseEntity<>(inferredDrugsFacts, HttpStatus.OK);
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Boolean> deleteDrug(@PathVariable("id") String id) {
         var deleted = drugServiceInterface.deleteDrug(id);

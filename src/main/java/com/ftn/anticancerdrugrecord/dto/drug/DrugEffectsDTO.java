@@ -1,6 +1,7 @@
 package com.ftn.anticancerdrugrecord.dto.drug;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.ftn.anticancerdrugrecord.model.drug.Drug;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -35,4 +36,16 @@ public class DrugEffectsDTO {
 
     @JsonProperty(value = "isApproved")
     private boolean isApproved;
+
+    public DrugEffectsDTO(final Drug drug) {
+        this.drugId = drug.getDrugId();
+        this.activeIngredient = drug.getActiveIngredient();
+        this.drugName = drug.getName();
+        this.isDoseRanged = drug.isDoseRanged();
+        this.hasEfficacy = drug.isHasEfficacy();
+        this.hasToxicity = drug.isHasToxicity();
+        this.hasSideEffects = drug.isHasSideEffects();
+        this.hasTherapeuticEffect = drug.isHasTherapeuticEffect();
+        this.isApproved = drug.isApproved();
+    }
 }
