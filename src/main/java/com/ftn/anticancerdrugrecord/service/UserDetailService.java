@@ -30,7 +30,7 @@ public class UserDetailService implements UserDetailsService {
         if (user == null) {
             throw new UsernameNotFoundException("User not found with username: " + username);
         }
-        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), getAuthorities());
+        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), getAuthorities(user.getUserRole()));
     }
 
     public User getUserDetails(String username) {
@@ -51,7 +51,7 @@ public class UserDetailService implements UserDetailsService {
         return userRepository.save(user);
     }
 
-    private Set<GrantedAuthority> getAuthorities() {
-        return Collections.singleton(new SimpleGrantedAuthority("ADMIN"));
+    private Set<GrantedAuthority> getAuthorities(UserRole role) {
+        return Collections.singleton(new SimpleGrantedAuthority(role.getRole()));
     }
 }

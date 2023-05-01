@@ -37,7 +37,8 @@ public class UserController {
         authenticate(request.getUsername(), request.getPassword());
         final UserDetails userDetails = userDetailService.loadUserByUsername(request.getUsername());
         final String token = jwtTokenUtil.generateToken(userDetails);
-        return ResponseEntity.ok(new JWTResponse(token));
+        final String role = userDetails.getAuthorities().stream().findFirst().get().getAuthority();
+        return ResponseEntity.ok(new JWTResponse(token, role));
     }
 
     @PostMapping(value = "/register")
