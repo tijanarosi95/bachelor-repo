@@ -120,4 +120,38 @@ public class SelectDiseaseUtility {
         return diseases;
     }
 
+    public Optional<Disease> loadDiseaseByName(final String name) {
+        final String queryString =
+        "PREFIX drg:" + DRUGS_URI + " " +
+        "PREFIX rdf:" + RDF_URI + " " +
+        "SELECT ?s ?id ?name " +
+        " WHERE { " +
+        "?s drg:name ?name FILTER ( str(?name) = '%s' ) . " +
+        "?s drg:id ?id . }";
+        final String formattedQueryString = String.format(queryString, name);
+
+        System.out.println("Select patient disease by name: " + formattedQueryString);
+        final Query query = QueryFactory.create(formattedQueryString);
+
+        // Execute the query and obtain the results
+        try (QueryExecution queryExecution = QueryExecutionFactory.sparqlService(TDB_SELECT_BASE_URL, query)) {
+            final ResultSet resultSet = queryExecution.execSelect();
+            if (resultSet.hasNext()) {
+                final QuerySolution solution = resultSet.next();
+                final Literal diseaseId = solution.getLiteral("id");
+
+                var disease = Disease.builder()
+                .id(diseaseId.getInt())
+                .name(name)
+                .build();
+
+                return Optional.of(disease);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return Optional.empty();
+    }
+
+
 }

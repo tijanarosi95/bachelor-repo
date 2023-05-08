@@ -27,11 +27,12 @@ public class SelectDrugUtility {
         final String queryString =
         "PREFIX drg:" + DRUGS_URI + " " +
         "PREFIX rdf:" + RDF_URI + " " +
-             "SELECT ?s ?drugID ?activeIngredient ?isDoseRanged ?hasEfficacy " +
+             "SELECT ?s ?drugID ?name ?activeIngredient ?isDoseRanged ?hasEfficacy " +
              " ?hasToxicity ?hasSideEffects ?hasTherapeuticEffect ?hasApproved " +
              " WHERE { " +
              "?s drg:drugID ?drugID FILTER ( ?drugID = %s ) . " +
              "?s drg:activeIngredient ?activeIngredient . " +
+             "?s drg:name ?name . " +
              "?s drg:isDoseRanged ?isDoseRanged . " +
              "?s drg:hasEfficacy ?hasEfficacy . " +
              "?s drg:hasToxicity ?hasToxicity . " +
@@ -48,6 +49,7 @@ public class SelectDrugUtility {
             if (resultSet.hasNext()) {
                 final QuerySolution solution = resultSet.next();
                 final Literal activeIngredient = solution.getLiteral("activeIngredient");
+                final Literal name = solution.getLiteral("name");
                 final Literal isDoseRanged = solution.getLiteral("isDoseRanged");
                 final Literal hasEfficacy = solution.getLiteral("hasEfficacy");
                 final Literal hasToxicity = solution.getLiteral("hasToxicity");
@@ -55,8 +57,9 @@ public class SelectDrugUtility {
                 final Literal hasTherapeuticEffect = solution.getLiteral("hasTherapeuticEffect");
                 final Literal hasApproved = solution.getLiteral("hasApproved");
                 var drug = Drug.builder()
-                .drugId(Integer.toString(id))
+                .drugId(id)
                 .activeIngredient(activeIngredient.getString())
+                .name(name.getString())
                 .isDoseRanged(isDoseRanged.getBoolean())
                 .hasEfficacy(hasEfficacy.getBoolean())
                 .hasSideEffects(hasSideEffects.getBoolean())
@@ -109,7 +112,7 @@ public class SelectDrugUtility {
                 Literal hasApproved = solution.getLiteral("hasApproved");
 
                 Drug drug = new Drug();
-                drug.setDrugId(Integer.toString(id.getInt()));
+                drug.setDrugId(id.getInt());
                 drug.setActiveIngredient(activeIngredient.getString());
                 drug.setDoseRanged(isDoseRanged.getBoolean());
                 drug.setHasEfficacy(hasEfficacy.getBoolean());
@@ -132,10 +135,11 @@ public class SelectDrugUtility {
         final String queryString =
         "PREFIX drg:" + DRUGS_URI + " " +
         "PREFIX rdf:" + RDF_URI + " " +
-              " SELECT DISTINCT ?s ?drugID ?activeIngredient ?isDoseRanged ?hasEfficacy " +
+              " SELECT DISTINCT ?s ?drugID ?name ?activeIngredient ?isDoseRanged ?hasEfficacy " +
               " ?hasToxicity ?hasSideEffects ?hasTherapeuticEffect ?hasApproved " +
               " WHERE { " +
               "?s drg:drugID ?drugID . " +
+              "?s drg:name ?name . " +
               "?s drg:activeIngredient ?activeIngredient . " +
               "?s drg:isDoseRanged ?isDoseRanged . " +
               "?s drg:hasEfficacy ?hasEfficacy . " +
@@ -153,6 +157,7 @@ public class SelectDrugUtility {
                 QuerySolution solution = resultSet.nextSolution();
                 Resource s = solution.getResource("s");
                 Literal id = solution.getLiteral("drugID");
+                Literal name = solution.getLiteral("name");
                 Literal activeIngredient = solution.getLiteral("activeIngredient");
                 Literal isDoseRanged = solution.getLiteral("isDoseRanged");
                 Literal hasEfficacy = solution.getLiteral("hasEfficacy");
@@ -162,7 +167,7 @@ public class SelectDrugUtility {
                 Literal hasApproved = solution.getLiteral("hasApproved");
 
                 Drug drug = new Drug();
-                drug.setDrugId(Integer.toString(id.getInt()));
+                drug.setDrugId(id.getInt());
                 drug.setName(StringUtils.substringAfterLast(s.getURI(), "#"));
                 drug.setActiveIngredient(activeIngredient.getString());
                 drug.setDoseRanged(isDoseRanged.getBoolean());

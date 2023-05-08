@@ -145,7 +145,7 @@ public class InferOntologyFacts implements OntologyUtilityInterface {
         drugResource.addProperty(model.getProperty(NS + HAS_APPROVED), ResourceFactory.createTypedLiteral(drugEffects.isApproved()));
 
         StmtIterator iter = model.listStatements(drugResource, (Property) null, (RDFNode) null);
-        var drug = new DrugDTO(drugEffects.getDrugId(), drugEffects.getDrugName(), drugEffects.getActiveIngredient());
+        var drug = new DrugDTO(drugEffects.getDrugId(), drugEffects.getName(), drugEffects.getActiveIngredient());
 
         while (iter.hasNext()) {
             var triple = iter.next();

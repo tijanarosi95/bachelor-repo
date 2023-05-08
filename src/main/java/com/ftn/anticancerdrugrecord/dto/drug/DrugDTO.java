@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 public class DrugDTO {
 
-    private String drugId;
+    private Integer drugId;
 
     private String drugName;
 
@@ -27,7 +27,7 @@ public class DrugDTO {
 
     private Drug approvedDrug;
 
-    public DrugDTO(String drugId, String name, String activeIngredient) {
+    public DrugDTO(Integer drugId, String name, String activeIngredient) {
         this.drugId = drugId;
         this.drugName = name;
         this.activeIngredient = activeIngredient;

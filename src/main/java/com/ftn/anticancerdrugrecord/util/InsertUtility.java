@@ -8,6 +8,7 @@ import com.ftn.anticancerdrugrecord.model.drug.Drug;
 import com.ftn.anticancerdrugrecord.model.person.LifeQuality;
 import com.ftn.anticancerdrugrecord.model.person.Person;
 import java.util.HashSet;
+import java.util.UUID;
 import org.apache.jena.shared.JenaException;
 import org.apache.jena.update.UpdateExecutionFactory;
 import org.apache.jena.update.UpdateFactory;
@@ -50,12 +51,6 @@ public class InsertUtility {
 
     public void insertDrug(final Drug drug) {
         try {
-            if(drug.getMayTreat() != null && !drug.getMayTreat().isEmpty()) {
-                drug.getMayTreat().forEach(disease -> {
-                    final String insertQuery = createInsertQuery(disease);
-                    save(insertQuery);
-                });
-            }
             final String insertQuery = createInsertQuery(drug);
             save(insertQuery);
         } catch (JenaException ex) {
@@ -136,6 +131,7 @@ public class InsertUtility {
                 "PREFIX rdf:" + RDF_URI + " " +
                 "INSERT DATA { "
                 + " <http://www.ftn.uns.ac.rs/drugs#" + drug.getName().replaceAll("\\s+", "") + "> drg:activeIngredient '" + drug.getActiveIngredient() + "'; "
+                + " drg:name '" + drug.getName() + "';"
                 + " drg:drugID " + drug.getDrugId() + ";"
                 + createMayTreatStatements(drug.getMayTreat())
                 + " rdf:type " + "drg:Drug "
@@ -146,7 +142,7 @@ public class InsertUtility {
         return "PREFIX drg:" + DRUGS_URI + " " +
                 "PREFIX rdf:" + RDF_URI + " " +
                 "INSERT DATA { "
-                + " <http://www.ftn.uns.ac.rs/drugs#" + drugEffects.getDrugName() + "> drg:isDoseRanged " + drugEffects.isDoseRanged() + ";"
+                + " <http://www.ftn.uns.ac.rs/drugs#" + drugEffects.getName().replaceAll("\\s+", "") + "> drg:isDoseRanged " + drugEffects.isDoseRanged() + ";"
                 + " drg:hasEfficacy " + drugEffects.isHasEfficacy() + ";"
                 + " drg:hasToxicity " + drugEffects.isHasToxicity() + ";"
                 + " drg:hasSideEffects " + drugEffects.isHasSideEffects() + ";"

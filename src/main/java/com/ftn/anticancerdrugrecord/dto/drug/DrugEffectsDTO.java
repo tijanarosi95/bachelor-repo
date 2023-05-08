@@ -1,5 +1,7 @@
 package com.ftn.anticancerdrugrecord.dto.drug;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.ftn.anticancerdrugrecord.model.drug.Drug;
 import lombok.AllArgsConstructor;
@@ -11,11 +13,12 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class DrugEffectsDTO {
 
-    private String drugId;
+    private Integer drugId;
 
-    private String drugName;
+    private String name;
 
     private String activeIngredient;
 
@@ -40,7 +43,7 @@ public class DrugEffectsDTO {
     public DrugEffectsDTO(final Drug drug) {
         this.drugId = drug.getDrugId();
         this.activeIngredient = drug.getActiveIngredient();
-        this.drugName = drug.getName();
+        this.name = drug.getName();
         this.isDoseRanged = drug.isDoseRanged();
         this.hasEfficacy = drug.isHasEfficacy();
         this.hasToxicity = drug.isHasToxicity();

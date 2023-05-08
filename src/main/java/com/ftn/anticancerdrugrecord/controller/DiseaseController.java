@@ -1,5 +1,7 @@
 package com.ftn.anticancerdrugrecord.controller;
 
+import com.ftn.anticancerdrugrecord.dto.disease.DiseaseUpdateDTO;
+import com.ftn.anticancerdrugrecord.dto.drug.DrugUpdateDTO;
 import com.ftn.anticancerdrugrecord.dto.patient.PatientDiseaseDTO;
 import com.ftn.anticancerdrugrecord.model.disease.Disease;
 import com.ftn.anticancerdrugrecord.service.disease.DiseaseServiceInterface;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,6 +35,12 @@ public class DiseaseController {
     @PostMapping("/person-disease")
     public void addPatientDisease(@RequestBody PatientDiseaseDTO dto) throws OWLOntologyCreationException {
         diseaseServiceInterface.insertPersonDisease(dto);
+    }
+
+    @PutMapping
+    public ResponseEntity<Boolean> updateDisease(@RequestBody DiseaseUpdateDTO disease) {
+        var updated = diseaseServiceInterface.updateDisease(disease);
+        return new ResponseEntity<>(updated, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")

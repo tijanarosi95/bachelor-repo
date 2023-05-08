@@ -16,7 +16,7 @@ import java.util.Set;
 @Builder
 public class Drug {
 
-    private String drugId;
+    private Integer drugId;
 
     private String name;
 
