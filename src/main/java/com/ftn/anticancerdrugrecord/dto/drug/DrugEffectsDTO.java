@@ -13,7 +13,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-@JsonIgnoreProperties(ignoreUnknown = true)
+//@JsonIgnoreProperties(ignoreUnknown = true)
 public class DrugEffectsDTO {
 
     private Integer drugId;
@@ -50,5 +50,13 @@ public class DrugEffectsDTO {
         this.hasSideEffects = drug.isHasSideEffects();
         this.hasTherapeuticEffect = drug.isHasTherapeuticEffect();
         this.isApproved = drug.isApproved();
+    }
+
+    public boolean getTherapeuticEffect() {
+        return hasTherapeuticEffect;
+    }
+
+    public boolean isApproved() {
+        return isApproved;
     }
 }

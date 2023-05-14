@@ -364,10 +364,15 @@
 
     <owl:Class rdf:about="http://www.ftn.uns.ac.rs/drugs#ApprovedDrug">
         <owl:equivalentClass>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.ftn.uns.ac.rs/drugs#isApproved"/>
-                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
-            </owl:Restriction>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/drugs#ClinicallyTestedDrugPhase3"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ftn.uns.ac.rs/drugs#isApproved"/>
+                        <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://www.ftn.uns.ac.rs/drugs#ClinicallyTestedDrugPhase3"/>
     </owl:Class>
@@ -386,12 +391,16 @@
 
     <owl:Class rdf:about="http://www.ftn.uns.ac.rs/drugs#ClinicallyTestedDrugPhase1">
         <owl:equivalentClass>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.ftn.uns.ac.rs/drugs#isDoseRanged"/>
-                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
-            </owl:Restriction>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/drugs#PreclinicallyTestedDrug"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ftn.uns.ac.rs/drugs#isDoseRanged"/>
+                        <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://www.ftn.uns.ac.rs/drugs#PreclinicallyTestedDrug"/>
     </owl:Class>
     
 
@@ -400,10 +409,15 @@
 
     <owl:Class rdf:about="http://www.ftn.uns.ac.rs/drugs#ClinicallyTestedDrugPhase2">
         <owl:equivalentClass>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.ftn.uns.ac.rs/drugs#hasSideEffects"/>
-                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</owl:hasValue>
-            </owl:Restriction>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/drugs#ClinicallyTestedDrugPhase1"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ftn.uns.ac.rs/drugs#hasSideEffects"/>
+                        <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</owl:hasValue>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://www.ftn.uns.ac.rs/drugs#ClinicallyTestedDrugPhase1"/>
     </owl:Class>
@@ -414,10 +428,15 @@
 
     <owl:Class rdf:about="http://www.ftn.uns.ac.rs/drugs#ClinicallyTestedDrugPhase3">
         <owl:equivalentClass>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.ftn.uns.ac.rs/drugs#hasTherapeuticEffect"/>
-                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
-            </owl:Restriction>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/drugs#ClinicallyTestedDrugPhase2"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ftn.uns.ac.rs/drugs#hasTherapeuticEffect"/>
+                        <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://www.ftn.uns.ac.rs/drugs#ClinicallyTestedDrugPhase2"/>
     </owl:Class>
@@ -811,6 +830,7 @@
         <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/drugs#Drug"/>
                     <owl:Restriction>
                         <owl:onProperty rdf:resource="http://www.ftn.uns.ac.rs/drugs#hasEfficacy"/>
                         <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
@@ -905,10 +925,9 @@
 
     <owl:NamedIndividual rdf:about="http://www.ftn.uns.ac.rs/drugs#Fotivda">
         <rdf:type rdf:resource="http://www.ftn.uns.ac.rs/drugs#Drug"/>
-        <mayTreat rdf:resource="http://www.ftn.uns.ac.rs/drugs#RenalCellCarcinoma"/>
         <activeIngredient rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tivozanib</activeIngredient>
         <drugID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">004</drugID>
-        <isApproved rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</isApproved>
+        <isApproved rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</isApproved>
         <rdfs:comment xml:lang="en">Fotivda is a medicine for treating adults with advanced renal cell carcinoma (a kidney cancer).</rdfs:comment>
     </owl:NamedIndividual>
     
@@ -930,7 +949,7 @@
         <mayTreat rdf:resource="http://www.ftn.uns.ac.rs/drugs#SCLungCancer"/>
         <activeIngredient rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gemcitabine</activeIngredient>
         <drugID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">011</drugID>
-        <isApproved rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</isApproved>
+        <isApproved rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</isApproved>
         <rdfs:comment xml:lang="en">Gemcitabine is used to treat certain types of cancer (including breast, lung, ovarian, pancreatic).</rdfs:comment>
     </owl:NamedIndividual>
     
@@ -990,7 +1009,7 @@
         <hasSideEffects rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</hasSideEffects>
         <hasTherapeuticEffect rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</hasTherapeuticEffect>
         <hasToxicity rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</hasToxicity>
-        <isApproved rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</isApproved>
+        <isApproved rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</isApproved>
         <isDoseRanged rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</isDoseRanged>
         <rdfs:comment xml:lang="en">Gefitinib is used to treat lung cancer. It works by slowing or stopping the growth of cancer cells.</rdfs:comment>
     </owl:NamedIndividual>
@@ -1016,13 +1035,13 @@
     <!-- http://www.ftn.uns.ac.rs/drugs#Lenvima -->
 
     <owl:NamedIndividual rdf:about="http://www.ftn.uns.ac.rs/drugs#Lenvima">
-        <rdf:type rdf:resource="http://www.ftn.uns.ac.rs/drugs#ApprovedDrug"/>
+        <rdf:type rdf:resource="http://www.ftn.uns.ac.rs/drugs#Drug"/>
         <mayTreat rdf:resource="http://www.ftn.uns.ac.rs/drugs#RenalCellCarcinoma"/>
         <mayTreat rdf:resource="http://www.ftn.uns.ac.rs/drugs#RenalSarcoma"/>
         <mayTreat rdf:resource="http://www.ftn.uns.ac.rs/drugs#TransitionalCellCarcinoma"/>
         <activeIngredient rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lenvatinib</activeIngredient>
         <drugID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">003</drugID>
-        <isApproved rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</isApproved>
+        <isApproved rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</isApproved>
         <rdfs:comment xml:lang="en">Lenvima is a medicine used to treat the symptoms of thyroid cancer, advanced renal cell carcinoma and endometrial cancer.</rdfs:comment>
     </owl:NamedIndividual>
     
@@ -1224,7 +1243,7 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
-    <rdf:Description rdf:about="d">
+    <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/d">
         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
     </rdf:Description>
     <rdf:Description>
@@ -1234,9 +1253,10 @@
                 <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
                 <rdf:first>
                     <rdf:Description>
-                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
-                        <swrl:classPredicate rdf:resource="http://www.ftn.uns.ac.rs/drugs#Drug"/>
-                        <swrl:argument1 rdf:resource="d"/>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
+                        <swrl:propertyPredicate rdf:resource="http://www.ftn.uns.ac.rs/drugs#hasEfficacy"/>
+                        <swrl:argument1 rdf:resource="http://www.ftn.uns.ac.rs/d"/>
+                        <swrl:argument2 rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrl:argument2>
                     </rdf:Description>
                 </rdf:first>
                 <rdf:rest>
@@ -1245,8 +1265,8 @@
                         <rdf:first>
                             <rdf:Description>
                                 <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
-                                <swrl:propertyPredicate rdf:resource="http://www.ftn.uns.ac.rs/drugs#hasEfficacy"/>
-                                <swrl:argument1 rdf:resource="d"/>
+                                <swrl:propertyPredicate rdf:resource="http://www.ftn.uns.ac.rs/drugs#hasToxicity"/>
+                                <swrl:argument1 rdf:resource="http://www.ftn.uns.ac.rs/d"/>
                                 <swrl:argument2 rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrl:argument2>
                             </rdf:Description>
                         </rdf:first>
@@ -1255,10 +1275,9 @@
                                 <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
                                 <rdf:first>
                                     <rdf:Description>
-                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
-                                        <swrl:propertyPredicate rdf:resource="http://www.ftn.uns.ac.rs/drugs#hasToxicity"/>
-                                        <swrl:argument1 rdf:resource="d"/>
-                                        <swrl:argument2 rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrl:argument2>
+                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                                        <swrl:classPredicate rdf:resource="http://www.ftn.uns.ac.rs/drugs#Drug"/>
+                                        <swrl:argument1 rdf:resource="http://www.ftn.uns.ac.rs/d"/>
                                     </rdf:Description>
                                 </rdf:first>
                                 <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
@@ -1275,7 +1294,7 @@
                     <rdf:Description>
                         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
                         <swrl:classPredicate rdf:resource="http://www.ftn.uns.ac.rs/drugs#PreclinicallyTestedDrug"/>
-                        <swrl:argument1 rdf:resource="d"/>
+                        <swrl:argument1 rdf:resource="http://www.ftn.uns.ac.rs/d"/>
                     </rdf:Description>
                 </rdf:first>
                 <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
@@ -1291,7 +1310,7 @@
                     <rdf:Description>
                         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
                         <swrl:classPredicate rdf:resource="http://www.ftn.uns.ac.rs/drugs#Drug"/>
-                        <swrl:argument1 rdf:resource="d"/>
+                        <swrl:argument1 rdf:resource="http://www.ftn.uns.ac.rs/d"/>
                     </rdf:Description>
                 </rdf:first>
                 <rdf:rest>
@@ -1301,7 +1320,7 @@
                             <rdf:Description>
                                 <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
                                 <swrl:propertyPredicate rdf:resource="http://www.ftn.uns.ac.rs/drugs#hasSideEffects"/>
-                                <swrl:argument1 rdf:resource="d"/>
+                                <swrl:argument1 rdf:resource="http://www.ftn.uns.ac.rs/d"/>
                                 <swrl:argument2 rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</swrl:argument2>
                             </rdf:Description>
                         </rdf:first>
@@ -1317,7 +1336,7 @@
                     <rdf:Description>
                         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
                         <swrl:classPredicate rdf:resource="http://www.ftn.uns.ac.rs/drugs#ClinicallyTestedDrugPhase2"/>
-                        <swrl:argument1 rdf:resource="d"/>
+                        <swrl:argument1 rdf:resource="http://www.ftn.uns.ac.rs/d"/>
                     </rdf:Description>
                 </rdf:first>
                 <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
@@ -1333,7 +1352,7 @@
                     <rdf:Description>
                         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
                         <swrl:classPredicate rdf:resource="http://www.ftn.uns.ac.rs/drugs#Drug"/>
-                        <swrl:argument1 rdf:resource="d"/>
+                        <swrl:argument1 rdf:resource="http://www.ftn.uns.ac.rs/d"/>
                     </rdf:Description>
                 </rdf:first>
                 <rdf:rest>
@@ -1343,7 +1362,7 @@
                             <rdf:Description>
                                 <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
                                 <swrl:propertyPredicate rdf:resource="http://www.ftn.uns.ac.rs/drugs#hasTherapeuticEffect"/>
-                                <swrl:argument1 rdf:resource="d"/>
+                                <swrl:argument1 rdf:resource="http://www.ftn.uns.ac.rs/d"/>
                                 <swrl:argument2 rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrl:argument2>
                             </rdf:Description>
                         </rdf:first>
@@ -1359,7 +1378,7 @@
                     <rdf:Description>
                         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
                         <swrl:classPredicate rdf:resource="http://www.ftn.uns.ac.rs/drugs#ClinicallyTestedDrugPhase3"/>
-                        <swrl:argument1 rdf:resource="d"/>
+                        <swrl:argument1 rdf:resource="http://www.ftn.uns.ac.rs/d"/>
                     </rdf:Description>
                 </rdf:first>
                 <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
@@ -1375,7 +1394,7 @@
                     <rdf:Description>
                         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
                         <swrl:classPredicate rdf:resource="http://www.ftn.uns.ac.rs/drugs#Drug"/>
-                        <swrl:argument1 rdf:resource="d"/>
+                        <swrl:argument1 rdf:resource="http://www.ftn.uns.ac.rs/d"/>
                     </rdf:Description>
                 </rdf:first>
                 <rdf:rest>
@@ -1385,7 +1404,7 @@
                             <rdf:Description>
                                 <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
                                 <swrl:propertyPredicate rdf:resource="http://www.ftn.uns.ac.rs/drugs#isDoseRanged"/>
-                                <swrl:argument1 rdf:resource="d"/>
+                                <swrl:argument1 rdf:resource="http://www.ftn.uns.ac.rs/d"/>
                                 <swrl:argument2 rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrl:argument2>
                             </rdf:Description>
                         </rdf:first>
@@ -1401,7 +1420,7 @@
                     <rdf:Description>
                         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
                         <swrl:classPredicate rdf:resource="http://www.ftn.uns.ac.rs/drugs#ClinicallyTestedDrugPhase1"/>
-                        <swrl:argument1 rdf:resource="d"/>
+                        <swrl:argument1 rdf:resource="http://www.ftn.uns.ac.rs/d"/>
                     </rdf:Description>
                 </rdf:first>
                 <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>

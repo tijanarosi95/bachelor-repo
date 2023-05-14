@@ -127,11 +127,13 @@ public class InsertUtility {
     }
 
     private String createInsertQuery(final Drug drug) {
+        var drugName = drug.getName();
+        var drugNameFormatted = drug.getName().replaceAll("\\s+", "");
         return "PREFIX drg:" + DRUGS_URI + " " +
                 "PREFIX rdf:" + RDF_URI + " " +
                 "INSERT DATA { "
-                + " <http://www.ftn.uns.ac.rs/drugs#" + drug.getName().replaceAll("\\s+", "") + "> drg:activeIngredient '" + drug.getActiveIngredient() + "'; "
-                + " drg:name '" + drug.getName() + "';"
+                + " <http://www.ftn.uns.ac.rs/drugs#" + drugNameFormatted + "> drg:activeIngredient '" + drug.getActiveIngredient() + "'; "
+                + " drg:name '" + drugName + "';"
                 + " drg:drugID " + drug.getDrugId() + ";"
                 + createMayTreatStatements(drug.getMayTreat())
                 + " rdf:type " + "drg:Drug "

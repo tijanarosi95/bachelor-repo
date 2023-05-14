@@ -140,7 +140,7 @@ public class InferOntologyFacts implements OntologyUtilityInterface {
         drugResource.addProperty(model.getProperty(NS + HAS_TOXICITY), ResourceFactory.createTypedLiteral(drugEffects.isHasToxicity()));
         drugResource.addProperty(model.getProperty(NS + HAS_EFFICACY), ResourceFactory.createTypedLiteral(drugEffects.isHasEfficacy()));
         drugResource.addProperty(model.getProperty(NS + HAS_SIDE_EFFECTS), ResourceFactory.createTypedLiteral(drugEffects.isHasSideEffects()));
-        drugResource.addProperty(model.getProperty(NS + HAS_THERAPEUTIC_EFFECT), ResourceFactory.createTypedLiteral(drugEffects.isHasTherapeuticEffect()));
+        drugResource.addProperty(model.getProperty(NS + HAS_THERAPEUTIC_EFFECT), ResourceFactory.createTypedLiteral(drugEffects.getTherapeuticEffect()));
         drugResource.addProperty(model.getProperty(NS + DOSE_RANGED), ResourceFactory.createTypedLiteral(drugEffects.isDoseRanged()));
         drugResource.addProperty(model.getProperty(NS + HAS_APPROVED), ResourceFactory.createTypedLiteral(drugEffects.isApproved()));
 
@@ -149,6 +149,14 @@ public class InferOntologyFacts implements OntologyUtilityInterface {
 
         while (iter.hasNext()) {
             var triple = iter.next();
+            var subject = triple.getSubject();
+            var object = triple.getObject();
+            var predicate = triple.getPredicate();
+
+            System.out.println(" Subject- " + PrintUtil.print(subject));
+            System.out.println(" Predicate- " + PrintUtil.print(predicate));
+            System.out.println(" Object- " + PrintUtil.print(object));
+            System.out.println("----------------");
             createDrugDtoFromInferredFacts(drug, triple);
         }
         return drug;

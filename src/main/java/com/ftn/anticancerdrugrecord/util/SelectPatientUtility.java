@@ -93,7 +93,7 @@ public class SelectPatientUtility {
         "PREFIX rdf:" + RDF_URI + " " +
              " SELECT DISTINCT ?s ?isTreatedWith ?jmbg ?firstName ?lastName ?gender ?age " +
              " ?isCancerSpread ?isCancerGrown ?isCancerSpreadToOrgans ?strongPain " +
-             " ?isCancerReappear ?isCancerDetectable ?lifeQuality ?hasDisease" +
+             " ?isCancerReappear ?isCancerDetectable ?lifeQuality ?hasDisease ?weightLoss " +
              " WHERE { " +
              "?s drg:isTreatedWith ?isTreatedWith FILTER ( str(?isTreatedWith) = '%s') . " +
              "?s drg:jmbg ?jmbg . " +

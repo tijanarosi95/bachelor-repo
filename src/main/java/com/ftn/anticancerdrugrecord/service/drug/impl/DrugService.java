@@ -56,6 +56,17 @@ public class DrugService implements DrugServiceInterface {
     }
 
     @Override
+    public Optional<PatientDrugDTO> getPatientTreatedDrug(String jmbg) {
+        var patientDrugData = selectUtility.loadPatientTreatedDrug(jmbg);
+        if (patientDrugData.isPresent()) {
+            var drug = selectUtility.loadDrugByName(patientDrugData.get().getDrugName());
+            var drugId = drug.isPresent() ? drug.get().getDrugId() : 0;
+            patientDrugData.get().setDrugId(String.valueOf(drugId));
+        }
+        return patientDrugData;
+    }
+
+    @Override
     public List<Drug> getDrugsByDiseaseType(String type) {
         return selectUtility.loadDrugsByDiseaseType(type);
     }

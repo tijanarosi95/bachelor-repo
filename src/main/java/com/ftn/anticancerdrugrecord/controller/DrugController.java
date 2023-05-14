@@ -59,6 +59,12 @@ public class DrugController {
         return new ResponseEntity(drug, HttpStatus.OK);
     }
 
+    @GetMapping("/person-treated-drug/{jmbg}")
+    public ResponseEntity<PatientDrugDTO> loadPatientTreatedDrug(@PathVariable ("jmbg") String jmbg) {
+        var patientTreatedDrug = drugServiceInterface.getPatientTreatedDrug(jmbg).orElse(null);
+        return new ResponseEntity<>(patientTreatedDrug, HttpStatus.OK);
+    }
+
     @GetMapping()
     public ResponseEntity<List<Drug>> loadAllDrugs() {
         final List<Drug> drugs = drugServiceInterface.getAllDrugs();
