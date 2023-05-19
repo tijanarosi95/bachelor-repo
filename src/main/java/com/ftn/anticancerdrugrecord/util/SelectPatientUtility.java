@@ -28,9 +28,7 @@ public class SelectPatientUtility {
         final String queryString =
                 "PREFIX drg:" + DRUGS_URI + " " +
                 "PREFIX rdf:" + RDF_URI + " " +
-                    " SELECT ?s ?jmbg ?firstName ?lastName ?gender ?age " +
-                    " ?isCancerSpread ?isCancerGrown ?isCancerSpreadToOrgans ?strongPain " +
-                    " ?isCancerReappear ?isCancerDetectable ?lifeQuality ?weightLoss " +
+                    " SELECT * " +
                     " WHERE { " +
                         "?s drg:jmbg ?jmbg FILTER ( str(?jmbg) = '%s' ) . " +
                         "?s drg:firstName ?firstName . " +
@@ -43,7 +41,8 @@ public class SelectPatientUtility {
                         "?s drg:isCancerReappear ?isCancerReappear . " +
                         "?s drg:isCancerDetectable ?isCancerDetectable . " +
                         "?s drg:lifeQuality ?lifeQuality . " +
-                        "?s drg:weightLoss ?weightLoss . }";
+                        "?s drg:weightLoss ?weightLoss . " +
+                        "?s drg:strongPain ?strongPain .} ";
         final String formattedQueryString = String.format(queryString, jmbg);
         System.out.println("Person query str: " + formattedQueryString);
         final Query query = QueryFactory.create(formattedQueryString);
@@ -64,6 +63,7 @@ public class SelectPatientUtility {
                 final Literal isCancerDetectable = solution.getLiteral("isCancerDetectable");
                 final Literal lifeQuality = solution.getLiteral("lifeQuality");
                 final Literal weightLoss = solution.getLiteral("weightLoss");
+                final Literal strongPain = solution.getLiteral("strongPain");
                 var patient = Person.builder()
                                     .jmbg(jmbg)
                                     .firstName(firstName.getString())
@@ -77,6 +77,7 @@ public class SelectPatientUtility {
                                     .isCancerSpreadToOrgans(isCancerSpreadToOrgans.getBoolean())
                                     .lifeQuality(LifeQuality.valueOf(lifeQuality.getString()))
                                     .weightLoss(weightLoss.getBoolean())
+                                    .strongPain(strongPain.getBoolean())
                                     .build();
                 return Optional.of(patient);
             }
@@ -108,7 +109,8 @@ public class SelectPatientUtility {
              "?s drg:isCancerDetectable ?isCancerDetectable . " +
              "?s drg:lifeQuality ?lifeQuality . " +
              "?s drg:hasDisease ?hasDisease . " +
-             "?s drg:weightLoss ?weightLoss . }";
+             "?s drg:weightLoss ?weightLoss . " +
+             "?s drg:strongPain ?strongPain . } ";
         final String formattedQueryString = String.format(queryString, drugName);
         System.out.println("Person query str: " + formattedQueryString);
         final Query query = QueryFactory.create(formattedQueryString);
@@ -132,6 +134,7 @@ public class SelectPatientUtility {
                 final Literal isCancerDetectable = solution.getLiteral("isCancerDetectable");
                 final Literal lifeQuality = solution.getLiteral("lifeQuality");
                 final Literal weightLoss = solution.getLiteral("weightLoss");
+                final Literal strongPain = solution.getLiteral("strongPain");
                 final Literal disease = solution.getLiteral("hasDisease");
                 var patient = new Person();
 
@@ -148,7 +151,7 @@ public class SelectPatientUtility {
                 patient.setLifeQuality(LifeQuality.valueOf(lifeQuality.getString()));
                 patient.setHasDisease(new Disease(disease.getString()));
                 patient.setWeightLoss(weightLoss.getBoolean());
-
+                patient.setStrongPain(strongPain.getBoolean());
                 personList.add(patient);
             }
         } catch (Exception exception) {
@@ -175,7 +178,8 @@ public class SelectPatientUtility {
         " drg:isCancerReappear ?isCancerReappear ;" +
         " drg:isCancerDetectable ?isCancerDetectable ;" +
         " drg:lifeQuality ?lifeQuality ;" +
-        " drg:weightLoss ?weightLoss ; }";
+        " drg:weightLoss ?weightLoss ;" +
+        " drg:strongPain ?strongPain ; }";
 
         System.out.println("Person query str: " + queryString);
         final Query query = QueryFactory.create(queryString);
@@ -199,6 +203,7 @@ public class SelectPatientUtility {
                 final Literal isCancerDetectable = solution.getLiteral("isCancerDetectable");
                 final Literal lifeQuality = solution.getLiteral("lifeQuality");
                 final Literal weightLoss = solution.getLiteral("weightLoss");
+                final Literal strongPain = solution.getLiteral("strongPain");
                 var patient = new Person();
 
                 patient.setJmbg(jmbg.getString());
@@ -213,7 +218,7 @@ public class SelectPatientUtility {
                 patient.setCancerSpreadToOrgans(isCancerSpreadToOrgans.getBoolean());
                 patient.setLifeQuality(LifeQuality.valueOf(lifeQuality.getString()));
                 patient.setWeightLoss(weightLoss.getBoolean());
-
+                patient.setStrongPain(strongPain.getBoolean());
                 personList.add(patient);
             }
         } catch (Exception exception) {

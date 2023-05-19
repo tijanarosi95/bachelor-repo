@@ -124,13 +124,21 @@ public class InferOntologyFacts implements OntologyUtilityInterface {
 
         while (iter.hasNext()) {
             var triple = iter.next();
+            var subject = triple.getSubject();
+            var object = triple.getObject();
+            var predicate = triple.getPredicate();
+
+            System.out.println(" Subject- " + PrintUtil.print(subject));
+            System.out.println(" Predicate- " + PrintUtil.print(predicate));
+            System.out.println(" Object- " + PrintUtil.print(object));
+            System.out.println("----------------");
             createPatientDtoFromInferredFacts(patient, triple);
         }
         return patient;
     }
 
     @Override
-    public DrugDTO inferDrugFacts(DrugEffectsDTO drugEffects) {
+    public DrugDTO inferDrugFacts(final DrugEffectsDTO drugEffects) {
         OntModel model = ModelFactory.createOntologyModel(PelletReasonerFactory.THE_SPEC);
         model.read(ONTOLOGY_PATH);
 
@@ -168,7 +176,8 @@ public class InferOntologyFacts implements OntologyUtilityInterface {
         final List<Drug> drugs = drugServiceInterface.getAllDrugs();
         if (drugs != null && !drugs.isEmpty()) {
             drugs.forEach(drug -> {
-                final DrugDTO inferredDrugFacts = inferDrugFacts(new DrugEffectsDTO(drug));
+                final DrugEffectsDTO drugEffects = new DrugEffectsDTO(drug);
+                final DrugDTO inferredDrugFacts = inferDrugFacts(drugEffects);
                 inferredDrugs.add(inferredDrugFacts);
             });
         }

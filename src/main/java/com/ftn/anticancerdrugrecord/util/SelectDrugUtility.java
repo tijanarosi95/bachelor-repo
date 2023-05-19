@@ -152,6 +152,7 @@ public class SelectDrugUtility {
               "?s drg:hasApproved ?hasApproved . }";
 
         final Query query = QueryFactory.create(queryString);
+        System.out.println("Select all drugs: " + query);
 
         // Execute the query and obtain the results
         try (QueryExecution queryExecution = QueryExecutionFactory.sparqlService(TDB_SELECT_BASE_URL, query)) {
@@ -175,7 +176,7 @@ public class SelectDrugUtility {
                 drug.setActiveIngredient(activeIngredient.getString());
                 drug.setDoseRanged(isDoseRanged.getBoolean());
                 drug.setHasEfficacy(hasEfficacy.getBoolean());
-                drug.setHasEfficacy(hasSideEffects.getBoolean());
+                drug.setHasSideEffects(hasSideEffects.getBoolean());
                 drug.setHasTherapeuticEffect(hasTherapeuticEffect.getBoolean());
                 drug.setHasToxicity(hasToxicity.getBoolean());
                 drug.setApproved(hasApproved.getBoolean());
