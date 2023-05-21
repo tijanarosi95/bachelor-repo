@@ -26,4 +26,6 @@ public interface DrugServiceInterface {
     List<Drug> getDrugsByDiseaseType(String type);
 
     List<Drug> getAllDrugs();
+
+    List<Double> getDrugStatistics(int id);
 }

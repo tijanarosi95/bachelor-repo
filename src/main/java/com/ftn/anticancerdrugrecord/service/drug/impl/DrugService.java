@@ -6,10 +6,13 @@ import com.ftn.anticancerdrugrecord.dto.patient.PatientDrugDTO;
 import com.ftn.anticancerdrugrecord.model.drug.Drug;
 import com.ftn.anticancerdrugrecord.service.drug.DrugServiceInterface;
 import com.ftn.anticancerdrugrecord.util.InsertUtility;
+import com.ftn.anticancerdrugrecord.util.SelectDrugStatistics;
 import com.ftn.anticancerdrugrecord.util.SelectDrugUtility;
 import com.ftn.anticancerdrugrecord.util.UpdateDrugUtility;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import org.apache.jena.base.Sys;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +24,9 @@ public class DrugService implements DrugServiceInterface {
 
     @Autowired
     private SelectDrugUtility selectUtility;
+
+    @Autowired
+    private SelectDrugStatistics drugStatistics;
 
     @Autowired
     private UpdateDrugUtility updateUtility;
@@ -74,5 +80,31 @@ public class DrugService implements DrugServiceInterface {
     @Override
     public List<Drug> getAllDrugs() {
         return selectUtility.loadAllDrugs();
+    }
+
+    @Override
+    public List<Double> getDrugStatistics(int id) {
+        final List<Double> statistics = new ArrayList<>();
+        var countHasEfficacy = drugStatistics.getHasEfficacyCount(id);
+        var countSideEffects = drugStatistics.getHasSideEffectsCount(id);
+        var countTherapeuticEffect = drugStatistics.getHasTherapeuticEffectCount(id);
+        var countIsDoseRanged = drugStatistics.getIsDoseRangedCount(id);
+        var countHasToxicity = drugStatistics.getHasToxicityCount(id);
+
+        var total = countHasEfficacy + countSideEffects + countTherapeuticEffect + countIsDoseRanged + countHasToxicity;
+        statistics.add(0, getPercentage(countHasEfficacy, total));
+        statistics.add(1, getPercentage(countSideEffects, total));
+        statistics.add(2, getPercentage(countTherapeuticEffect, total));
+        statistics.add(3, getPercentage(countIsDoseRanged, total));
+        statistics.add(4, getPercentage(countHasToxicity, total));
+        return statistics;
+    }
+
+    private double getPercentage(int value, int total) {
+        System.out.println("In get perctange funstion: " + value + " " + total);
+        var result = (value * 100.0f) / total;
+        System.out.println("Result " + result);
+
+        return result;
     }
 }

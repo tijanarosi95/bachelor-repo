@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
@@ -71,8 +72,8 @@ public class DrugController {
         return new ResponseEntity(drugs, HttpStatus.OK);
     }
 
-    @GetMapping("/diseases/{diseaseType}")
-    public ResponseEntity<List<Drug>> loadDrugsByDiseaseType(@PathVariable("diseaseType") String diseaseType) {
+    @GetMapping("/diseases")
+    public ResponseEntity<List<Drug>> loadDrugsByDiseaseType(@RequestParam("diseaseType") String diseaseType) {
         final List<Drug> drugs = drugServiceInterface.getDrugsByDiseaseType(diseaseType);
         return new ResponseEntity(drugs, HttpStatus.OK);
     }
@@ -93,5 +94,11 @@ public class DrugController {
     public ResponseEntity<Boolean> deleteDrug(@PathVariable("id") String id) {
         var deleted = drugServiceInterface.deleteDrug(id);
         return new ResponseEntity<>(deleted, HttpStatus.OK);
+    }
+
+    @GetMapping("/statistics/{id}")
+    public ResponseEntity<List<Double>> getDrugStatistics(@PathVariable("id") Integer id) {
+        var statistics = drugServiceInterface.getDrugStatistics(id);
+        return new ResponseEntity<>(statistics, HttpStatus.OK);
     }
 }

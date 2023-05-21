@@ -28,11 +28,11 @@ public class UpdateDiseaseUtility {
 
     private String createUpdateQuery(final DiseaseUpdateDTO disease) {
         return  " PREFIX drg:" + DRUGS_URI +
-        " DELETE { ?drug drg:name " + disease.getExistingData().getName() + " ;}" +
+        " DELETE { ?disease drg:name " + disease.getExistingData().getName() + " ;}" +
 
-        " INSERT { ?drug drg:name " + disease.getNewData().getName() + " ;}" +
+        " INSERT { ?disease drg:name " + disease.getNewData().getName() + " ;}" +
 
-        " WHERE { ?drug drg:id " + disease.getExistingData().getId() + " ;} ";
+        " WHERE { ?disease drg:id " + disease.getExistingData().getId() + " ;} ";
     }
 
     private void save(final String updateQuery) {

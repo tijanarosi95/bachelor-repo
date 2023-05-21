@@ -168,7 +168,7 @@ public class InsertUtility {
         var diseaseName = patientDisease.getDisease().getName();
         var diseaseId = patientDisease.getDisease().getId();
 
-        if (selectUtility.loadDiseaseById(patientDisease.getDisease().getId()).isPresent()) {
+        if (selectUtility.loadDiseaseByName(diseaseName).isPresent()) {
             return createInsertQueryDiseaseExist(firstName, lastName, diseaseName, diseaseId);
         }
         return createInsertQueryDiseaseNotExist(firstName, lastName, diseaseName, diseaseId);

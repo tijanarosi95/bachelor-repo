@@ -1,13 +1,10 @@
 package com.ftn.anticancerdrugrecord.util;
 
-import com.ftn.anticancerdrugrecord.dto.disease.DiseaseDTO;
-import com.ftn.anticancerdrugrecord.dto.patient.PatientDiseaseDTO;
 import com.ftn.anticancerdrugrecord.dto.patient.PatientDrugDTO;
 import com.ftn.anticancerdrugrecord.model.drug.Drug;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.jena.query.Query;
 import org.apache.jena.query.QueryExecution;
 import org.apache.jena.query.QueryExecutionFactory;
