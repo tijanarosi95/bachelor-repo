@@ -82,10 +82,11 @@ public class SelectDrugUtility {
         "PREFIX drg:" + DRUGS_URI + " " +
         "PREFIX rdf:" + RDF_URI + " " +
              " SELECT DISTINCT ?s ?mayTreat ?drugID ?activeIngredient ?isDoseRanged ?hasEfficacy " +
-             " ?hasToxicity ?hasSideEffects ?hasTherapeuticEffect ?hasApproved " +
+             " ?hasToxicity ?hasSideEffects ?hasTherapeuticEffect ?hasApproved ?name " +
              " WHERE { " +
              "?s drg:mayTreat ?mayTreat FILTER ( str(?mayTreat) = '%s' ) . " +
              "?s drg:drugID ?drugID . " +
+             "?s drg:name ?name ." +
              "?s drg:activeIngredient ?activeIngredient . " +
              "?s drg:isDoseRanged ?isDoseRanged . " +
              "?s drg:hasEfficacy ?hasEfficacy . " +
@@ -103,6 +104,7 @@ public class SelectDrugUtility {
             while (resultSet.hasNext()) {
                 QuerySolution solution = resultSet.nextSolution();
                 Literal id = solution.getLiteral("drugID");
+                Literal name = solution.getLiteral("name");
                 Literal activeIngredient = solution.getLiteral("activeIngredient");
                 Literal isDoseRanged = solution.getLiteral("isDoseRanged");
                 Literal hasEfficacy = solution.getLiteral("hasEfficacy");
@@ -113,6 +115,7 @@ public class SelectDrugUtility {
 
                 Drug drug = new Drug();
                 drug.setDrugId(id.getInt());
+                drug.setName(name.getString());
                 drug.setActiveIngredient(activeIngredient.getString());
                 drug.setDoseRanged(isDoseRanged.getBoolean());
                 drug.setHasEfficacy(hasEfficacy.getBoolean());

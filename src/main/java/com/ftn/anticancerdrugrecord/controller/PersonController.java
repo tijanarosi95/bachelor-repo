@@ -51,6 +51,12 @@ public class PersonController {
         return new ResponseEntity<>(person, HttpStatus.OK);
     }
 
+    @GetMapping("/drug")
+    public ResponseEntity<List<Person>> loadPersonsTreatedByDrug() {
+        final List<Person> persons = personServiceInterface.getPersonsTreatedByDrug();
+        return new ResponseEntity(persons, HttpStatus.OK);
+    }
+
     @GetMapping("/drug/{drugName}")
     public ResponseEntity<List<Person>> loadPersonsTreatedByDrug(@PathVariable("drugName") String drugName) {
         final List<Person> persons = personServiceInterface.getPersonsTreatedByDrug(drugName);

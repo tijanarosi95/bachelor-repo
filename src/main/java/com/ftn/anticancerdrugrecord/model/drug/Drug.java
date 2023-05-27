@@ -35,4 +35,8 @@ public class Drug {
     private boolean isApproved;
 
     private Set<Disease> mayTreat;
+
+    public Drug(String name) {
+        this.name = name;
+    }
 }

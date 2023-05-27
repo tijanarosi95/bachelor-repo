@@ -47,8 +47,7 @@ public class UpdatePatientUtility {
                " drg:strongPain " + patient.getExistingData().isStrongPain() + " ;" +
                " drg:isCancerReappear " + patient.getExistingData().isCancerReappear() + " ;" +
                " drg:isCancerDetectable " + patient.getExistingData().isCancerDetectable() + " ;" +
-               " drg:lifeQuality '" + patient.getExistingData().getLifeQuality() + "';" +
-               " drg:isTreatedWith '" + patient.getExistingData().getIsTreatedWith().getDrugName() + "';}" +
+               " drg:lifeQuality '" + patient.getExistingData().getLifeQuality() + "';}" +
                " INSERT { ?person drg:age " + patient.getNewData().getAge()  + " ;" +
                " drg:isCancerSpread " + patient.getNewData().isCancerSpread() + " ;" +
                " drg:isCancerGrown " + patient.getNewData().isCancerGrown() + " ;" +
@@ -57,8 +56,7 @@ public class UpdatePatientUtility {
                " drg:strongPain " + patient.getNewData().isStrongPain() + " ;" +
                " drg:isCancerReappear " + patient.getNewData().isCancerReappear() + " ;" +
                " drg:isCancerDetectable " + patient.getNewData().isCancerDetectable() + " ;" +
-               " drg:lifeQuality '" + patient.getNewData().getLifeQuality() + "' ;" +
-               " drg:isTreatedWith '" + patient.getNewData().getIsTreatedWith().getDrugName() + "';}" +
+               " drg:lifeQuality '" + patient.getNewData().getLifeQuality() + "' ;}" +
                " WHERE" +
                " { ?person drg:jmbg '" + patient.getExistingData().getJmbg() + "';}";
     }

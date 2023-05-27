@@ -54,6 +54,11 @@ public class PersonService implements PersonServiceInterface {
     }
 
     @Override
+    public List<Person> getPersonsTreatedByDrug() {
+        return selectUtility.loadPatientsTreatedBySomeDrug();
+    }
+
+    @Override
     public boolean updatePerson(PatientUpdateDTO patient) {
         return updateUtility.updatePatient(patient);
     }

@@ -15,6 +15,8 @@ public interface PersonServiceInterface {
 
     List<Person> getPersonsTreatedByDrug(String drugName);
 
+    List<Person> getPersonsTreatedByDrug();
+
     boolean updatePerson(PatientUpdateDTO patient);
 
     boolean deletePerson(String jmbg);

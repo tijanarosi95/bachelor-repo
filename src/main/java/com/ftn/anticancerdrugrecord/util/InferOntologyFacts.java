@@ -235,10 +235,10 @@ public class InferOntologyFacts implements OntologyUtilityInterface {
                 patient.setSymptoms(new PatientWithSymptomUnchanged());
                 break;
             case SYMPTOM_EXACERBATED:
-                patient.setSymptoms(new PatientWithSymptomImproved());
+                patient.setSymptoms(new PatientWithSymptomExacerbated());
                 break;
             case SYMPTOM_IMPROVED:
-                patient.setSymptoms(new PatientWithSymptomExacerbated());
+                patient.setSymptoms(new PatientWithSymptomImproved());
                 break;
         }
     }

@@ -1,6 +1,7 @@
 package com.ftn.anticancerdrugrecord.util;
 
 import com.ftn.anticancerdrugrecord.model.disease.Disease;
+import com.ftn.anticancerdrugrecord.model.drug.Drug;
 import com.ftn.anticancerdrugrecord.model.person.Gender;
 import com.ftn.anticancerdrugrecord.model.person.LifeQuality;
 import com.ftn.anticancerdrugrecord.model.person.Person;
@@ -152,6 +153,55 @@ public class SelectPatientUtility {
                 patient.setHasDisease(new Disease(disease.getString()));
                 patient.setWeightLoss(weightLoss.getBoolean());
                 patient.setStrongPain(strongPain.getBoolean());
+                personList.add(patient);
+            }
+        } catch (Exception exception) {
+            System.out.println("Exception occurred.");
+            exception.printStackTrace();
+        }
+        return personList;
+    }
+
+    public List<Person> loadPatientsTreatedBySomeDrug() {
+        final String queryString =
+        "PREFIX drg:" + DRUGS_URI + " " +
+        "PREFIX rdf:" + RDF_URI + " " +
+        " SELECT DISTINCT ?s ?isTreatedWith ?jmbg ?firstName ?lastName ?age " +
+        " ?lifeQuality ?hasDisease " +
+        " WHERE { " +
+        "?s drg:isTreatedWith ?isTreatedWith . " +
+        "?s drg:jmbg ?jmbg . " +
+        "?s drg:firstName ?firstName . " +
+        "?s drg:lastName ?lastName . " +
+        "?s drg:age ?age . " +
+        "?s drg:lifeQuality ?lifeQuality . " +
+        "?s drg:hasDisease ?hasDisease .} ";
+        final Query query = QueryFactory.create(queryString);
+
+        List<Person> personList = new ArrayList<>();
+
+        // Execute the query and obtain the results
+        try (QueryExecution queryExecution = QueryExecutionFactory.sparqlService(TDB_SELECT_BASE_URL, query)) {
+            final ResultSet resultSet = queryExecution.execSelect();
+            while (resultSet.hasNext()) {
+                final QuerySolution solution = resultSet.next();
+                final Literal jmbg = solution.getLiteral("jmbg");
+                final Literal firstName = solution.getLiteral("firstName");
+                final Literal lastName = solution.getLiteral("lastName");
+                final Literal age = solution.getLiteral("age");
+                final Literal lifeQuality = solution.getLiteral("lifeQuality");
+                final Literal disease = solution.getLiteral("hasDisease");
+                final Literal treatedWith = solution.getLiteral("isTreatedWith");
+                var patient = new Person();
+
+                patient.setJmbg(jmbg.getString());
+                patient.setFirstName(firstName.getString());
+                patient.setLastName(lastName.getString());
+                patient.setAge(age.getInt());
+                patient.setLifeQuality(LifeQuality.valueOf(lifeQuality.getString()));
+                patient.setIsTreatedWith(new Drug(treatedWith.getString()));
+                patient.setHasDisease(new Disease(disease.getString()));
+
                 personList.add(patient);
             }
         } catch (Exception exception) {
